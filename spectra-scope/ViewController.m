@@ -8,9 +8,9 @@
 
 #import "ViewController.h"
 
-@interface ViewController ()
+//@interface ViewController ()
 
-@end
+//@end
 
 @implementation ViewController
 
