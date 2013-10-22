@@ -1,6 +1,7 @@
 Spectra-Scope
 =============
 
-Spectra-Scope is an iOS app that allows the user to analyze their environment through the camera of the iPhone.
-The user simply has to point the camera at the object they want to know the colour of to analyze.
-The app will display the RGB value and include a play button which will announce the colour that is displayed on the screen.
+Spectra-Scope is an iOS app that can show the colour of objects portrayed in moving or still images.
+The user simply has to point the camera at an object.
+The app will display the RGB value and the name of the object's colour.
+A play button can be pressed to announce the name of the colour.
