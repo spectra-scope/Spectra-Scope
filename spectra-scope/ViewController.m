@@ -15,6 +15,7 @@
 @implementation ViewController
 //@synthesize usernameInput = _usernameInput;
 //@synthesize passwordInput = _passwordInput;
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -37,4 +38,7 @@
         [textField resignFirstResponder];
     return YES;
 }
+
+
+
 @end

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zyW-w9-PxA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zyW-w9-PxA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -22,7 +22,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="1wX-bH-w9n" kind="push" id="NlZ-sY-zJL"/>
+                                    <segue destination="1wX-bH-w9n" kind="modal" id="6P9-op-9e5"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpb-Vk-onE">
@@ -91,17 +91,18 @@
             </objects>
             <point key="canvasLocation" x="529" y="172"/>
         </scene>
-        <!--View Controller - main screen-->
+        <!--Main Screen View Controller - main screen-->
         <scene sceneID="XGA-O0-OrQ">
             <objects>
-                <viewController id="1wX-bH-w9n" sceneMemberID="viewController">
+                <viewController id="1wX-bH-w9n" customClass="MainScreenViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AR4-d4-gHK">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="welcome, &lt;INSERT NAME HERE>" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGZ-CL-EF4">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="42" id="37F-Vb-rTf"/>
+                                    <constraint firstAttribute="width" constant="280" id="3O4-mE-D0Q"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -109,7 +110,7 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4EE-u4-Ie2">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="86" id="Fd8-vw-7YP"/>
+                                    <constraint firstAttribute="width" constant="96" id="Yhk-2l-d6P"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="real time">
@@ -119,8 +120,14 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="TakePhoto" destination="bKg-xT-7lH" eventType="touchUpInside" id="1Wa-x1-QeY"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zQa-qI-Keh">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="86" id="815-IW-BjD"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="still image">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -129,6 +136,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="ChooseExisting" destination="bKg-xT-7lH" eventType="touchUpInside" id="btK-pB-9lZ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tk3-y8-xKx">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -143,17 +153,15 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="4EE-u4-Ie2" firstAttribute="leading" secondItem="AR4-d4-gHK" secondAttribute="leading" constant="108" id="0zX-Iy-r4c"/>
+                            <constraint firstItem="fGZ-CL-EF4" firstAttribute="leading" secondItem="AR4-d4-gHK" secondAttribute="leading" constant="11" id="4ov-md-Qa0"/>
                             <constraint firstItem="zQa-qI-Keh" firstAttribute="leading" secondItem="4EE-u4-Ie2" secondAttribute="leading" type="default" id="G2A-YY-6Yz"/>
                             <constraint firstItem="tk3-y8-xKx" firstAttribute="leading" secondItem="zQa-qI-Keh" secondAttribute="leading" type="default" id="Kd5-oI-ZFb"/>
-                            <constraint firstItem="4EE-u4-Ie2" firstAttribute="top" secondItem="AR4-d4-gHK" secondAttribute="top" constant="113" id="VYg-UX-6OT"/>
-                            <constraint firstItem="fGZ-CL-EF4" firstAttribute="top" secondItem="AR4-d4-gHK" secondAttribute="top" constant="40" id="ewi-eo-CHC"/>
+                            <constraint firstItem="fGZ-CL-EF4" firstAttribute="top" secondItem="AR4-d4-gHK" secondAttribute="top" constant="5" id="c89-Yf-Qwl"/>
+                            <constraint firstItem="zQa-qI-Keh" firstAttribute="centerX" secondItem="fGZ-CL-EF4" secondAttribute="centerX" type="default" id="eZr-Mi-XC5"/>
+                            <constraint firstItem="4EE-u4-Ie2" firstAttribute="top" secondItem="AR4-d4-gHK" secondAttribute="top" constant="61" id="i5d-GR-ZeX"/>
+                            <constraint firstItem="zQa-qI-Keh" firstAttribute="top" secondItem="AR4-d4-gHK" secondAttribute="top" constant="122" id="ifT-ug-Aiz"/>
                             <constraint firstItem="tk3-y8-xKx" firstAttribute="trailing" secondItem="zQa-qI-Keh" secondAttribute="trailing" type="default" id="kLn-qg-8We"/>
-                            <constraint firstItem="zQa-qI-Keh" firstAttribute="trailing" secondItem="4EE-u4-Ie2" secondAttribute="trailing" type="default" id="oFk-qE-Nz5"/>
-                            <constraint firstItem="fGZ-CL-EF4" firstAttribute="leading" secondItem="AR4-d4-gHK" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="om1-tM-Fp2"/>
-                            <constraint firstAttribute="trailing" secondItem="fGZ-CL-EF4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="prW-ai-j4C"/>
-                            <constraint firstItem="tk3-y8-xKx" firstAttribute="top" secondItem="AR4-d4-gHK" secondAttribute="top" constant="243" id="y2C-PM-oEn"/>
-                            <constraint firstItem="zQa-qI-Keh" firstAttribute="top" secondItem="AR4-d4-gHK" secondAttribute="top" constant="177" id="zo8-Pr-co6"/>
+                            <constraint firstItem="tk3-y8-xKx" firstAttribute="top" secondItem="AR4-d4-gHK" secondAttribute="top" constant="180" id="oq6-sV-N0a"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="main screen" id="gPc-1q-Mgn"/>
@@ -400,30 +408,6 @@
             <point key="canvasLocation" x="70" y="172"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="SignUpViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="signupButtonPress:"/>
-                <relationship kind="outlet" name="ageInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordInputAgain" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

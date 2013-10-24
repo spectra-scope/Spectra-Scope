@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UITextFieldDelegate>
+@interface ViewController : UIViewController<UITextFieldDelegate >{
+    UIImagePickerController *picker;
+    UIImagePickerController *picker2;
+    UIImage *image;
+    IBOutlet UIImageView *imageView;
+    
+}
+
+
 -(IBAction)backgroundTouched:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *usernameInput;
 @property (weak, nonatomic) IBOutlet UITextField *passwordInput;
-@end
+@end 
+
+

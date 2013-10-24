@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8BF798601819C68000844EBC /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7985F1819C68000844EBC /* MainScreenViewController.m */; };
+		8BF798611819C68000844EBC /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7985F1819C68000844EBC /* MainScreenViewController.m */; };
 		EF37F6AC1811E73600C5ACC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AB1811E73600C5ACC8 /* UIKit.framework */; };
 		EF37F6AE1811E73600C5ACC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AD1811E73600C5ACC8 /* Foundation.framework */; };
 		EF37F6B01811E73600C5ACC8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AF1811E73600C5ACC8 /* CoreGraphics.framework */; };
@@ -39,6 +41,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8BF7985E1819C68000844EBC /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
+		8BF7985F1819C68000844EBC /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
 		EF37F6A81811E73600C5ACC8 /* spectra-scope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "spectra-scope.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF37F6AB1811E73600C5ACC8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EF37F6AD1811E73600C5ACC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -126,6 +130,8 @@
 				EF37F6BA1811E73600C5ACC8 /* AppDelegate.h */,
 				EF37F6BB1811E73600C5ACC8 /* AppDelegate.m */,
 				EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */,
+				8BF7985E1819C68000844EBC /* MainScreenViewController.h */,
+				8BF7985F1819C68000844EBC /* MainScreenViewController.m */,
 				F79AF6C11818DB4800AB781F /* SignUpViewController.h */,
 				F79AF6C21818DB4800AB781F /* SignUpViewController.m */,
 				EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */,
@@ -284,6 +290,7 @@
 				EF37F6BC1811E73600C5ACC8 /* AppDelegate.m in Sources */,
 				EF37F6CB1811E73600C5ACC8 /* ViewController.m in Sources */,
 				F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */,
+				8BF798601819C68000844EBC /* MainScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +300,7 @@
 			files = (
 				EF37F6E01811E73600C5ACC8 /* spectra_scopeTests.m in Sources */,
 				F79AF6C41818DB4800AB781F /* SignUpViewController.m in Sources */,
+				8BF798611819C68000844EBC /* MainScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
