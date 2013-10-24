@@ -48,5 +48,8 @@
         [textField resignFirstResponder];
     return YES;
 }
+-(IBAction)signupButtonPress:(id)sender{
+    [self.navigationController popViewControllerAnimated: YES];
+}
 
 @end
