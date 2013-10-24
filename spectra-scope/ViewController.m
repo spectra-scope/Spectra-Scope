@@ -13,7 +13,8 @@
 //@end
 
 @implementation ViewController
-
+@synthesize usernameInput = _usernameInput;
+@synthesize passwordInput = _passwordInput;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -27,4 +28,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)backgroundTouched:(id)sender{
+    [_usernameInput resignFirstResponder];
+    [_passwordInput resignFirstResponder];
+}
+-(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    if(textField == _usernameInput || textField == _passwordInput)
+        [textField resignFirstResponder];
+    return NO;
+}
 @end
