@@ -24,6 +24,8 @@
 		EF37F6D51811E73600C5ACC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AD1811E73600C5ACC8 /* Foundation.framework */; };
 		EF37F6DD1811E73600C5ACC8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF37F6DB1811E73600C5ACC8 /* InfoPlist.strings */; };
 		EF37F6E01811E73600C5ACC8 /* spectra_scopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF37F6DF1811E73600C5ACC8 /* spectra_scopeTests.m */; };
+		F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
+		F79AF6C41818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +62,8 @@
 		EF37F6DC1811E73600C5ACC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EF37F6DE1811E73600C5ACC8 /* spectra_scopeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = spectra_scopeTests.h; sourceTree = "<group>"; };
 		EF37F6DF1811E73600C5ACC8 /* spectra_scopeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = spectra_scopeTests.m; sourceTree = "<group>"; };
+		F79AF6C11818DB4800AB781F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		F79AF6C21818DB4800AB781F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +126,8 @@
 				EF37F6BA1811E73600C5ACC8 /* AppDelegate.h */,
 				EF37F6BB1811E73600C5ACC8 /* AppDelegate.m */,
 				EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */,
+				F79AF6C11818DB4800AB781F /* SignUpViewController.h */,
+				F79AF6C21818DB4800AB781F /* SignUpViewController.m */,
 				EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */,
 				EF37F6C91811E73600C5ACC8 /* ViewController.h */,
 				EF37F6CA1811E73600C5ACC8 /* ViewController.m */,
@@ -277,6 +283,7 @@
 				EF37F6B81811E73600C5ACC8 /* main.m in Sources */,
 				EF37F6BC1811E73600C5ACC8 /* AppDelegate.m in Sources */,
 				EF37F6CB1811E73600C5ACC8 /* ViewController.m in Sources */,
+				F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +292,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EF37F6E01811E73600C5ACC8 /* spectra_scopeTests.m in Sources */,
+				F79AF6C41818DB4800AB781F /* SignUpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -467,6 +475,7 @@
 				EF37F6E51811E73600C5ACC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		EF37F6E61811E73600C5ACC8 /* Build configuration list for PBXNativeTarget "spectra-scopeTests" */ = {
 			isa = XCConfigurationList;
@@ -475,6 +484,7 @@
 				EF37F6E81811E73600C5ACC8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
