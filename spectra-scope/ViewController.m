@@ -8,13 +8,13 @@
 
 #import "ViewController.h"
 
-//@interface ViewController ()
+@interface ViewController ()
 
-//@end
+@end
 
 @implementation ViewController
-@synthesize usernameInput = _usernameInput;
-@synthesize passwordInput = _passwordInput;
+//@synthesize usernameInput = _usernameInput;
+//@synthesize passwordInput = _passwordInput;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -35,6 +35,6 @@
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     if(textField == _usernameInput || textField == _passwordInput)
         [textField resignFirstResponder];
-    return NO;
+    return YES;
 }
 @end
