@@ -7,7 +7,7 @@
 //
 
 #import "SignUpViewController.h"
-
+#import "UserProfile.h"
 #import <string.h>
 BOOL isProperName(NSString * str)
 {
@@ -51,20 +51,8 @@ BOOL isInt(NSString * str)
     return YES;
 }
 
-/* a list of all available sexes*/
-enum sex{
-    NONE,
-    MALE,
-    FEMALE,
-    OTHER,
-    SEX_LAST
-};
-static NSString * sexNames[] = {
-    [NONE] = @"none",
-    [MALE] = @"male",
-    [FEMALE] = @"female",
-    [OTHER] = @"other"
-};
+
+
 @interface SignUpViewController ()
 {
     enum sex sex;
@@ -78,7 +66,7 @@ static NSString * sexNames[] = {
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        sex = NONE;
+        
         // Custom initialization
     }
     return self;
@@ -87,6 +75,7 @@ static NSString * sexNames[] = {
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    sex = SEX_NONE;
 	// Do any additional setup after loading the view.
 }
 
@@ -116,13 +105,14 @@ static NSString * sexNames[] = {
 -(IBAction)sexButtonPress:(id)sender{
     
     sex = (sex + 1) % SEX_LAST;
-    [_sexButton setTitle:sexNames[sex] forState:UIControlStateNormal];
+    [_sexButton setTitle:[sexNames[sex] copy] forState:UIControlStateNormal];
 }
 
 /* the sign up process in action.
  a sequence of error checking will be done to make sure
  input is valid.
  */
+
 -(IBAction)signupButtonPress:(id)sender{
     UIColor * red = [[UIColor alloc] initWithRed:255 green: 0 blue:0 alpha:255];
     unsigned age = [_ageInput.text intValue];
@@ -160,7 +150,20 @@ static NSString * sexNames[] = {
     }
     else
     {
-        [self.navigationController popViewControllerAnimated: YES];
+        UserProfile * profile = [[UserProfile alloc] init];
+        profile.username = _usernameInput.text;
+        profile.password = _passwordInput.text;
+        profile.continent = _ethnicityInput.text;
+        profile.age = age;
+        profile.sex = sex;
+        [profile signUp];
+        if([profile signUpWasSuccessful])
+            [self.navigationController popViewControllerAnimated: YES];
+        else
+        {
+            _messageLabel.text = [profile statusString];
+            _messageLabel.textColor = red;
+        }
     }
 }
 @end

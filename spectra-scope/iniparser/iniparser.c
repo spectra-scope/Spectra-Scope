@@ -798,8 +798,8 @@ int ini_set(struct ini * ini, char const * section_name, char const * name, char
 	if(pair == NULL)
 	{
 		struct entry new_pair = {
-			.name = (char*)name,
-			.val = (char*)val
+			.name = cstr_dup(name),
+			.val = cstr_dup(val)
 		};
 		hashset_insert(section_table, &new_pair);
 	}
@@ -807,7 +807,6 @@ int ini_set(struct ini * ini, char const * section_name, char const * name, char
 	else
 	{
 		free(pair->val);
-		pair->val = NULL;
 		pair->val = cstr_dup(val);
 	}
 	return 0;

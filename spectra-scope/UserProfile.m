@@ -8,47 +8,154 @@
 
 #import "UserProfile.h"
 #import "iniparser/iniparser.h"
-#define PROFILE_FILE "profiles"
+
+
+NSString const * const sexNames[] = {
+    [SEX_NONE] = @"none",
+    [SEX_MALE] = @"male",
+    [SEX_FEMALE] = @"female",
+    [SEX_OTHER] = @"other"
+};
+
 
 struct ini * profiles = NULL;
+NSString * getProfilePath(void)
+{
+    //get the documents directory:
+    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString * dir = [paths objectAtIndex:0];
+    return [NSString stringWithFormat:@"%@/profiles.txt", dir];
 
+}
 void createProfileFileIfNotExist(void)
 {
+    NSString * profile_path = getProfilePath();
+    puts([profile_path UTF8String]);
     FILE * fid;
-    fid = fopen(PROFILE_FILE, "r");
+    fid = fopen([profile_path UTF8String], "r");
     if(fid == NULL)
     {
-        fid = fopen(PROFILE_FILE, "w");
+        fid = fopen([profile_path UTF8String], "w");
         if(fid != NULL)
             fclose(fid);
+        else
+            perror("createpProfileFileIfNotExist");
     }
 }
 void loadProfileIniIfNotLoaded(void)
 {
     if(profiles == NULL)
     {
+        NSString * profile_path = getProfilePath();
+        profiles = ini_new();
+        assert(profiles != NULL);
         createProfileFileIfNotExist();
-        FILE * fid = fopen(PROFILE_FILE, "rb");
-        if(fid == NULL)
+        FILE * fid = fopen([profile_path UTF8String], "rb");
+        if(fid != NULL)
+        {
+            ini_read(profiles, fid);
+            fclose(fid);
+        }
+        else
         {
             fputs("unable to create profile file", stderr);
-            return;
+            perror("loadProfileIniIfNotLoaded");
         }
-        profiles = ini_new();
-        if(profiles == NULL)
+    }
+}
+void storeProfileIni(void)
+{
+    if(profiles != NULL)
+    {
+        NSString * profile_path = getProfilePath();
+        FILE * fid = fopen([profile_path UTF8String], "wb");
+        if(fid != NULL)
         {
-            fputs("unable to create profile object", stderr);
-            return;
+            ini_write(profiles, fid);
+            fclose(fid);
         }
-        ini_read(profiles, fid);
+        else
+            perror("storeProfileIni");
     }
 }
 struct ini * getProfileIni(void)
 {
-    
     loadProfileIniIfNotLoaded();
     if(profiles == NULL)
         abort();
     else
         return profiles;
 }
+
+enum signup_status{
+    SU_NONE,
+    SU_SUCCESS,
+    SU_CONFLICT,
+    
+    SU_FAIL
+};
+@interface UserProfile ()
+{
+    enum signup_status signup_status;
+}
+@end
+
+@implementation UserProfile
+-(id) init{
+    self = [super init];
+    if(self)
+    {
+        _username = @"";
+        _password = @"";
+        _continent = @"";
+        _age = 0;
+        _sex = SEX_NONE;
+        signup_status = SU_NONE;
+    }
+    return self;
+}
+-(void) signUp{
+    struct ini * profiles = getProfileIni();
+    char const * username = [_username UTF8String];
+    if(ini_get(profiles, username, "password") != NULL)
+    {
+        signup_status = SU_CONFLICT;
+    }
+    else
+    {
+        ini_set(profiles, username, "password", [_password UTF8String]);
+        assert(ini_get(profiles, username, "password"));
+        
+        ini_set(profiles, username, "continent", [_continent UTF8String]);
+        assert(ini_get(profiles, username, "continent"));
+        
+        char age[5];
+        snprintf(age, sizeof age, "%d", _age);
+        ini_set(profiles, username, "age", age);
+        assert(ini_get(profiles, username, "age"));
+        
+        ini_set(profiles, username, "sex", [sexNames[_sex] UTF8String]);
+        assert(ini_get(profiles, username, "sex"));
+        
+        storeProfileIni();
+        signup_status = SU_SUCCESS;
+    }
+}
+-(BOOL) signUpWasSuccessful{
+    return signup_status == SU_SUCCESS;
+}
+
+-(id) statusString{
+    switch(signup_status){
+        case SU_NONE:
+            return @"no sign up performed";
+        case SU_SUCCESS:
+            return @"success";
+        case SU_CONFLICT:
+            return @"username already exists";
+        case SU_FAIL:
+            return @"something very wrong happened";
+    }
+}
+
+@end
