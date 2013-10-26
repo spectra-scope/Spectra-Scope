@@ -5,8 +5,7 @@
 //  Created by tt on 13-10-23.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
-#define YEAH YES
-#define NOT !
+
 #import "SignUpViewController.h"
 
 #import <string.h>
@@ -160,6 +159,8 @@ static NSString * sexNames[] = {
         _messageLabel.textColor = red;
     }
     else
+    {
         [self.navigationController popViewControllerAnimated: YES];
+    }
 }
 @end
