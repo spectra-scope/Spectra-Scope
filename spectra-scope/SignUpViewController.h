@@ -16,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *ageInput;
 @property (weak, nonatomic) IBOutlet UITextField *ethnicityInput;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
+@property (weak, nonatomic) IBOutlet UIButton *sexButton;
 
 @end

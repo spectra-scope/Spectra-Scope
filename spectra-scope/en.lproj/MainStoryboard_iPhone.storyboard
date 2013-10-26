@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zyW-w9-PxA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="zyW-w9-PxA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -22,7 +22,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="1wX-bH-w9n" kind="modal" id="6P9-op-9e5"/>
+                                    <segue destination="1wX-bH-w9n" kind="push" id="ekQ-7H-aEe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hpb-Vk-onE">
@@ -96,7 +96,7 @@
             <objects>
                 <viewController id="1wX-bH-w9n" customClass="MainScreenViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AR4-d4-gHK">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="welcome, &lt;INSERT NAME HERE>" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fGZ-CL-EF4">
@@ -250,6 +250,9 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="sexButtonPress:" destination="dSe-S1-mol" eventType="touchDown" id="Jfb-dz-1wO"/>
+                                </connections>
                             </button>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="sex" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZg-gK-sH9">
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -330,6 +333,7 @@
                         <outlet property="messageLabel" destination="RZx-rW-dQ6" id="kmA-ng-hMK"/>
                         <outlet property="passwordInput" destination="bwv-iI-bXE" id="cCb-KP-FD8"/>
                         <outlet property="passwordInputAgain" destination="eUz-7D-g0A" id="kRj-gC-IUD"/>
+                        <outlet property="sexButton" destination="0Sa-2T-tZ0" id="AoY-G9-o67"/>
                         <outlet property="usernameInput" destination="cdV-cs-GoM" id="kwg-Bt-ksZ"/>
                     </connections>
                 </viewController>
@@ -356,6 +360,43 @@
             <point key="canvasLocation" x="70" y="172"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="MainScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainScreenViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="ChooseExisting"/>
+                <relationship kind="action" name="TakePhoto"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SignUpViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouched:"/>
+                <relationship kind="action" name="sexButtonPress:"/>
+                <relationship kind="action" name="signupButtonPress:"/>
+                <relationship kind="outlet" name="ageInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ethnicityInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordInputAgain" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="sexButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouched:"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

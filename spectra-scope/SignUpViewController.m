@@ -35,7 +35,7 @@ BOOL isContinent(NSString * str)
         @"na",@"sa",@"as",@"eu",@"af",@"au",@"an", @""};
     for(int i = 0; i < sizeof(continentList) / sizeof(void*); i++)
         if([lower isEqual: continentList[i]])
-            return YEAH;
+            return YES;
     return NO;
 }
 BOOL isInt(NSString * str)
@@ -48,8 +48,18 @@ BOOL isInt(NSString * str)
     }
     return YES;
 }
+enum sex{
+    NONE,
+    MALE,
+    FEMALE,
+    OTHER,
+    SEX_LAST
+};
 @interface SignUpViewController ()
-
+{
+    enum sex sex;
+    
+}
 @end
 
 @implementation SignUpViewController
@@ -58,6 +68,7 @@ BOOL isInt(NSString * str)
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
+        sex = NONE;
         // Custom initialization
     }
     return self;
@@ -90,6 +101,24 @@ BOOL isInt(NSString * str)
         [textField resignFirstResponder];
     return YES;
 }
+
+/* toggles sex using modulo*/
+-(IBAction)sexButtonPress:(id)sender{
+    
+    sex = (sex + 1) % SEX_LAST;
+    NSString * sexTitles[] = {
+        [NONE] = @"none",
+        [MALE] = @"male",
+        [FEMALE] = @"female",
+        [OTHER] = @"other"
+    };
+    [_sexButton setTitle:sexTitles[sex] forState:UIControlStateNormal];
+}
+
+/* the sign up process in action.
+ a sequence of error checking will be done to make sure
+ input is valid.
+ */
 -(IBAction)signupButtonPress:(id)sender{
     UIColor * red = [[UIColor alloc] initWithRed:255 green: 0 blue:0 alpha:255];
     unsigned age = [_ageInput.text intValue];
