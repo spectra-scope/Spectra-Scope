@@ -29,9 +29,12 @@ BOOL isProperName(NSString * str)
 BOOL isContinent(NSString * str)
 {
     NSString * lower = [str lowercaseString];
-    NSString * continentList[] = {@"north america" ,@"south america",
+    NSString * continentList[] = {
+        @"north america" ,@"south america",
         @"africa",@"europe",@"asia",@"austrailia",@"antarctica",
+        
         @"eurasia", @"americas", @"america",
+        
         @"na",@"sa",@"as",@"eu",@"af",@"au",@"an", @""};
     for(int i = 0; i < sizeof(continentList) / sizeof(void*); i++)
         if([lower isEqual: continentList[i]])
@@ -48,12 +51,20 @@ BOOL isInt(NSString * str)
     }
     return YES;
 }
+
+/* a list of all available sexes*/
 enum sex{
     NONE,
     MALE,
     FEMALE,
     OTHER,
     SEX_LAST
+};
+static NSString * sexNames[] = {
+    [NONE] = @"none",
+    [MALE] = @"male",
+    [FEMALE] = @"female",
+    [OTHER] = @"other"
 };
 @interface SignUpViewController ()
 {
@@ -106,13 +117,7 @@ enum sex{
 -(IBAction)sexButtonPress:(id)sender{
     
     sex = (sex + 1) % SEX_LAST;
-    NSString * sexTitles[] = {
-        [NONE] = @"none",
-        [MALE] = @"male",
-        [FEMALE] = @"female",
-        [OTHER] = @"other"
-    };
-    [_sexButton setTitle:sexTitles[sex] forState:UIControlStateNormal];
+    [_sexButton setTitle:sexNames[sex] forState:UIControlStateNormal];
 }
 
 /* the sign up process in action.
