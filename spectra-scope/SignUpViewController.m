@@ -32,11 +32,21 @@ BOOL isContinent(NSString * str)
     NSString * continentList[] = {@"north america" ,@"south america",
         @"africa",@"europe",@"asia",@"austrailia",@"antarctica",
         @"eurasia", @"americas", @"america",
-        @"na",@"sa",@"as",@"eu",@"af",@"au",@"an"};
+        @"na",@"sa",@"as",@"eu",@"af",@"au",@"an", @""};
     for(int i = 0; i < sizeof(continentList) / sizeof(void*); i++)
         if([lower isEqual: continentList[i]])
             return YEAH;
     return NO;
+}
+BOOL isInt(NSString * str)
+{
+    for(int i = 0; i < [str length]; i++)
+    {
+        unichar c = [str characterAtIndex:i];
+        if(c < '0' || c > '9')
+            return NO;
+    }
+    return YES;
 }
 @interface SignUpViewController ()
 
@@ -82,7 +92,15 @@ BOOL isContinent(NSString * str)
 }
 -(IBAction)signupButtonPress:(id)sender{
     UIColor * red = [[UIColor alloc] initWithRed:255 green: 0 blue:0 alpha:255];
-    if(!isProperName(_usernameInput.text))
+    unsigned age = [_ageInput.text intValue];
+    if([_usernameInput.text length] == 0 ||
+       [_passwordInput.text length] == 0 ||
+       [_passwordInputAgain.text length] == 0)
+    {
+        _messageLabel.text = @"required fields must not be empty";
+        _messageLabel.textColor = red;
+    }
+    else if(!isProperName(_usernameInput.text))
     {
         _messageLabel.text = @"invalid username";
         _messageLabel.textColor = red;
@@ -97,12 +115,12 @@ BOOL isContinent(NSString * str)
         _messageLabel.text = @"password mismatch";
         _messageLabel.textColor = red;
     }
-    else if(![_ageInput.text isEqual:@""] && 0 == [_ageInput.text intValue])
+    else if(![_ageInput.text isEqual:@""] && (!isInt(_ageInput.text) || age > 120))
     {
         _messageLabel.text = @"age must be numbers 1 to 120";
         _messageLabel.textColor = red;
     }
-    else if(NOT isContinent(_ethnicityInput.text))
+    else if(!isContinent(_ethnicityInput.text))
     {
         _messageLabel.text = @"invalid continent of orign";
         _messageLabel.textColor = red;
