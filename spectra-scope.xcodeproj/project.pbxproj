@@ -30,14 +30,14 @@
 		F79AF6C41818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
 		F7DB6CEE181BA2AA00931929 /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CED181BA2AA00931929 /* UserProfile.m */; };
 		F7DB6CEF181BA2AA00931929 /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CED181BA2AA00931929 /* UserProfile.m */; };
-		F7DB6D01181BA2EE00931929 /* hashsetvsc.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CF3181BA2EE00931929 /* hashsetvsc.c */; };
-		F7DB6D02181BA2EE00931929 /* hashsetvsc.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CF3181BA2EE00931929 /* hashsetvsc.c */; };
-		F7DB6D03181BA2EE00931929 /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CF4181BA2EE00931929 /* iniparser.c */; };
-		F7DB6D04181BA2EE00931929 /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CF4181BA2EE00931929 /* iniparser.c */; };
-		F7DB6D0B181BA2EE00931929 /* stringop.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CF9181BA2EE00931929 /* stringop.c */; };
-		F7DB6D0C181BA2EE00931929 /* stringop.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CF9181BA2EE00931929 /* stringop.c */; };
-		F7DB6D11181BA2EE00931929 /* varstr.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CFD181BA2EE00931929 /* varstr.c */; };
-		F7DB6D12181BA2EE00931929 /* varstr.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CFD181BA2EE00931929 /* varstr.c */; };
+		F7DB6D1C181BAE4600931929 /* hashsetvsc.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6D15181BAE4600931929 /* hashsetvsc.c */; };
+		F7DB6D1D181BAE4600931929 /* hashsetvsc.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6D15181BAE4600931929 /* hashsetvsc.c */; };
+		F7DB6D1E181BAE4600931929 /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6D16181BAE4600931929 /* iniparser.c */; };
+		F7DB6D1F181BAE4600931929 /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6D16181BAE4600931929 /* iniparser.c */; };
+		F7DB6D20181BAE4600931929 /* stringop.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6D18181BAE4600931929 /* stringop.c */; };
+		F7DB6D21181BAE4600931929 /* stringop.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6D18181BAE4600931929 /* stringop.c */; };
+		F7DB6D22181BAE4600931929 /* varstr.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6D1A181BAE4600931929 /* varstr.c */; };
+		F7DB6D23181BAE4600931929 /* varstr.c in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6D1A181BAE4600931929 /* varstr.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,14 +80,14 @@
 		F79AF6C21818DB4800AB781F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		F7DB6CEC181BA2AA00931929 /* UserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfile.h; sourceTree = "<group>"; };
 		F7DB6CED181BA2AA00931929 /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
-		F7DB6CF2181BA2EE00931929 /* hashsetv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashsetv.h; sourceTree = "<group>"; };
-		F7DB6CF3181BA2EE00931929 /* hashsetvsc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hashsetvsc.c; sourceTree = "<group>"; };
-		F7DB6CF4181BA2EE00931929 /* iniparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iniparser.c; sourceTree = "<group>"; };
-		F7DB6CF5181BA2EE00931929 /* iniparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iniparser.h; sourceTree = "<group>"; };
-		F7DB6CF9181BA2EE00931929 /* stringop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stringop.c; sourceTree = "<group>"; };
-		F7DB6CFA181BA2EE00931929 /* stringop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringop.h; sourceTree = "<group>"; };
-		F7DB6CFD181BA2EE00931929 /* varstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = varstr.c; sourceTree = "<group>"; };
-		F7DB6CFE181BA2EE00931929 /* varstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = varstr.h; sourceTree = "<group>"; };
+		F7DB6D14181BAE4600931929 /* hashsetv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashsetv.h; sourceTree = "<group>"; };
+		F7DB6D15181BAE4600931929 /* hashsetvsc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hashsetvsc.c; sourceTree = "<group>"; };
+		F7DB6D16181BAE4600931929 /* iniparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iniparser.c; sourceTree = "<group>"; };
+		F7DB6D17181BAE4600931929 /* iniparser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iniparser.h; sourceTree = "<group>"; };
+		F7DB6D18181BAE4600931929 /* stringop.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = stringop.c; sourceTree = "<group>"; };
+		F7DB6D19181BAE4600931929 /* stringop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringop.h; sourceTree = "<group>"; };
+		F7DB6D1A181BAE4600931929 /* varstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = varstr.c; sourceTree = "<group>"; };
+		F7DB6D1B181BAE4600931929 /* varstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = varstr.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,7 +147,7 @@
 		EF37F6B11811E73600C5ACC8 /* spectra-scope */ = {
 			isa = PBXGroup;
 			children = (
-				F7DB6CF0181BA2ED00931929 /* iniparser */,
+				F7DB6D13181BAE4600931929 /* iniparser */,
 				EF37F6BA1811E73600C5ACC8 /* AppDelegate.h */,
 				EF37F6BB1811E73600C5ACC8 /* AppDelegate.m */,
 				EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */,
@@ -198,17 +198,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		F7DB6CF0181BA2ED00931929 /* iniparser */ = {
+		F7DB6D13181BAE4600931929 /* iniparser */ = {
 			isa = PBXGroup;
 			children = (
-				F7DB6CF2181BA2EE00931929 /* hashsetv.h */,
-				F7DB6CF3181BA2EE00931929 /* hashsetvsc.c */,
-				F7DB6CF4181BA2EE00931929 /* iniparser.c */,
-				F7DB6CF5181BA2EE00931929 /* iniparser.h */,
-				F7DB6CF9181BA2EE00931929 /* stringop.c */,
-				F7DB6CFA181BA2EE00931929 /* stringop.h */,
-				F7DB6CFD181BA2EE00931929 /* varstr.c */,
-				F7DB6CFE181BA2EE00931929 /* varstr.h */,
+				F7DB6D14181BAE4600931929 /* hashsetv.h */,
+				F7DB6D15181BAE4600931929 /* hashsetvsc.c */,
+				F7DB6D16181BAE4600931929 /* iniparser.c */,
+				F7DB6D17181BAE4600931929 /* iniparser.h */,
+				F7DB6D18181BAE4600931929 /* stringop.c */,
+				F7DB6D19181BAE4600931929 /* stringop.h */,
+				F7DB6D1A181BAE4600931929 /* varstr.c */,
+				F7DB6D1B181BAE4600931929 /* varstr.h */,
 			);
 			path = iniparser;
 			sourceTree = "<group>";
@@ -330,10 +330,10 @@
 				F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */,
 				8BF798601819C68000844EBC /* MainScreenViewController.m in Sources */,
 				F7DB6CEE181BA2AA00931929 /* UserProfile.m in Sources */,
-				F7DB6D01181BA2EE00931929 /* hashsetvsc.c in Sources */,
-				F7DB6D03181BA2EE00931929 /* iniparser.c in Sources */,
-				F7DB6D0B181BA2EE00931929 /* stringop.c in Sources */,
-				F7DB6D11181BA2EE00931929 /* varstr.c in Sources */,
+				F7DB6D1C181BAE4600931929 /* hashsetvsc.c in Sources */,
+				F7DB6D1E181BAE4600931929 /* iniparser.c in Sources */,
+				F7DB6D20181BAE4600931929 /* stringop.c in Sources */,
+				F7DB6D22181BAE4600931929 /* varstr.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -345,10 +345,10 @@
 				F79AF6C41818DB4800AB781F /* SignUpViewController.m in Sources */,
 				8BF798611819C68000844EBC /* MainScreenViewController.m in Sources */,
 				F7DB6CEF181BA2AA00931929 /* UserProfile.m in Sources */,
-				F7DB6D02181BA2EE00931929 /* hashsetvsc.c in Sources */,
-				F7DB6D04181BA2EE00931929 /* iniparser.c in Sources */,
-				F7DB6D0C181BA2EE00931929 /* stringop.c in Sources */,
-				F7DB6D12181BA2EE00931929 /* varstr.c in Sources */,
+				F7DB6D1D181BAE4600931929 /* hashsetvsc.c in Sources */,
+				F7DB6D1F181BAE4600931929 /* iniparser.c in Sources */,
+				F7DB6D21181BAE4600931929 /* stringop.c in Sources */,
+				F7DB6D23181BAE4600931929 /* varstr.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
