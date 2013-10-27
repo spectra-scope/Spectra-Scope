@@ -18,6 +18,5 @@
 }
 
 
--(IBAction)TakePhoto;
 -(IBAction)ChooseExisting;
 @end

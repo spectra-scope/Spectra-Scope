@@ -95,7 +95,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4EE-u4-Ie2">
-                                <rect key="frame" x="108" y="61" width="96" height="44"/>
+                                <rect key="frame" x="108" y="61" width="86" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="real time">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -105,7 +105,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="TakePhoto" destination="bKg-xT-7lH" eventType="touchUpInside" id="1Wa-x1-QeY"/>
+                                    <segue destination="wnn-ah-IDg" kind="push" id="HQW-Ej-UQ3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zQa-qI-Keh">
@@ -141,6 +141,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKg-xT-7lH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="982" y="172"/>
+        </scene>
+        <!--Real Time-->
+        <scene sceneID="m8A-Dr-Jmz">
+            <objects>
+                <viewController id="wnn-ah-IDg" customClass="RealTime" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ITH-pu-rxm">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="vxw-Wm-Xue"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aEJ-WX-UWJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1381" y="172"/>
         </scene>
         <!--Sign Up View Controller - sign up-->
         <scene sceneID="ltn-He-I7T">
@@ -300,40 +315,6 @@
             <point key="canvasLocation" x="70" y="172"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="MainScreenViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainScreenViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="ChooseExisting"/>
-                <relationship kind="action" name="TakePhoto"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="SignUpViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="sexButtonPress:"/>
-                <relationship kind="action" name="signupButtonPress:"/>
-                <relationship kind="outlet" name="ageInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ethnicityInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordInputAgain" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="sexButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

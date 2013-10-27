@@ -7,7 +7,6 @@
 //
 
 #import "MainScreenViewController.h"
-
 @interface MainScreenViewController ()
 
 @end
@@ -35,13 +34,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)TakePhoto{
-    
-    picker= [[UIImagePickerController alloc]init];
-    picker.delegate= self;
-    [picker setSourceType:UIImagePickerControllerSourceTypeCamera];
-    [self presentViewController:picker animated:YES completion:NULL];
-}
 
 - (IBAction)ChooseExisting{
     

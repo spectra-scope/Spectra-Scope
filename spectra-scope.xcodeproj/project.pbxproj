@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		8BF798601819C68000844EBC /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7985F1819C68000844EBC /* MainScreenViewController.m */; };
 		8BF798611819C68000844EBC /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7985F1819C68000844EBC /* MainScreenViewController.m */; };
+		EF277C5D181CA1DA004BAFB3 /* VideoStream.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C5C181CA1DA004BAFB3 /* VideoStream.m */; };
+		EF277C5E181CA1DA004BAFB3 /* VideoStream.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C5C181CA1DA004BAFB3 /* VideoStream.m */; };
+		EF277C60181CA21D004BAFB3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */; };
+		EF277C63181CA7F6004BAFB3 /* RealTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C62181CA7F6004BAFB3 /* RealTime.m */; };
+		EF277C64181CA7F6004BAFB3 /* RealTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C62181CA7F6004BAFB3 /* RealTime.m */; };
 		EF37F6AC1811E73600C5ACC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AB1811E73600C5ACC8 /* UIKit.framework */; };
 		EF37F6AE1811E73600C5ACC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AD1811E73600C5ACC8 /* Foundation.framework */; };
 		EF37F6B01811E73600C5ACC8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AF1811E73600C5ACC8 /* CoreGraphics.framework */; };
@@ -53,6 +58,11 @@
 /* Begin PBXFileReference section */
 		8BF7985E1819C68000844EBC /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		8BF7985F1819C68000844EBC /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
+		EF277C5B181CA1DA004BAFB3 /* VideoStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoStream.h; sourceTree = "<group>"; };
+		EF277C5C181CA1DA004BAFB3 /* VideoStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoStream.m; sourceTree = "<group>"; };
+		EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		EF277C61181CA7F6004BAFB3 /* RealTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTime.h; sourceTree = "<group>"; };
+		EF277C62181CA7F6004BAFB3 /* RealTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTime.m; sourceTree = "<group>"; };
 		EF37F6A81811E73600C5ACC8 /* spectra-scope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "spectra-scope.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF37F6AB1811E73600C5ACC8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EF37F6AD1811E73600C5ACC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -95,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EF277C60181CA21D004BAFB3 /* AVFoundation.framework in Frameworks */,
 				EF37F6AC1811E73600C5ACC8 /* UIKit.framework in Frameworks */,
 				EF37F6AE1811E73600C5ACC8 /* Foundation.framework in Frameworks */,
 				EF37F6B01811E73600C5ACC8 /* CoreGraphics.framework in Frameworks */,
@@ -117,6 +128,7 @@
 		EF37F69F1811E73600C5ACC8 = {
 			isa = PBXGroup;
 			children = (
+				EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */,
 				EF37F6B11811E73600C5ACC8 /* spectra-scope */,
 				EF37F6D81811E73600C5ACC8 /* spectra-scopeTests */,
 				EF37F6AA1811E73600C5ACC8 /* Frameworks */,
@@ -153,6 +165,10 @@
 				EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */,
 				8BF7985E1819C68000844EBC /* MainScreenViewController.h */,
 				8BF7985F1819C68000844EBC /* MainScreenViewController.m */,
+				EF277C5B181CA1DA004BAFB3 /* VideoStream.h */,
+				EF277C5C181CA1DA004BAFB3 /* VideoStream.m */,
+				EF277C61181CA7F6004BAFB3 /* RealTime.h */,
+				EF277C62181CA7F6004BAFB3 /* RealTime.m */,
 				F79AF6C11818DB4800AB781F /* SignUpViewController.h */,
 				F79AF6C21818DB4800AB781F /* SignUpViewController.m */,
 				EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */,
@@ -334,6 +350,8 @@
 				F714AF2A181C3D4400F60D69 /* iniparser.c in Sources */,
 				F714AF2C181C3D4400F60D69 /* stringop.c in Sources */,
 				F714AF2E181C3D4400F60D69 /* varstr.c in Sources */,
+				EF277C5D181CA1DA004BAFB3 /* VideoStream.m in Sources */,
+				EF277C63181CA7F6004BAFB3 /* RealTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,6 +367,8 @@
 				F714AF2B181C3D4400F60D69 /* iniparser.c in Sources */,
 				F714AF2D181C3D4400F60D69 /* stringop.c in Sources */,
 				F714AF2F181C3D4400F60D69 /* varstr.c in Sources */,
+				EF277C5E181CA1DA004BAFB3 /* VideoStream.m in Sources */,
+				EF277C64181CA7F6004BAFB3 /* RealTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
