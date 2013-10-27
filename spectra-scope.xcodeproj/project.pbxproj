@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		8BF798601819C68000844EBC /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7985F1819C68000844EBC /* MainScreenViewController.m */; };
 		8BF798611819C68000844EBC /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7985F1819C68000844EBC /* MainScreenViewController.m */; };
-		EF277C5D181CA1DA004BAFB3 /* VideoStream.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C5C181CA1DA004BAFB3 /* VideoStream.m */; };
-		EF277C5E181CA1DA004BAFB3 /* VideoStream.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C5C181CA1DA004BAFB3 /* VideoStream.m */; };
 		EF277C60181CA21D004BAFB3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */; };
 		EF277C63181CA7F6004BAFB3 /* RealTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C62181CA7F6004BAFB3 /* RealTime.m */; };
 		EF277C64181CA7F6004BAFB3 /* RealTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C62181CA7F6004BAFB3 /* RealTime.m */; };
@@ -39,6 +37,8 @@
 		F714AF2D181C3D4400F60D69 /* stringop.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF24181C3D4400F60D69 /* stringop.c */; };
 		F714AF2E181C3D4400F60D69 /* varstr.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF26181C3D4400F60D69 /* varstr.c */; };
 		F714AF2F181C3D4400F60D69 /* varstr.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF26181C3D4400F60D69 /* varstr.c */; };
+		F7263A28181CF88C0076A04E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7263A27181CF88C0076A04E /* CoreVideo.framework */; };
+		F7263A2A181CF8A00076A04E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7263A29181CF8A00076A04E /* CoreMedia.framework */; };
 		F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
 		F79AF6C41818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
 		F7DB6CEE181BA2AA00931929 /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CED181BA2AA00931929 /* UserProfile.m */; };
@@ -58,8 +58,6 @@
 /* Begin PBXFileReference section */
 		8BF7985E1819C68000844EBC /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		8BF7985F1819C68000844EBC /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
-		EF277C5B181CA1DA004BAFB3 /* VideoStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoStream.h; sourceTree = "<group>"; };
-		EF277C5C181CA1DA004BAFB3 /* VideoStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoStream.m; sourceTree = "<group>"; };
 		EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EF277C61181CA7F6004BAFB3 /* RealTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTime.h; sourceTree = "<group>"; };
 		EF277C62181CA7F6004BAFB3 /* RealTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTime.m; sourceTree = "<group>"; };
@@ -94,6 +92,8 @@
 		F714AF25181C3D4400F60D69 /* stringop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringop.h; sourceTree = "<group>"; };
 		F714AF26181C3D4400F60D69 /* varstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = varstr.c; sourceTree = "<group>"; };
 		F714AF27181C3D4400F60D69 /* varstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = varstr.h; sourceTree = "<group>"; };
+		F7263A27181CF88C0076A04E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		F7263A29181CF8A00076A04E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		F79AF6C11818DB4800AB781F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		F79AF6C21818DB4800AB781F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		F7DB6CEC181BA2AA00931929 /* UserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfile.h; sourceTree = "<group>"; };
@@ -105,6 +105,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7263A2A181CF8A00076A04E /* CoreMedia.framework in Frameworks */,
+				F7263A28181CF88C0076A04E /* CoreVideo.framework in Frameworks */,
 				EF277C60181CA21D004BAFB3 /* AVFoundation.framework in Frameworks */,
 				EF37F6AC1811E73600C5ACC8 /* UIKit.framework in Frameworks */,
 				EF37F6AE1811E73600C5ACC8 /* Foundation.framework in Frameworks */,
@@ -128,6 +130,8 @@
 		EF37F69F1811E73600C5ACC8 = {
 			isa = PBXGroup;
 			children = (
+				F7263A29181CF8A00076A04E /* CoreMedia.framework */,
+				F7263A27181CF88C0076A04E /* CoreVideo.framework */,
 				EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */,
 				EF37F6B11811E73600C5ACC8 /* spectra-scope */,
 				EF37F6D81811E73600C5ACC8 /* spectra-scopeTests */,
@@ -165,8 +169,6 @@
 				EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */,
 				8BF7985E1819C68000844EBC /* MainScreenViewController.h */,
 				8BF7985F1819C68000844EBC /* MainScreenViewController.m */,
-				EF277C5B181CA1DA004BAFB3 /* VideoStream.h */,
-				EF277C5C181CA1DA004BAFB3 /* VideoStream.m */,
 				EF277C61181CA7F6004BAFB3 /* RealTime.h */,
 				EF277C62181CA7F6004BAFB3 /* RealTime.m */,
 				F79AF6C11818DB4800AB781F /* SignUpViewController.h */,
@@ -350,7 +352,6 @@
 				F714AF2A181C3D4400F60D69 /* iniparser.c in Sources */,
 				F714AF2C181C3D4400F60D69 /* stringop.c in Sources */,
 				F714AF2E181C3D4400F60D69 /* varstr.c in Sources */,
-				EF277C5D181CA1DA004BAFB3 /* VideoStream.m in Sources */,
 				EF277C63181CA7F6004BAFB3 /* RealTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,7 +368,6 @@
 				F714AF2B181C3D4400F60D69 /* iniparser.c in Sources */,
 				F714AF2D181C3D4400F60D69 /* stringop.c in Sources */,
 				F714AF2F181C3D4400F60D69 /* varstr.c in Sources */,
-				EF277C5E181CA1DA004BAFB3 /* VideoStream.m in Sources */,
 				EF277C64181CA7F6004BAFB3 /* RealTime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

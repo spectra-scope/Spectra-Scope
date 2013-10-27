@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface RealTime : UIViewController
+#import <AVFoundation/AVFoundation.h>
+@interface RealTime : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate>
 
 @end

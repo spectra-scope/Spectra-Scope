@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zyW-w9-PxA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zyW-w9-PxA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -23,7 +23,8 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="1wX-bH-w9n" kind="push" id="ekQ-7H-aEe"/>
+                                    <action selector="logInPress:" destination="2" eventType="touchDown" id="viD-0B-DRn"/>
+                                    <action selector="logInPress:" destination="2" eventType="touchUpInside" id="xPo-L2-o2E"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Hpb-Vk-onE">
@@ -40,8 +41,8 @@
                                     <segue destination="dSe-S1-mol" kind="push" id="xaD-5T-e6Z"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="spectra-scope" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aAQ-F0-ewx">
-                                <rect key="frame" x="107" y="60" width="107" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="spectra-scope" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="aAQ-F0-ewx">
+                                <rect key="frame" x="20" y="28" width="280" height="53"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -72,6 +73,7 @@
                         <barButtonItem key="backBarButtonItem" title="log out" id="hnP-HO-TrI"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="messageLabel" destination="aAQ-F0-ewx" id="lOX-Fw-taf"/>
                         <outlet property="passwordInput" destination="MFm-tl-x8k" id="TUw-F4-S7F"/>
                         <outlet property="usernameInput" destination="mYm-Jz-STa" id="IGK-gk-XCU"/>
                     </connections>
@@ -83,9 +85,9 @@
         <!--Main Screen View Controller - main screen-->
         <scene sceneID="XGA-O0-OrQ">
             <objects>
-                <viewController id="1wX-bH-w9n" customClass="MainScreenViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainScreen" id="1wX-bH-w9n" customClass="MainScreenViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AR4-d4-gHK">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="welcome, &lt;INSERT NAME HERE>" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fGZ-CL-EF4">
@@ -95,7 +97,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="4EE-u4-Ie2">
-                                <rect key="frame" x="108" y="61" width="86" height="44"/>
+                                <rect key="frame" x="108" y="66" width="86" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="real time">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -109,7 +111,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zQa-qI-Keh">
-                                <rect key="frame" x="108" y="122" width="86" height="44"/>
+                                <rect key="frame" x="108" y="133" width="86" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="still image">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -123,7 +125,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tk3-y8-xKx">
-                                <rect key="frame" x="108" y="180" width="86" height="44"/>
+                                <rect key="frame" x="108" y="197" width="86" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="options">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -146,12 +148,15 @@
         <scene sceneID="m8A-Dr-Jmz">
             <objects>
                 <viewController id="wnn-ah-IDg" customClass="RealTime" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ITH-pu-rxm">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                    <view key="view" contentMode="scaleToFill" id="ITH-pu-rxm" customClass="UIImageView">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="vxw-Wm-Xue"/>
+                    <connections>
+                        <outlet property="imageView" destination="ITH-pu-rxm" id="Unt-hU-Xzr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEJ-WX-UWJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -315,6 +320,46 @@
             <point key="canvasLocation" x="70" y="172"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="MainScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainScreenViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="ChooseExisting"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="RealTime" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTime.h"/>
+            <relationships>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="SignUpViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouched:"/>
+                <relationship kind="action" name="sexButtonPress:"/>
+                <relationship kind="action" name="signupButtonPress:"/>
+                <relationship kind="outlet" name="ageInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ethnicityInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordInputAgain" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="sexButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouched:"/>
+                <relationship kind="action" name="logInPress:"/>
+                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

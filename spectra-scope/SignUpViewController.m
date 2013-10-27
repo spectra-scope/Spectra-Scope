@@ -161,7 +161,7 @@ BOOL isInt(NSString * str)
             [self.navigationController popViewControllerAnimated: YES];
         else
         {
-            _messageLabel.text = [profile statusString];
+            _messageLabel.text = [profile signUpStatusString];
             _messageLabel.textColor = red;
         }
     }

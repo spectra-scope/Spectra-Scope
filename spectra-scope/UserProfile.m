@@ -94,9 +94,16 @@ enum signup_status{
     
     SU_FAIL
 };
+
+enum login_status{
+    LI_NONE,
+    LI_SUCCESS,
+    LI_FAIL
+};
 @interface UserProfile ()
 {
     enum signup_status signup_status;
+    enum login_status login_status;
 }
 @end
 
@@ -111,6 +118,7 @@ enum signup_status{
         _age = 0;
         _sex = SEX_NONE;
         signup_status = SU_NONE;
+        login_status = LI_FAIL;
     }
     return self;
 }
@@ -145,7 +153,7 @@ enum signup_status{
     return signup_status == SU_SUCCESS;
 }
 
--(id) statusString{
+-(NSString *) signupStatusString{
     switch(signup_status){
         case SU_NONE:
             return @"no sign up performed";
@@ -155,6 +163,36 @@ enum signup_status{
             return @"username already exists";
         case SU_FAIL:
             return @"something very wrong happened";
+    }
+}
+-(void) login{
+    struct ini * profiles = getProfileIni();
+    char const * username = [_username UTF8String];
+    char const * password = ini_get(profiles, username, "password");
+    if(password == NULL)
+    {
+        login_status = LI_FAIL;
+    }
+    else if(strcmp(password, [_password UTF8String]) != 0)
+    {
+        login_status = LI_FAIL;
+    }
+    else
+    {
+        login_status = LI_SUCCESS;
+    }
+}
+-(BOOL) loginWasSuccessful{
+    return login_status == LI_SUCCESS;
+}
+-(NSString *)loginStatusString{
+    switch(login_status){
+        case LI_NONE:
+            return @"no login performed";
+        case LI_SUCCESS:
+            return @"successful login";
+        case LI_FAIL:
+            return @"username-password pair does not exist";
     }
 }
 

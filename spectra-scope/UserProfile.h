@@ -28,5 +28,9 @@ extern NSString const * const sexNames[];
 -(id) init;
 -(void) signUp;
 -(BOOL) signUpWasSuccessful;
--(id) statusString;
+-(NSString*) signUpStatusString;
+
+-(void) login;
+-(BOOL) loginWasSuccessful;
+-(NSString*) loginStatusString;
 @end
