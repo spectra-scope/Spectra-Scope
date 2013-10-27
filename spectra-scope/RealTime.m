@@ -7,22 +7,15 @@
 //
 
 #import "RealTime.h"
+#import <AVFoundation/AVFoundation.h>
 
-id getBackCamera(void)
-{
-    for (AVCaptureDevice *device in [AVCaptureDevice devicesWithMediaType: AVMediaTypeVideo]) {
-        NSLog(@"Device name: %@", [device localizedName]);
-        
-        if ([device position] == AVCaptureDevicePositionBack)
-            return device;
-    }
-    return nil;
-}
 @interface RealTime ()
 @property(strong, nonatomic) AVCaptureSession * captureSession;
-@property(strong, nonatomic) CALayer * customLayer;
-@property(strong, nonatomic) AVCaptureVideoPreviewLayer * prevLayer;
-@property (strong, nonatomic) IBOutlet UIImageView *imageView;
+
+@property (weak, nonatomic) IBOutlet UILabel *bgrLabel;
+
+@property(strong, nonatomic) AVCaptureVideoPreviewLayer * previewLayer;
+@property (strong, nonatomic) IBOutlet UIView *previewView;
 @end
 
 @implementation RealTime
@@ -39,88 +32,74 @@ id getBackCamera(void)
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if(_captureSession == nil)
+    _captureSession = [[AVCaptureSession alloc] init];
+    _captureSession.sessionPreset = AVCaptureSessionPresetMedium;
+    
+    
+    
+    AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    NSError * error = nil;
+    AVCaptureDeviceInput * avVideoIn= [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
+    
+    
+    AVCaptureVideoDataOutput *  avVideoOut = [[AVCaptureVideoDataOutput alloc] init];
+    avVideoOut.alwaysDiscardsLateVideoFrames = YES;
+    avVideoOut.videoSettings = [NSDictionary dictionaryWithObject:
+                                [NSNumber numberWithInt:kCVPixelFormatType_32BGRA]
+                                                           forKey:(id)kCVPixelBufferPixelFormatTypeKey];
+    
+    
+    dispatch_queue_t queue = dispatch_queue_create("cameraQueue", NULL);
+    [avVideoOut setSampleBufferDelegate:self queue:queue];
+
+    if([_captureSession canAddInput: avVideoIn])
     {
-        _captureSession = [[AVCaptureSession alloc] init];
-        AVCaptureDevice * device = getBackCamera();
-        NSError * error = nil;
-        AVCaptureDeviceInput * avVideoIn= [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
-        
-        AVCaptureVideoDataOutput *  avVideoOut = [[AVCaptureVideoDataOutput alloc] init];
-        
-        avVideoOut.alwaysDiscardsLateVideoFrames = YES;
-        
-        dispatch_queue_t queue = dispatch_queue_create("cameraQueue", NULL);
-        [avVideoOut setSampleBufferDelegate:self queue:queue];
-        dispatch_release(queue);
-        if([_captureSession canAddInput: avVideoIn])
-        {
-            printf("av input success\n");
-            [_captureSession addInput: avVideoIn];
-        }
-        else
-        {
-            fprintf(stderr, "av input failure\n");
-            return;
-        }
-        if([_captureSession canAddOutput:avVideoOut])
-        {
-            printf("av output success\n");
-            [_captureSession addOutput: avVideoOut];
-        }
-        else
-        {
-            fprintf(stderr, "av output failure\n");
-            return;
-        }
+        NSLog(@"%@",[avVideoIn description]);
+        [_captureSession addInput: avVideoIn];
     }
-	// Do any additional setup after loading the view.
+    if([_captureSession canAddOutput:avVideoOut])
+    {
+        NSLog(@"%@", [avVideoOut description]);
+        [_captureSession addOutput: avVideoOut];
+    }
+    
+    _previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
+    _previewLayer.frame = _previewView.frame;
+    [_previewView.layer addSublayer:_previewLayer];
+    
+    [_captureSession startRunning];
+    NSLog(@"start running");
 }
 - (void)captureOutput:(AVCaptureOutput *)captureOutput
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
-    
     @autoreleasepool {
+        NSLog(@"hello");
+
+        CVImageBufferRef pixelBuf = CMSampleBufferGetImageBuffer(sampleBuffer);
         
-        CVImageBufferRef imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer);
-        /*Lock the image buffer*/
-        CVPixelBufferLockBaseAddress(imageBuffer,0);
-        /*Get information about the image*/
-        uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(imageBuffer);
-        size_t bytesPerRow = CVPixelBufferGetBytesPerRow(imageBuffer);
-        size_t width = CVPixelBufferGetWidth(imageBuffer);
-        size_t height = CVPixelBufferGetHeight(imageBuffer);
+        CVPixelBufferLockBaseAddress(pixelBuf,0);
         
-        /*Create a CGImageRef from the CVImageBufferRef*/
-        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-        CGContextRef newContext = CGBitmapContextCreate(baseAddress, width, height, 8, bytesPerRow, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-        CGImageRef newImage = CGBitmapContextCreateImage(newContext);
+        uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuf);
+        unsigned bpr = CVPixelBufferGetBytesPerRow(pixelBuf);
+        unsigned width = CVPixelBufferGetWidth(pixelBuf);
+        unsigned height = CVPixelBufferGetHeight(pixelBuf);
         
-        /*We release some components*/
-        CGContextRelease(newContext);
-        CGColorSpaceRelease(colorSpace);
-        
-        /*We display the result on the custom layer. All the display stuff must be done in the main thread because
-         UIKit is no thread safe, and as we are not in the main thread (remember we didn't use the main_queue)
-         we use performSelectorOnMainThread to call our CALayer and tell it to display the CGImage.*/
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            [self.customLayer setContents:(__bridge id)newImage];
-        });
-        
-        /*We display the result on the image view (We need to change the orientation of the image so that the video is displayed correctly).
-         Same thing as for the CALayer we are not in the main thread so ...*/
-        UIImage *image= [UIImage imageWithCGImage:newImage scale:1.0 orientation:UIImageOrientationRight];
-        
-        /*We relase the CGImageRef*/
-        CGImageRelease(newImage);
+        uint8_t b = baseAddress[width * height * bpr / 2];
+        uint8_t g = baseAddress[width * height * bpr / 2 + 1];
+        uint8_t r = baseAddress[width * height * bpr / 2 + 2];
+        char bgr[20];
+        snprintf(bgr, sizeof bgr, "b:%x g:%x r:%x", b, g, r);
+        NSString * bgrLabelText = [[NSString alloc] initWithUTF8String:bgr];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
-            [_imageView setImage:image];
+           
+            _bgrLabel.text = bgrLabelText;
         });
         
-        /*We unlock the  image buffer*/
-        CVPixelBufferUnlockBaseAddress(imageBuffer,0);
+
+        CVPixelBufferUnlockBaseAddress(pixelBuf,0);
     }
     
 }
@@ -132,7 +111,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
 
 
 - (void)viewDidUnload {
-    [self setImageView:nil];
+    [_captureSession stopRunning];
     [super viewDidUnload];
 }
 @end
