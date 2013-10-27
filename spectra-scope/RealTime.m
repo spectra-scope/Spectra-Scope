@@ -51,7 +51,8 @@
     
     dispatch_queue_t queue = dispatch_queue_create("cameraQueue", NULL);
     [avVideoOut setSampleBufferDelegate:self queue:queue];
-
+    dispatch_release(queue);
+    
     if([_captureSession canAddInput: avVideoIn])
     {
         NSLog(@"%@",[avVideoIn description]);
@@ -75,7 +76,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
     @autoreleasepool {
-        NSLog(@"hello");
+       
 
         CVImageBufferRef pixelBuf = CMSampleBufferGetImageBuffer(sampleBuffer);
         
@@ -94,7 +95,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         NSString * bgrLabelText = [[NSString alloc] initWithUTF8String:bgr];
         
         dispatch_sync(dispatch_get_main_queue(), ^{
-           
+            NSLog(@"hello");
             _bgrLabel.text = bgrLabelText;
         });
         
