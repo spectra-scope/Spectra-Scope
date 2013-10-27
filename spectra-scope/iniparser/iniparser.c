@@ -434,7 +434,14 @@ static struct command_stream * command_stream_new(FILE * fid)
 	}
 	return cs;
 }
-
+static void command_stream_del(struct command_stream * cs)
+{
+	if(cs != NULL)
+    {
+        token_stream_del(cs->ts);
+        free(cs);
+    }
+}
 /*
 This function is the core of the command stream.
 It consumes a stream of tokens, and produces a stream of commands.
@@ -722,6 +729,7 @@ int ini_read(struct ini * ini, FILE * fid)
 		com = NULL;
 		com = next_command(cs);
 	}
+    command_stream_del(cs);
 	return 0;
 }
 void ini_write(struct ini * ini, FILE * fid)
