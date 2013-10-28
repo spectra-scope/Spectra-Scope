@@ -32,9 +32,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EF37F6D01811E73600C5ACC8"
-               BuildableName = "spectra-scopeTests.octest"
-               BlueprintName = "spectra-scopeTests"
+               BlueprintIdentifier = "F70B8311181E2B8A00E12A33"
+               BuildableName = "unittest.octest"
+               BlueprintName = "unittest"
                ReferencedContainer = "container:spectra-scope.xcodeproj">
             </BuildableReference>
          </TestableReference>

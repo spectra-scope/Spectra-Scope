@@ -27,8 +27,6 @@
 		EF37F6D31811E73600C5ACC8 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6D21811E73600C5ACC8 /* SenTestingKit.framework */; };
 		EF37F6D41811E73600C5ACC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AB1811E73600C5ACC8 /* UIKit.framework */; };
 		EF37F6D51811E73600C5ACC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AD1811E73600C5ACC8 /* Foundation.framework */; };
-		EF37F6DD1811E73600C5ACC8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF37F6DB1811E73600C5ACC8 /* InfoPlist.strings */; };
-		EF37F6E01811E73600C5ACC8 /* spectra_scopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF37F6DF1811E73600C5ACC8 /* spectra_scopeTests.m */; };
 		F70B830A181DED9700E12A33 /* colour_name.c in Sources */ = {isa = PBXBuildFile; fileRef = F70B8309181DED9700E12A33 /* colour_name.c */; };
 		F70B830B181DED9700E12A33 /* colour_name.c in Sources */ = {isa = PBXBuildFile; fileRef = F70B8309181DED9700E12A33 /* colour_name.c */; };
 		F70B8313181E2B8A00E12A33 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6D21811E73600C5ACC8 /* SenTestingKit.framework */; };
@@ -87,10 +85,6 @@
 		EF37F6CA1811E73600C5ACC8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		EF37F6D11811E73600C5ACC8 /* spectra-scopeTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "spectra-scopeTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF37F6D21811E73600C5ACC8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		EF37F6DA1811E73600C5ACC8 /* spectra-scopeTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "spectra-scopeTests-Info.plist"; sourceTree = "<group>"; };
-		EF37F6DC1811E73600C5ACC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		EF37F6DE1811E73600C5ACC8 /* spectra_scopeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = spectra_scopeTests.h; sourceTree = "<group>"; };
-		EF37F6DF1811E73600C5ACC8 /* spectra_scopeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = spectra_scopeTests.m; sourceTree = "<group>"; };
 		F70B8309181DED9700E12A33 /* colour_name.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = colour_name.c; sourceTree = "<group>"; };
 		F70B830C181DEDA800E12A33 /* colour_name.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colour_name.h; sourceTree = "<group>"; };
 		F70B8312181E2B8A00E12A33 /* group03.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = group03.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,8 +153,7 @@
 				F7263A27181CF88C0076A04E /* CoreVideo.framework */,
 				EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */,
 				EF37F6B11811E73600C5ACC8 /* spectra-scope */,
-				EF37F6D81811E73600C5ACC8 /* spectra-scopeTests */,
-				F70B8316181E2B8A00E12A33 /* group03 */,
+				F70B8316181E2B8A00E12A33 /* spectra-scopeTests */,
 				EF37F6AA1811E73600C5ACC8 /* Frameworks */,
 				EF37F6A91811E73600C5ACC8 /* Products */,
 			);
@@ -226,32 +219,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		EF37F6D81811E73600C5ACC8 /* spectra-scopeTests */ = {
-			isa = PBXGroup;
-			children = (
-				EF37F6DE1811E73600C5ACC8 /* spectra_scopeTests.h */,
-				EF37F6DF1811E73600C5ACC8 /* spectra_scopeTests.m */,
-				EF37F6D91811E73600C5ACC8 /* Supporting Files */,
-			);
-			path = "spectra-scopeTests";
-			sourceTree = "<group>";
-		};
-		EF37F6D91811E73600C5ACC8 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				EF37F6DA1811E73600C5ACC8 /* spectra-scopeTests-Info.plist */,
-				EF37F6DB1811E73600C5ACC8 /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		F70B8316181E2B8A00E12A33 /* group03 */ = {
+		F70B8316181E2B8A00E12A33 /* spectra-scopeTests */ = {
 			isa = PBXGroup;
 			children = (
 				F70B831C181E2B8A00E12A33 /* group03.h */,
 				F70B831D181E2B8A00E12A33 /* group03.m */,
 				F70B8317181E2B8A00E12A33 /* Supporting Files */,
 			);
+			name = "spectra-scopeTests";
 			path = group03;
 			sourceTree = "<group>";
 		};
@@ -383,7 +358,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF37F6DD1811E73600C5ACC8 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -450,7 +424,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EF37F6E01811E73600C5ACC8 /* spectra_scopeTests.m in Sources */,
 				F79AF6C41818DB4800AB781F /* SignUpViewController.m in Sources */,
 				8BF798611819C68000844EBC /* MainScreenViewController.m in Sources */,
 				F7DB6CEF181BA2AA00931929 /* UserProfile.m in Sources */,
@@ -504,14 +477,6 @@
 				EF37F6C71811E73600C5ACC8 /* en */,
 			);
 			name = MainStoryboard_iPad.storyboard;
-			sourceTree = "<group>";
-		};
-		EF37F6DB1811E73600C5ACC8 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				EF37F6DC1811E73600C5ACC8 /* en */,
-			);
-			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 		F70B8319181E2B8A00E12A33 /* InfoPlist.strings */ = {
