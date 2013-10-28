@@ -18,7 +18,7 @@
 {
     [super setUp];
     
-    // register some users
+    // register some users for testing
     UserProfile * profile = [[UserProfile alloc] init];
     userList = @{@"a":@"a", @"b":@"b", @"c": @"c", @"d":@"d"};
     for (NSString * key in userList) {
@@ -55,8 +55,21 @@
         profile.password = [userList objectForKey: name];
         [profile login];
         if(![profile loginWasSuccessful])
-            STFail(@"login %@ : %@ failed to reject wrong password", profile.username, profile.password);
+            STFail(@"login failed to authenticate authentic profile %@:%@", profile.username, profile.password);
     }
     
+    
+}
+-(void) testAuthReject
+{
+    UserProfile * profile = [[UserProfile alloc] init];
+    for (NSString * name in userList)
+    {
+        profile.username = name;
+        profile.password = @"wrongPassword";
+        [profile login];
+        if([profile loginWasSuccessful])
+            STFail(@"login failed to reject wrong password for profile %@:%@", profile.username, profile.password);
+    }
 }
 @end
