@@ -82,7 +82,12 @@ struct ini * getProfileIni(void)
 {
     loadProfileIniIfNotLoaded();
     if(profiles == NULL)
+    {
+        perror("getProfileIni");
+        NSLog(@"unable to open user profiles, aborting.");
         abort();
+    }
+        
     else
         return profiles;
 }
@@ -91,7 +96,6 @@ enum signup_status{
     SU_NONE,
     SU_SUCCESS,
     SU_CONFLICT,
-    
     SU_FAIL
 };
 
