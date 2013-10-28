@@ -5,7 +5,16 @@
 //  Created by tt on 13-10-27.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
-
+/*
+ revisions:
+ 1.0: by Tian Lin Tan
+ - added sign up test for reject bad input
+ 1.1: by Tian Lin Tan
+ - added login test accepting good input
+ 1.2: by Tian Lin Tan
+ - added login test for rejecting bad input
+ 
+ */
 #import "UserProfileTest.h"
 #import "UserProfile.h"
 @interface UserProfileTest ()

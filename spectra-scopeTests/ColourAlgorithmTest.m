@@ -5,7 +5,12 @@
 //  Created by tt on 13-10-28.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
-
+/*
+ revisions:
+ 1.0: by Tian Lin Tan
+ - added colour test
+ 
+ */
 #import "ColourAlgorithmTest.h"
 #import "colour_name.h"
 @interface Colour :NSObject
