@@ -5,7 +5,24 @@
 //  Created by tt on 13-10-23.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
-
+/*
+ revisions:
+ 1.0: by Tian Lin Tan
+ - added backgroundTouched for dismissing keyboards
+ - added testFieldShouldReturn for dismissing keyboards
+ 1.1: by Tian Lin Tan
+ - added sign up input sanitation
+ 1.2: by Tian Lin Tan
+ - added isContinent for checking if string is a valid continent
+ 1.3: by Archit Sood
+ - added isInt for checking if string is an integer
+ 1.4: by Tian Lin Tan
+ - added isProperName for checking if input string contains only valid characters for username or password
+ 1.5: by Tian Lin Tan
+ - added sex button toggle function for toggling sex every time the sex button is pressed
+ 1.6: by Tian Lin Tan
+ - added code for sign up
+ */
 #import "SignUpViewController.h"
 #import "UserProfile.h"
 #import <string.h>

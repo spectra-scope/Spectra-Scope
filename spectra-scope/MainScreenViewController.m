@@ -5,7 +5,15 @@
 //  Created by Archit Sood on 10/24/13.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
-
+/*
+ revisions:
+ 1.0: by Archit Sood
+ - added image picker
+ 1.1: by Archit Sood
+ - added camera code for real time mode
+ 1.2 by Tian Lin Tan
+ - migrated camera function for real time mode to storyboard
+ */
 #import "MainScreenViewController.h"
 @interface MainScreenViewController ()
 

@@ -5,7 +5,11 @@
 //  Created by tt on 13-10-23.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
-
+/*
+ revisions:
+ 1.0: by Tian Lin Tan
+ - added properties for username, password, confirm password, age, continent, sex, and message label
+ */
 #import <UIKit/UIKit.h>
 
 @interface SignUpViewController : UIViewController <UITextFieldDelegate>

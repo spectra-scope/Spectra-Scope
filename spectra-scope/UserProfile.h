@@ -5,7 +5,15 @@
 //  Created by tt on 13-10-26.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
-
+/*
+ revisions:
+ 1.0: by Tian Lin Tan
+ - added enum sex
+ - added fields for profile
+ - added sign up function declarations
+ 1.1: by Tian Lin Tan
+ - added log in function declarations
+ */
 #import <Foundation/Foundation.h>
 
 

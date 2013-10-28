@@ -6,6 +6,17 @@
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
 
+/*
+revisions:
+ 1.0: by Tian Lin Tan
+    - added backgroundTouched for dismissing keyboards
+    - added testFieldShouldReturn for dismissing keyboards
+ 1.1: by Tian Lin Tan
+    - added logInPress for checking login input
+ 
+ bugs:
+ - view is not reset every time the screen this screen switches to other screens
+ */
 #import "ViewController.h"
 #import "MainScreenViewController.h"
 #import "UserProfile.h"
@@ -27,7 +38,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)logInPress:(id)sender {
-    puts("loginpress");
+    NSLog(@"login pressed");
     UserProfile * profile = [[UserProfile alloc] init];
     profile.username = _usernameInput.text;
     profile.password = _passwordInput.text;
@@ -37,8 +48,7 @@
     {
         _messageLabel.text = @"spectra-scope";
         _messageLabel.textColor = [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:255];
-        MainScreenViewController * next = [self.storyboard instantiateViewControllerWithIdentifier:@"mainScreen"];
-        [self.navigationController pushViewController:next animated:YES];
+        [self performSegueWithIdentifier: @"loginSegue" sender: self];
     }
     else
     {
@@ -48,10 +58,12 @@
 }
 
 -(IBAction)backgroundTouched:(id)sender{
+    NSLog(@"background touched, dismissing keyboard");
     [_usernameInput resignFirstResponder];
     [_passwordInput resignFirstResponder];
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
+    NSLog(@"return touched, dismissing keyboard");
     if(textField == _usernameInput || textField == _passwordInput)
         [textField resignFirstResponder];
     return YES;

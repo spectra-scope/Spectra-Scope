@@ -19,11 +19,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "spectra-scope/UserProfile.m"
-         timestampString = "404632161.257449"
+         timestampString = "404672869.676543"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "114"
-         endingLineNumber = "114"
+         startingLineNumber = "125"
+         endingLineNumber = "125"
          landmarkName = "@implementation UserProfile"
          landmarkType = "3">
       </FileBreakpoint>

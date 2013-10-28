@@ -6,6 +6,13 @@
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
 
+/*
+ revisions:
+ 1.0: by Tian Lin Tan
+ - added sign up functions
+ 1.1: by Tian Lin Tan
+ - added log in functions
+ */
 #import "UserProfile.h"
 #import "iniparser/iniparser.h"
 
@@ -30,7 +37,6 @@ NSString * getProfilePath(void)
 void createProfileFileIfNotExist(void)
 {
     NSString * profile_path = getProfilePath();
-    puts([profile_path UTF8String]);
     FILE * fid;
     fid = fopen([profile_path UTF8String], "r");
     if(fid == NULL)
@@ -58,7 +64,7 @@ void loadProfileIniIfNotLoaded(void)
         }
         else
         {
-            fputs("unable to create profile file", stderr);
+            NSLog(@"unable to create profile file");
             perror("loadProfileIniIfNotLoaded");
         }
     }
@@ -68,14 +74,19 @@ void storeProfileIni(void)
     if(profiles != NULL)
     {
         NSString * profile_path = getProfilePath();
+        
         FILE * fid = fopen([profile_path UTF8String], "wb");
         if(fid != NULL)
         {
             ini_write(profiles, fid);
+            NSLog(@"saved profile to %@", profile_path);
             fclose(fid);
         }
         else
+        {
+            NSLog(@"unable to open %@", profile_path);
             perror("storeProfileIni");
+        }
     }
 }
 struct ini * getProfileIni(void)

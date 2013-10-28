@@ -5,7 +5,26 @@
 //  Created by Tian Lin Tan on 10/26/13.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
-
+/*
+ revisions:
+ 1.0: by Tian Lin Tan
+ - added startCapture to set up capturing
+ 1.1: by Tian Lin Tan
+ - added preview layer for displaying what the camera sees
+ 1.2: by Tian Lin Tan
+ - added callback function for AVCaptureVideoDataOutput
+ - added code to find display the colour of the center pixel
+ 1.3: by Tian Lin Tan
+ - fixed bug where the queried pixel is not at the center, but at top center
+ 1.4: by Tian Lin Tan
+ - added function to hide navigation bar when view is tapped
+ 
+ bugs:
+ - viewDidunload is not called when user goes back one screen
+ - stopRunning isn't called, creating a new capture session every time the user moves to this screen
+ - empty bar below navigation bar, a wasted 20 rows of pixels
+ - empty bar below preview view, another wasted 20 rows of pixels
+ */
 #import "RealTime.h"
 #import <AVFoundation/AVFoundation.h>
 #import "colour_name.h"
@@ -40,6 +59,7 @@
     [self startCapture];
 }
 
+// set up capture input and output, and start capturing
 - (void) startCapture{
     _captureSession = [[AVCaptureSession alloc] init];
     _captureSession.sessionPreset = AVCaptureSessionPresetMedium;
@@ -84,8 +104,9 @@
     {
         CGRect box = _previewView.bounds;
         //box.origin.y += 20;
-        box.size.height -= 10;
+        //box.size.height += 40;
         _previewLayer.frame = box;
+        _previewLayer.bounds = box;
         NSLog(@"%f, %f, %f, %f", box.origin.x, box.origin.y,
               box.size.width, box.size.height);
     }
@@ -97,6 +118,9 @@
     NSLog(@"started capturing");
     
 }
+
+/* delegate for accessing pixel buffers of frames.
+ this is where the image processing happens*/
 - (void)captureOutput:(AVCaptureOutput *)captureOutput
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
@@ -128,6 +152,8 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
     }
     
 }
+
+// toggle the hiding of the navigation bar
 -(IBAction)touchedView:(id)sender{
     hiddenBar = !hiddenBar;
     [self.navigationController setNavigationBarHidden:hiddenBar animated:YES];
