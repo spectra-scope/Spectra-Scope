@@ -70,7 +70,7 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="authentication" id="Xex-CP-A90">
-                        <barButtonItem key="backBarButtonItem" title="log out" id="hnP-HO-TrI"/>
+                        <barButtonItem key="backBarButtonItem" title="back" id="hnP-HO-TrI"/>
                     </navigationItem>
                     <connections>
                         <outlet property="messageLabel" destination="aAQ-F0-ewx" id="lOX-Fw-taf"/>
@@ -90,7 +90,7 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="welcome, &lt;INSERT NAME HERE>" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fGZ-CL-EF4">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="welcome" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="fGZ-CL-EF4">
                                 <rect key="frame" x="11" y="5" width="280" height="42"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -111,7 +111,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zQa-qI-Keh">
-                                <rect key="frame" x="108" y="133" width="86" height="44"/>
+                                <rect key="frame" x="108" y="212" width="86" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="still image">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -125,7 +125,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tk3-y8-xKx">
-                                <rect key="frame" x="108" y="197" width="86" height="44"/>
+                                <rect key="frame" x="108" y="383" width="86" height="44"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="options">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -144,28 +144,32 @@
             </objects>
             <point key="canvasLocation" x="982" y="172"/>
         </scene>
-        <!--Real Time-->
+        <!--Real Time - real time mode-->
         <scene sceneID="m8A-Dr-Jmz">
             <objects>
                 <viewController id="wnn-ah-IDg" customClass="RealTime" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ITH-pu-rxm">
+                    <view key="view" contentMode="scaleToFill" id="ITH-pu-rxm" customClass="UIControl">
                         <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="bgr" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dvX-Hs-YOu">
-                                <rect key="frame" x="20" y="20" width="280" height="21"/>
+                            <label opaque="NO" autoresizesSubviews="NO" userInteractionEnabled="NO" contentMode="top" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dvX-Hs-YOu">
+                                <rect key="frame" x="0.0" y="20" width="320" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <connections>
+                            <action selector="touchedView:" destination="wnn-ah-IDg" eventType="touchDown" id="t7A-Im-yPI"/>
+                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="vxw-Wm-Xue"/>
+                    <navigationItem key="navigationItem" title="real time mode" id="DhZ-9X-gdD"/>
                     <connections>
                         <outlet property="bgrLabel" destination="dvX-Hs-YOu" id="3gt-k4-Xul"/>
-                        <outlet property="previewView" destination="ITH-pu-rxm" id="c47-qI-zyT"/>
+                        <outlet property="previewView" destination="ITH-pu-rxm" id="0sZ-d4-L48"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEJ-WX-UWJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -284,8 +288,8 @@
                                     <outlet property="delegate" destination="dSe-S1-mol" id="LVi-ql-Vds"/>
                                 </connections>
                             </textField>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="ethnicity" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Uk-Ud-px9">
-                                <rect key="frame" x="20" y="267" width="63" height="21"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="continent" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="4Uk-Ud-px9">
+                                <rect key="frame" x="20" y="267" width="132" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -341,8 +345,9 @@
         <class className="RealTime" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTime.h"/>
             <relationships>
+                <relationship kind="action" name="touchedView:"/>
                 <relationship kind="outlet" name="bgrLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="previewView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="previewView" candidateClass="UIControl"/>
             </relationships>
         </class>
         <class className="SignUpViewController" superclassName="UIViewController">

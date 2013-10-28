@@ -153,7 +153,7 @@ enum login_status{
     return signup_status == SU_SUCCESS;
 }
 
--(NSString *) signupStatusString{
+-(NSString *) signUpStatusString{
     switch(signup_status){
         case SU_NONE:
             return @"no sign up performed";

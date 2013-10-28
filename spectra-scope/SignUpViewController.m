@@ -123,6 +123,16 @@ BOOL isInt(NSString * str)
         _messageLabel.text = @"required fields must not be empty";
         _messageLabel.textColor = red;
     }
+    else if([_usernameInput.text length] > 40)
+    {
+        _messageLabel.text = @"username must be under 40 symbols";
+        _messageLabel.textColor = red;
+    }
+    else if([_passwordInput.text length] > 40)
+    {
+        _messageLabel.text = @"password must be under 40 symbols";
+        _messageLabel.textColor = red;
+    }
     else if(!isProperName(_usernameInput.text))
     {
         _messageLabel.text = @"invalid username";

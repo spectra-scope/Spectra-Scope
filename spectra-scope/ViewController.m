@@ -17,6 +17,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    NSLog(@"enter authentication screen");
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
@@ -34,7 +35,8 @@
 
     if([profile loginWasSuccessful])
     {
-        
+        _messageLabel.text = @"spectra-scope";
+        _messageLabel.textColor = [[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:255];
         MainScreenViewController * next = [self.storyboard instantiateViewControllerWithIdentifier:@"mainScreen"];
         [self.navigationController pushViewController:next animated:YES];
     }

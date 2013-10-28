@@ -29,6 +29,13 @@
 		EF37F6D51811E73600C5ACC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AD1811E73600C5ACC8 /* Foundation.framework */; };
 		EF37F6DD1811E73600C5ACC8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EF37F6DB1811E73600C5ACC8 /* InfoPlist.strings */; };
 		EF37F6E01811E73600C5ACC8 /* spectra_scopeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EF37F6DF1811E73600C5ACC8 /* spectra_scopeTests.m */; };
+		F70B830A181DED9700E12A33 /* colour_name.c in Sources */ = {isa = PBXBuildFile; fileRef = F70B8309181DED9700E12A33 /* colour_name.c */; };
+		F70B830B181DED9700E12A33 /* colour_name.c in Sources */ = {isa = PBXBuildFile; fileRef = F70B8309181DED9700E12A33 /* colour_name.c */; };
+		F70B8313181E2B8A00E12A33 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6D21811E73600C5ACC8 /* SenTestingKit.framework */; };
+		F70B8314181E2B8A00E12A33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AB1811E73600C5ACC8 /* UIKit.framework */; };
+		F70B8315181E2B8A00E12A33 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AD1811E73600C5ACC8 /* Foundation.framework */; };
+		F70B831B181E2B8A00E12A33 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F70B8319181E2B8A00E12A33 /* InfoPlist.strings */; };
+		F70B831E181E2B8A00E12A33 /* group03.m in Sources */ = {isa = PBXBuildFile; fileRef = F70B831D181E2B8A00E12A33 /* group03.m */; };
 		F714AF28181C3D4400F60D69 /* hashsetvsc.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF21181C3D4400F60D69 /* hashsetvsc.c */; };
 		F714AF29181C3D4400F60D69 /* hashsetvsc.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF21181C3D4400F60D69 /* hashsetvsc.c */; };
 		F714AF2A181C3D4400F60D69 /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF22181C3D4400F60D69 /* iniparser.c */; };
@@ -84,6 +91,14 @@
 		EF37F6DC1811E73600C5ACC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		EF37F6DE1811E73600C5ACC8 /* spectra_scopeTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = spectra_scopeTests.h; sourceTree = "<group>"; };
 		EF37F6DF1811E73600C5ACC8 /* spectra_scopeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = spectra_scopeTests.m; sourceTree = "<group>"; };
+		F70B8309181DED9700E12A33 /* colour_name.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = colour_name.c; sourceTree = "<group>"; };
+		F70B830C181DEDA800E12A33 /* colour_name.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colour_name.h; sourceTree = "<group>"; };
+		F70B8312181E2B8A00E12A33 /* group03.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = group03.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F70B8318181E2B8A00E12A33 /* group03-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "group03-Info.plist"; sourceTree = "<group>"; };
+		F70B831A181E2B8A00E12A33 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F70B831C181E2B8A00E12A33 /* group03.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = group03.h; sourceTree = "<group>"; };
+		F70B831D181E2B8A00E12A33 /* group03.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = group03.m; sourceTree = "<group>"; };
+		F70B831F181E2B8A00E12A33 /* group03-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "group03-Prefix.pch"; sourceTree = "<group>"; };
 		F714AF20181C3D4400F60D69 /* hashsetv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashsetv.h; sourceTree = "<group>"; };
 		F714AF21181C3D4400F60D69 /* hashsetvsc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = hashsetvsc.c; sourceTree = "<group>"; };
 		F714AF22181C3D4400F60D69 /* iniparser.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = iniparser.c; sourceTree = "<group>"; };
@@ -124,6 +139,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F70B830E181E2B8A00E12A33 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F70B8313181E2B8A00E12A33 /* SenTestingKit.framework in Frameworks */,
+				F70B8314181E2B8A00E12A33 /* UIKit.framework in Frameworks */,
+				F70B8315181E2B8A00E12A33 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -135,6 +160,7 @@
 				EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */,
 				EF37F6B11811E73600C5ACC8 /* spectra-scope */,
 				EF37F6D81811E73600C5ACC8 /* spectra-scopeTests */,
+				F70B8316181E2B8A00E12A33 /* group03 */,
 				EF37F6AA1811E73600C5ACC8 /* Frameworks */,
 				EF37F6A91811E73600C5ACC8 /* Products */,
 			);
@@ -145,6 +171,7 @@
 			children = (
 				EF37F6A81811E73600C5ACC8 /* spectra-scope.app */,
 				EF37F6D11811E73600C5ACC8 /* spectra-scopeTests.octest */,
+				F70B8312181E2B8A00E12A33 /* group03.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -163,6 +190,8 @@
 		EF37F6B11811E73600C5ACC8 /* spectra-scope */ = {
 			isa = PBXGroup;
 			children = (
+				F70B830C181DEDA800E12A33 /* colour_name.h */,
+				F70B8309181DED9700E12A33 /* colour_name.c */,
 				F714AF1F181C3D4400F60D69 /* iniparser */,
 				EF37F6BA1811E73600C5ACC8 /* AppDelegate.h */,
 				EF37F6BB1811E73600C5ACC8 /* AppDelegate.m */,
@@ -212,6 +241,26 @@
 			children = (
 				EF37F6DA1811E73600C5ACC8 /* spectra-scopeTests-Info.plist */,
 				EF37F6DB1811E73600C5ACC8 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F70B8316181E2B8A00E12A33 /* group03 */ = {
+			isa = PBXGroup;
+			children = (
+				F70B831C181E2B8A00E12A33 /* group03.h */,
+				F70B831D181E2B8A00E12A33 /* group03.m */,
+				F70B8317181E2B8A00E12A33 /* Supporting Files */,
+			);
+			path = group03;
+			sourceTree = "<group>";
+		};
+		F70B8317181E2B8A00E12A33 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F70B8318181E2B8A00E12A33 /* group03-Info.plist */,
+				F70B8319181E2B8A00E12A33 /* InfoPlist.strings */,
+				F70B831F181E2B8A00E12A33 /* group03-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -270,6 +319,24 @@
 			productReference = EF37F6D11811E73600C5ACC8 /* spectra-scopeTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
+		F70B8311181E2B8A00E12A33 /* unittest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F70B8320181E2B8A00E12A33 /* Build configuration list for PBXNativeTarget "unittest" */;
+			buildPhases = (
+				F70B830D181E2B8A00E12A33 /* Sources */,
+				F70B830E181E2B8A00E12A33 /* Frameworks */,
+				F70B830F181E2B8A00E12A33 /* Resources */,
+				F70B8310181E2B8A00E12A33 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = unittest;
+			productName = group03;
+			productReference = F70B8312181E2B8A00E12A33 /* group03.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -293,6 +360,7 @@
 			targets = (
 				EF37F6A71811E73600C5ACC8 /* spectra-scope */,
 				EF37F6D01811E73600C5ACC8 /* spectra-scopeTests */,
+				F70B8311181E2B8A00E12A33 /* unittest */,
 			);
 		};
 /* End PBXProject section */
@@ -319,10 +387,31 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F70B830F181E2B8A00E12A33 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F70B831B181E2B8A00E12A33 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
 		EF37F6CF1811E73600C5ACC8 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		F70B8310181E2B8A00E12A33 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -353,6 +442,7 @@
 				F714AF2C181C3D4400F60D69 /* stringop.c in Sources */,
 				F714AF2E181C3D4400F60D69 /* varstr.c in Sources */,
 				EF277C63181CA7F6004BAFB3 /* RealTime.m in Sources */,
+				F70B830A181DED9700E12A33 /* colour_name.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,6 +459,15 @@
 				F714AF2D181C3D4400F60D69 /* stringop.c in Sources */,
 				F714AF2F181C3D4400F60D69 /* varstr.c in Sources */,
 				EF277C64181CA7F6004BAFB3 /* RealTime.m in Sources */,
+				F70B830B181DED9700E12A33 /* colour_name.c in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F70B830D181E2B8A00E12A33 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F70B831E181E2B8A00E12A33 /* group03.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +510,14 @@
 			isa = PBXVariantGroup;
 			children = (
 				EF37F6DC1811E73600C5ACC8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		F70B8319181E2B8A00E12A33 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F70B831A181E2B8A00E12A33 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -534,6 +641,38 @@
 			};
 			name = Release;
 		};
+		F70B8321181E2B8A00E12A33 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "group03/group03-Prefix.pch";
+				INFOPLIST_FILE = "group03/group03-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		F70B8322181E2B8A00E12A33 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "group03/group03-Prefix.pch";
+				INFOPLIST_FILE = "group03/group03-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -563,6 +702,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		F70B8320181E2B8A00E12A33 /* Build configuration list for PBXNativeTarget "unittest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F70B8321181E2B8A00E12A33 /* Debug */,
+				F70B8322181E2B8A00E12A33 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
 	};
