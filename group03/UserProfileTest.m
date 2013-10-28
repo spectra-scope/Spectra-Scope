@@ -8,12 +8,26 @@
 
 #import "UserProfileTest.h"
 #import "UserProfile.h"
+@interface UserProfileTest ()
+{
+    NSDictionary * userList;
+}
+@end
 @implementation UserProfileTest
 - (void)setUp
 {
     [super setUp];
     
-    // Set-up code here.
+    // register some users
+    UserProfile * profile = [[UserProfile alloc] init];
+    userList = @{@"a":@"a", @"b":@"b", @"c": @"c", @"d":@"d"};
+    for (NSString * key in userList) {
+        profile.username = key;
+        profile.password = [userList objectForKey:key];
+        [profile signUp];
+    }
+
+    
 }
 
 - (void)tearDown
@@ -24,13 +38,25 @@
 }
 -(void)testSignup{
     UserProfile * profile = [[UserProfile alloc] init];
-    profile.username = @"a";
-    if([profile signUpWasSuccessful])
-        STFail(@"sign up failed to reject existing username");
+    for (NSString * name in userList)
+    {
+        profile.username = @"a";
+        [profile signUp];
+        if([profile signUpWasSuccessful])
+            STFail(@"sign up failed to reject existing username");
+    }
 }
 - (void)testAuthentication
 {
-    //STFail(@"Unit tests are not implemented yet in group03");
+    UserProfile * profile = [[UserProfile alloc] init];
+    for (NSString * name in userList)
+    {
+        profile.username = name;
+        profile.password = [userList objectForKey: name];
+        [profile login];
+        if(![profile loginWasSuccessful])
+            STFail(@"login %@ : %@ failed to reject wrong password", profile.username, profile.password);
+    }
     
 }
 @end
