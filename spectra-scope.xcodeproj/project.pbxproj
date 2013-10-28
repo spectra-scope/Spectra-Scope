@@ -32,6 +32,7 @@
 		F714AF2A181C3D4400F60D69 /* iniparser.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF22181C3D4400F60D69 /* iniparser.c */; };
 		F714AF2C181C3D4400F60D69 /* stringop.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF24181C3D4400F60D69 /* stringop.c */; };
 		F714AF2E181C3D4400F60D69 /* varstr.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF26181C3D4400F60D69 /* varstr.c */; };
+		F7186FD5181EB51200DDD126 /* ColourAlgorithmTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7186FD4181EB51200DDD126 /* ColourAlgorithmTest.m */; };
 		F7263A28181CF88C0076A04E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7263A27181CF88C0076A04E /* CoreVideo.framework */; };
 		F7263A2A181CF8A00076A04E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7263A29181CF8A00076A04E /* CoreMedia.framework */; };
 		F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
@@ -53,7 +54,7 @@
 		EF37F6B71811E73600C5ACC8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		EF37F6B91811E73600C5ACC8 /* spectra-scope-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "spectra-scope-Prefix.pch"; sourceTree = "<group>"; };
 		EF37F6BA1811E73600C5ACC8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		EF37F6BB1811E73600C5ACC8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		EF37F6BB1811E73600C5ACC8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; tabWidth = 4; };
 		EF37F6BD1811E73600C5ACC8 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		EF37F6BF1811E73600C5ACC8 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		EF37F6C11811E73600C5ACC8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -78,6 +79,8 @@
 		F714AF25181C3D4400F60D69 /* stringop.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stringop.h; sourceTree = "<group>"; };
 		F714AF26181C3D4400F60D69 /* varstr.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = varstr.c; sourceTree = "<group>"; };
 		F714AF27181C3D4400F60D69 /* varstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = varstr.h; sourceTree = "<group>"; };
+		F7186FD3181EB51200DDD126 /* ColourAlgorithmTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColourAlgorithmTest.h; sourceTree = "<group>"; };
+		F7186FD4181EB51200DDD126 /* ColourAlgorithmTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColourAlgorithmTest.m; sourceTree = "<group>"; };
 		F7263A27181CF88C0076A04E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		F7263A29181CF8A00076A04E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		F79AF6C11818DB4800AB781F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -190,10 +193,11 @@
 			children = (
 				F70B8323181E329800E12A33 /* UserProfileTest.h */,
 				F70B8324181E329800E12A33 /* UserProfileTest.m */,
+				F7186FD3181EB51200DDD126 /* ColourAlgorithmTest.h */,
+				F7186FD4181EB51200DDD126 /* ColourAlgorithmTest.m */,
 				F70B8317181E2B8A00E12A33 /* Supporting Files */,
 			);
-			name = "spectra-scopeTests";
-			path = group03;
+			path = "spectra-scopeTests";
 			sourceTree = "<group>";
 		};
 		F70B8317181E2B8A00E12A33 /* Supporting Files */ = {
@@ -351,6 +355,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F70B8325181E329800E12A33 /* UserProfileTest.m in Sources */,
+				F7186FD5181EB51200DDD126 /* ColourAlgorithmTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,8 +488,8 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "group03/group03-Prefix.pch";
-				INFOPLIST_FILE = "group03/group03-Info.plist";
+				GCC_PREFIX_HEADER = "spectra-scopeTests/group03-Prefix.pch";
+				INFOPLIST_FILE = "spectra-scopeTests/group03-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -501,8 +506,8 @@
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "group03/group03-Prefix.pch";
-				INFOPLIST_FILE = "group03/group03-Info.plist";
+				GCC_PREFIX_HEADER = "spectra-scopeTests/group03-Prefix.pch";
+				INFOPLIST_FILE = "spectra-scopeTests/group03-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -538,6 +543,7 @@
 				F70B8322181E2B8A00E12A33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

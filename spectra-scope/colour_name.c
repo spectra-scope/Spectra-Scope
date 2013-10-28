@@ -19,6 +19,7 @@ enum colour colour_name(int r, int g, int b)
 		else
 			return YELLOW;
 	}
+    
 	else if(g >= r && r > b)
 	{
 		if((g * 3 ) / (r * 2) > 1)
@@ -49,14 +50,19 @@ enum colour colour_name(int r, int g, int b)
 		else
 			return MAGENTA;
 	}
-	else if(r > b && b > g)
+	else if(r >= b && b > g)
 	{
 		if((r * 3) / (b * 2) > 1)
 			return RED;
 		else
 			return MAGENTA;
 	}
-	
+	else if(r > g && r > b)
+        return RED;
+    else if(g > r && g > b)
+        return GREEN;
+    else if(b > r && b > g)
+        return BLUE;
 	else
 		return GREY;
 }
