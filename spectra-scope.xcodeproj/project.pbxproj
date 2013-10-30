@@ -33,6 +33,7 @@
 		F714AF2C181C3D4400F60D69 /* stringop.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF24181C3D4400F60D69 /* stringop.c */; };
 		F714AF2E181C3D4400F60D69 /* varstr.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF26181C3D4400F60D69 /* varstr.c */; };
 		F7186FD5181EB51200DDD126 /* ColourAlgorithmTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7186FD4181EB51200DDD126 /* ColourAlgorithmTest.m */; };
+		F71C9FE01820BA1600FF18BE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F71C9FDF1820BA1600FF18BE /* QuartzCore.framework */; };
 		F7263A28181CF88C0076A04E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7263A27181CF88C0076A04E /* CoreVideo.framework */; };
 		F7263A2A181CF8A00076A04E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7263A29181CF8A00076A04E /* CoreMedia.framework */; };
 		F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
@@ -81,6 +82,7 @@
 		F714AF27181C3D4400F60D69 /* varstr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = varstr.h; sourceTree = "<group>"; };
 		F7186FD3181EB51200DDD126 /* ColourAlgorithmTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColourAlgorithmTest.h; sourceTree = "<group>"; };
 		F7186FD4181EB51200DDD126 /* ColourAlgorithmTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColourAlgorithmTest.m; sourceTree = "<group>"; };
+		F71C9FDF1820BA1600FF18BE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F7263A27181CF88C0076A04E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		F7263A29181CF8A00076A04E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		F79AF6C11818DB4800AB781F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F71C9FE01820BA1600FF18BE /* QuartzCore.framework in Frameworks */,
 				F7263A2A181CF8A00076A04E /* CoreMedia.framework in Frameworks */,
 				F7263A28181CF88C0076A04E /* CoreVideo.framework in Frameworks */,
 				EF277C60181CA21D004BAFB3 /* AVFoundation.framework in Frameworks */,
@@ -119,6 +122,7 @@
 		EF37F69F1811E73600C5ACC8 = {
 			isa = PBXGroup;
 			children = (
+				F71C9FDF1820BA1600FF18BE /* QuartzCore.framework */,
 				F7263A29181CF8A00076A04E /* CoreMedia.framework */,
 				F7263A27181CF88C0076A04E /* CoreVideo.framework */,
 				EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */,
