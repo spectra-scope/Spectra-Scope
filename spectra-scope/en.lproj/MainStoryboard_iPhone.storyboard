@@ -153,7 +153,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" alpha="0.50000000000000011" contentMode="top" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dvX-Hs-YOu">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="29"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="Courier" family="Courier" pointSize="17"/>
@@ -364,50 +364,6 @@
             <point key="canvasLocation" x="70" y="172"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="MainScreenViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainScreenViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="ChooseExisting"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="RealTime" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTime.h"/>
-            <relationships>
-                <relationship kind="action" name="touchedFilterButton:"/>
-                <relationship kind="action" name="touchedView:"/>
-                <relationship kind="outlet" name="bgrLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="filterButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="previewView" candidateClass="UIControl"/>
-            </relationships>
-        </class>
-        <class className="SignUpViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="sexButtonPress:"/>
-                <relationship kind="action" name="signupButtonPress:"/>
-                <relationship kind="outlet" name="ageInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ethnicityInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordInputAgain" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="sexButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="logInPress:"/>
-                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

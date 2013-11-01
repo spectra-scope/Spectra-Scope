@@ -31,8 +31,11 @@
  - (fixe)empty bar below navigation bar, a wasted 20 rows of pixels
  - (fixed)empty bar below preview view, another wasted 20 rows of pixels
  */
+#define USE_GPUIMAGE
 #import "RealTime.h"
 #import <AVFoundation/AVFoundation.h>
+#import <CoreImage/CoreImage.h>
+
 #import "colour_name.h"
 enum filter_type{
     FL_NONE,
@@ -60,6 +63,11 @@ static NSString * filterNames[] ={
     BOOL hiddenBar;
     unsigned rAvg, gAvg, bAvg;
     enum filter_type filter;
+    CIContext * context;
+    CIFilter * cifilter;
+    
+    GPUImageVideoCamera * gpuCamera;
+    GPUImageView * gpuView;
 }
 @property(strong, nonatomic) AVCaptureSession * captureSession;
 
@@ -93,6 +101,8 @@ static NSString * filterNames[] ={
         _previewLayer = nil;
         _previewView = nil;
         _bgrLabel = nil;
+        context = nil;
+        cifilter = nil;
     }
     return self;
 }
@@ -106,13 +116,157 @@ static NSString * filterNames[] ={
     [super viewDidAppear:animated];
     hiddenBar = YES;
     [self.navigationController setNavigationBarHidden:hiddenBar animated:YES];
+
     [self startCapture];
     
 }
-// set up capture input and output, and start capturing
+// toggle the hiding of the navigation bar
+-(IBAction)touchedView:(id)sender{
+    hiddenBar = !hiddenBar;
+    [self.navigationController setNavigationBarHidden:hiddenBar animated:YES];
+}
+-(IBAction)touchedFilterButton:(id)sender{
+    filter = (filter + 1) % FL_LAST;
+    [_filterButton setTitle:filterNames[filter] forState:UIControlStateNormal];
+#ifdef USE_GPUIMAGE
+    [gpuCamera removeAllTargets];
+#endif
+}
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+- (void)viewDidUnload {
+    [self setFilterButton:nil];
+#ifdef USE_GPUIMAGE
+    gpuView = nil;
+    gpuCamera = nil;
+#endif
+    [super viewDidUnload];
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    
+#ifdef USE_GPUIMAGE
+    [gpuCamera stopCameraCapture];
+#else
+    [_captureSession stopRunning];
+#endif
+    NSLog(@"stopped capturing");
+    [super viewDidDisappear:animated];
+}
+
+/* startCapture is the final setup step to perform before the screen can display what the camera captures.*/
+#ifdef USE_GPUIMAGE
+-(void) startCapture{
+    NSLog(@"GPUImage capture setup");
+    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+    
+    gpuCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPresetMedium cameraPosition:AVCaptureDevicePositionBack];
+    gpuCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
+    
+    gpuView = [[GPUImageView alloc] initWithFrame:mainScreenFrame];
+    [self.view addSubview:gpuView];
+    
+    GPUImageColorMatrixFilter * filter3 = [[GPUImageColorMatrixFilter alloc] init];
+
+    GPUMatrix4x4 mat = {
+        {0.5, 0.5, 0, 0},
+        {0.5, 0.5, 0, 0},
+        {0, 0, 1, 0},
+        {0, 0, 0, 1}
+    };
+    [filter3 setColorMatrix:mat];
+    [filter3 forceProcessingAtSize:gpuView.sizeInPixels];
+    
+    [filter3 addTarget:gpuView];
+    [gpuCamera addTarget:filter3];
+    
+    gpuCamera.delegate = self;
+    
+    [gpuView addSubview:_filterButton];
+    
+    [gpuCamera startCameraCapture];
+    NSLog(@"GPUImage capture setup complete");
+    NSLog(@"delegate is %p", gpuCamera.delegate);
+}
+- (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer{
+    CVImageBufferRef pixelBuf = CMSampleBufferGetImageBuffer(sampleBuffer);
+   
+    OSType format = CVPixelBufferGetPixelFormatType(pixelBuf);
+    CVPixelBufferLockBaseAddress(pixelBuf, kCVPixelBufferLock_ReadOnly);
+    {
+        unsigned b, g, r;        
+        if(format == kCVPixelFormatType_32BGRA)
+        {
+            uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuf);
+            unsigned bpr = CVPixelBufferGetBytesPerRow(pixelBuf);
+            unsigned width = CVPixelBufferGetWidth(pixelBuf);
+            unsigned height = CVPixelBufferGetHeight(pixelBuf);
+            unsigned center = height / 2 * bpr + bpr / 2;
+            
+            b = baseAddress[center];
+            g = baseAddress[center + 1];
+            r = baseAddress[center + 2];
+        }
+        else if(format == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)
+        {
+            /* for reference:
+             http://stackoverflow.com/questions/13429456/how-seperate-y-planar-u-planar-and-uv-planar-from-yuv-bi-planar-in-ios
+             */
+            signed y, u, v;
+            {
+                uint8_t * lumaAddr = CVPixelBufferGetBaseAddressOfPlane(pixelBuf, 0);
+                unsigned bpr = CVPixelBufferGetBytesPerRowOfPlane(pixelBuf, 0);
+                unsigned height = CVPixelBufferGetHeightOfPlane(pixelBuf, 0);
+                unsigned lumaCenter = height / 2 * bpr + bpr / 2;
+                y = lumaAddr[lumaCenter];
+            }
+            {
+                uint8_t * cbcrAddr = CVPixelBufferGetBaseAddressOfPlane(pixelBuf, 1);
+                unsigned bpr = CVPixelBufferGetBytesPerRowOfPlane(pixelBuf, 1);
+                unsigned height = CVPixelBufferGetHeightOfPlane(pixelBuf, 1);
+                unsigned uvCenter = height / 2 * bpr + bpr / 2;
+                u = cbcrAddr[uvCenter];
+                v = cbcrAddr[uvCenter + 1];
+            }
+            
+            /* for reference:
+             http://msdn.microsoft.com/en-us/library/aa917087.aspx
+             */
+            {
+                signed c = y - 16;
+                signed d = u - 128;
+                signed e = v - 128;
+                
+#define clip(lo, hi, n) (n < lo ? lo : n > hi ? hi : n)
+                r = clip(0, 255, (( 298 * c           + 409 * e + 128) >> 8));
+                g = clip(0, 255, (( 298 * c - 100 * d - 208 * e + 128) >> 8));
+                b = clip(0, 255, (( 298 * c + 516 * d           + 128) >> 8));
+#undef clip
+            }
+        }
+        else
+        {
+            NSLog(@"pixel format not supported");
+            b=g=r=0;
+        }
+        rAvg = (rAvg * 7 + r) / 8;
+        gAvg = (gAvg * 7 + g) / 8;
+        bAvg = (bAvg * 7 + b) / 8;
+        char const * name = colour_string(colour_name(r, g, b));
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            _bgrLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", rAvg, gAvg, bAvg, name];
+        });
+    }
+    CVPixelBufferUnlockBaseAddress(pixelBuf,kCVPixelBufferLock_ReadOnly);
+}
+#else
 - (void) startCapture{
     if(_captureSession == nil)
     {
+
         NSLog(@"capture session setup");
         _captureSession = [[AVCaptureSession alloc] init];
         _captureSession.sessionPreset = AVCaptureSessionPresetMedium;
@@ -139,7 +293,7 @@ static NSString * filterNames[] ={
         avVideoOut.videoSettings = [NSDictionary dictionaryWithObject:
                                     [NSNumber numberWithInt:kCVPixelFormatType_32BGRA]
                                                                forKey:(id)kCVPixelBufferPixelFormatTypeKey];
-        
+
         dispatch_queue_t queue = dispatch_queue_create("cameraQueue", NULL);
         [avVideoOut setSampleBufferDelegate:self queue:queue];
         dispatch_release(queue);
@@ -198,7 +352,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection
 {
     @autoreleasepool {
-
+#if 1
         CVImageBufferRef pixelBuf = CMSampleBufferGetImageBuffer(sampleBuffer);
         
         CVPixelBufferLockBaseAddress(pixelBuf,0);
@@ -225,7 +379,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
             case FL_IRED:
                 for(unsigned i = filter - FL_IBLUE, end = height * bpr; i < end; i += 4)
                 {
-                    baseAddress[i] += 127;
+                    baseAddress[i] = 255 - baseAddress[i];
                 }
                 break;
             case FL_NOBLUE:
@@ -249,6 +403,7 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
                 break;
         }
         char const * name = colour_string(colour_name(r, g, b));
+
         CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
         CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8, bpr, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
         CGImageRef dstImage = CGBitmapContextCreateImage(context);
@@ -261,33 +416,59 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
         CGContextRelease(context);
         CGColorSpaceRelease(colorSpace);
         CVPixelBufferUnlockBaseAddress(pixelBuf,0);
+#else
+        CVImageBufferRef pixelBuf = CMSampleBufferGetImageBuffer(sampleBuffer);
+        
+        CVPixelBufferLockBaseAddress(pixelBuf,0);
+        
+        uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuf);
+        unsigned bpr = CVPixelBufferGetBytesPerRow(pixelBuf);
+        unsigned width = CVPixelBufferGetWidth(pixelBuf);
+        unsigned height = CVPixelBufferGetHeight(pixelBuf);
+        unsigned center = height / 2 * bpr + bpr / 2;
+        
+        unsigned b = baseAddress[center];
+        unsigned g = baseAddress[center + 1];
+        unsigned r = baseAddress[center + 2];
+        CVPixelBufferUnlockBaseAddress(pixelBuf,0);
+        rAvg = (rAvg * 7 + r) / 8;
+        gAvg = (gAvg * 7 + g) / 8;
+        bAvg = (bAvg * 7 + b) / 8;
+        
+        //NSLog(@"base:%p, center:%d", baseAddress, center);
+
+        char const * name = colour_string(colour_name(r, g, b));
+
+        if(context == nil)
+        {
+            context = [CIContext contextWithOptions:nil];
+        }
+        CIImage *dstImage = [CIImage imageWithCVPixelBuffer:pixelBuf];
+        if(cifilter == nil)
+        {
+            cifilter = [CIFilter filterWithName:@"CIColorMatrix"]; // 2
+            [cifilter setDefaults]; // 3
+            [cifilter setValue:dstImage forKey:kCIInputImageKey]; // 4
+            [cifilter setValue:[CIVector vectorWithX:0.5 Y:0.5 Z:0 W:0] forKey:@"inputRVector"]; // 5
+            [cifilter setValue:[CIVector vectorWithX:0.5 Y:0.5 Z:0 W:0] forKey:@"inputGVector"]; // 6
+            [cifilter setValue:[CIVector vectorWithX:0 Y:0 Z:1 W:0] forKey:@"inputBVector"]; // 7
+            [cifilter setValue:[CIVector vectorWithX:0 Y:0 Z:0 W:1] forKey:@"inputAVector"]; // 8
+        }
+        
+        dstImage = [cifilter outputImage];
+        CGImageRef cgimg = [context createCGImage:dstImage fromRect:[dstImage extent]];
+        dispatch_sync(dispatch_get_main_queue(), ^{
+            _bgrLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", rAvg, gAvg, bAvg, name];
+            _previewLayer.contents = (__bridge id)(cgimg);
+            CGImageRelease(cgimg);
+        });
+        
+        
+#endif
     }
     
 }
+#endif
 
-// toggle the hiding of the navigation bar
--(IBAction)touchedView:(id)sender{
-    hiddenBar = !hiddenBar;
-    [self.navigationController setNavigationBarHidden:hiddenBar animated:YES];
-}
--(IBAction)touchedFilterButton:(id)sender{
-    filter = (filter + 1) % FL_LAST;
-    [_filterButton setTitle:filterNames[filter] forState:UIControlStateNormal];
-}
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
-- (void)viewDidUnload {
-    
-    [self setFilterButton:nil];
-    [super viewDidUnload];
-}
--(void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    [_captureSession stopRunning];
-    NSLog(@"stopped capturing");
-}
 @end
