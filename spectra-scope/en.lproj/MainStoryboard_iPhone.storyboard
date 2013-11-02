@@ -148,11 +148,11 @@
         <scene sceneID="m8A-Dr-Jmz">
             <objects>
                 <viewController id="wnn-ah-IDg" customClass="RealTime" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ITH-pu-rxm" customClass="UIControl">
+                    <view key="view" contentMode="scaleToFill" id="ITH-pu-rxm" userLabel="main view" customClass="UIControl">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" alpha="0.50000000000000011" contentMode="top" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dvX-Hs-YOu">
+                            <label autoresizesSubviews="NO" opaque="NO" userInteractionEnabled="NO" alpha="0.50000000000000011" contentMode="top" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dvX-Hs-YOu" userLabel="color information label">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -176,7 +176,7 @@
                                     <action selector="touchedFilterButton:" destination="wnn-ah-IDg" eventType="touchUpInside" id="RPZ-LL-LBp"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WC1-Ij-lGs">
+                            <button opaque="NO" alpha="0.50000000000000011" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WC1-Ij-lGs">
                                 <rect key="frame" x="20" y="397" width="59" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -187,19 +187,93 @@
                                 <state key="highlighted">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="touchedBackButton:" destination="wnn-ah-IDg" eventType="touchUpInside" id="CLW-F6-AkE"/>
+                                </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" alpha="0.50000000000000011" contentMode="scaleToFill" image="reticule.png" id="tHF-Rj-E7I">
+                                <rect key="frame" x="144" y="236" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <view alpha="0.70000000000000007" contentMode="scaleToFill" id="7xY-GO-fex" userLabel="filter list view" customClass="UIControl">
+                                <rect key="frame" x="20" y="28" width="280" height="350"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aQs-Xj-Ts8">
+                                        <rect key="frame" x="0.0" y="0.0" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="rg defficiency">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="turnOnRGDFilter:" destination="wnn-ah-IDg" eventType="touchUpInside" id="pc9-Jl-pSG"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mMz-N0-z3g">
+                                        <rect key="frame" x="0.0" y="51" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="mark green with blue">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kRe-J7-7It">
+                                        <rect key="frame" x="0.0" y="102" width="280" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="mark red with blue">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PrT-Q0-aFD">
+                                        <rect key="frame" x="78" y="287" width="125" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="clear all filters">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="clearFilters:" destination="wnn-ah-IDg" eventType="touchUpInside" id="Di6-mp-gtt"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="touchedView:" destination="wnn-ah-IDg" eventType="touchDown" id="kXB-F3-hU8"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
-                        <connections>
-                            <action selector="touchedView:" destination="wnn-ah-IDg" eventType="touchDown" id="t7A-Im-yPI"/>
-                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="real time mode" id="DhZ-9X-gdD"/>
                     <connections>
+                        <outlet property="backButton" destination="WC1-Ij-lGs" id="UbA-Y7-lOu"/>
                         <outlet property="bgrLabel" destination="dvX-Hs-YOu" id="3gt-k4-Xul"/>
+                        <outlet property="clearFilterButton" destination="PrT-Q0-aFD" id="ig6-IX-F8T"/>
                         <outlet property="filterButton" destination="EhC-tu-Hak" id="Pcy-Iq-fAy"/>
-                        <outlet property="previewView" destination="ITH-pu-rxm" id="0sZ-d4-L48"/>
+                        <outlet property="filterListView" destination="7xY-GO-fex" id="BGI-dO-xV8"/>
+                        <outlet property="markGreenFilterButton" destination="mMz-N0-z3g" id="Vkq-nk-z7t"/>
+                        <outlet property="markRedFilterButton" destination="kRe-J7-7It" id="xLT-Ry-Bor"/>
+                        <outlet property="reticuleImage" destination="tHF-Rj-E7I" id="djx-zD-XfD"/>
+                        <outlet property="rgdFilterButton" destination="aQs-Xj-Ts8" id="oYo-iD-dJe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEJ-WX-UWJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -364,6 +438,62 @@
             <point key="canvasLocation" x="70" y="172"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="reticule.png" width="32" height="32"/>
+    </resources>
+    <classes>
+        <class className="MainScreenViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainScreenViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="ChooseExisting"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="RealTime" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTime.h"/>
+            <relationships>
+                <relationship kind="action" name="clearFilters:"/>
+                <relationship kind="action" name="touchedBackButton:"/>
+                <relationship kind="action" name="touchedFilterButton:"/>
+                <relationship kind="action" name="touchedView:"/>
+                <relationship kind="action" name="turnOnRGDFilter:"/>
+                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="bgrLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="clearFilterButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="filterButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="filterListView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="markGreenFilterButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="markRedFilterButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="reticuleImage" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="rgdFilterButton" candidateClass="UIButton"/>
+            </relationships>
+        </class>
+        <class className="SignUpViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouched:"/>
+                <relationship kind="action" name="sexButtonPress:"/>
+                <relationship kind="action" name="signupButtonPress:"/>
+                <relationship kind="outlet" name="ageInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="ethnicityInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordInputAgain" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="sexButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backgroundTouched:"/>
+                <relationship kind="action" name="logInPress:"/>
+                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

@@ -24,7 +24,8 @@
  - put viewdidunload code to viewdiddisappear
  1.6: by Tian Lin Tan
  - added filters
- 
+ 1.7: by Tian Lin Tan
+ - added library GPUImage, for real time filtering
  bugs:
  - (not a bug) viewDidunload is not called when user goes back one screen
  - (fixed)stopRunning isn't called, creating a new capture session every time the user moves to this screen
@@ -37,6 +38,14 @@
 #import <CoreImage/CoreImage.h>
 
 #import "colour_name.h"
+#ifdef USE_GPUIMAGE
+GPUMatrix4x4 redGreenDefficiencyMatrix = {
+    {0.5, 0.5, 0, 0},
+    {0.5, 0.5, 0, 0},
+    {0, 0, 1, 0},
+    {0, 0, 0, 1}
+};
+#else
 enum filter_type{
     FL_NONE,
     FL_IBLUE,
@@ -58,26 +67,28 @@ static NSString * filterNames[] ={
     [FL_NORED] = @"zero red",
     [FL_REDGREEN] = @"rg defficiency"
 };
+#endif
+
 @interface RealTime ()
 {
-    BOOL hiddenBar;
+    BOOL hiddenFilterList;
     unsigned rAvg, gAvg, bAvg;
-    enum filter_type filter;
-    CIContext * context;
-    CIFilter * cifilter;
-    
+    unsigned counter;
     GPUImageVideoCamera * gpuCamera;
     GPUImageView * gpuView;
+    
 }
-@property(strong, nonatomic) AVCaptureSession * captureSession;
 
 @property (weak, nonatomic) IBOutlet UILabel *bgrLabel;
 @property (weak, nonatomic) IBOutlet UIButton *filterButton;
-
-@property(strong, nonatomic) CALayer * previewLayer;
-@property (strong, nonatomic) IBOutlet UIControl *previewView;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+@property (weak, nonatomic) IBOutlet UIView *filterListView;
+@property (weak, nonatomic) IBOutlet UIImageView *reticuleImage;
+@property (weak, nonatomic) IBOutlet UIButton *rgdFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *markGreenFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *markRedFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *clearFilterButton;
 @end
-
 @implementation RealTime
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -96,13 +107,6 @@ static NSString * filterNames[] ={
         rAvg = 0;
         gAvg = 0;
         bAvg = 0;
-        filter = FL_NONE;
-        _captureSession = nil;
-        _previewLayer = nil;
-        _previewView = nil;
-        _bgrLabel = nil;
-        context = nil;
-        cifilter = nil;
     }
     return self;
 }
@@ -114,24 +118,13 @@ static NSString * filterNames[] ={
 }
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
-    hiddenBar = YES;
-    [self.navigationController setNavigationBarHidden:hiddenBar animated:YES];
-
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    hiddenFilterList = YES;
+    [_filterListView setHidden:hiddenFilterList];
     [self startCapture];
     
 }
-// toggle the hiding of the navigation bar
--(IBAction)touchedView:(id)sender{
-    hiddenBar = !hiddenBar;
-    [self.navigationController setNavigationBarHidden:hiddenBar animated:YES];
-}
--(IBAction)touchedFilterButton:(id)sender{
-    filter = (filter + 1) % FL_LAST;
-    [_filterButton setTitle:filterNames[filter] forState:UIControlStateNormal];
-#ifdef USE_GPUIMAGE
-    [gpuCamera removeAllTargets];
-#endif
-}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -139,58 +132,92 @@ static NSString * filterNames[] ={
 }
 
 - (void)viewDidUnload {
-    [self setFilterButton:nil];
-#ifdef USE_GPUIMAGE
     gpuView = nil;
     gpuCamera = nil;
-#endif
+    [self setFilterButton:nil];
+    [self setBackButton:nil];
+    [self setFilterListView:nil];
+    [self setReticuleImage:nil];
+    [self setRgdFilterButton:nil];
+    [self setMarkGreenFilterButton:nil];
+    [self setMarkRedFilterButton:nil];
+    [self setClearFilterButton:nil];
     [super viewDidUnload];
 }
 -(void)viewDidDisappear:(BOOL)animated{
-    
-#ifdef USE_GPUIMAGE
     [gpuCamera stopCameraCapture];
-#else
-    [_captureSession stopRunning];
-#endif
+    gpuCamera = nil;
+    gpuView = nil;
     NSLog(@"stopped capturing");
+    
     [super viewDidDisappear:animated];
 }
 
+// toggle the hiding of the navigation bar
+-(IBAction)touchedView:(id)sender{
+    NSLog(@"tickles");
+}
+-(IBAction)touchedBackButton:(id)sender{
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark filter button actions
+-(IBAction)touchedFilterButton:(id)sender{
+    hiddenFilterList = !hiddenFilterList;
+    if(hiddenFilterList)
+    {
+        [_filterListView setHidden:YES];
+        NSLog(@"hide filter list");
+        
+    }
+    else
+    {
+        [_filterListView setHidden:NO];
+        NSLog(@"show filter list");
+    }
+
+}
+-(IBAction)turnOnRGDFilter:(id)sender{
+    GPUImageColorMatrixFilter * filter = [[GPUImageColorMatrixFilter alloc] init];
+    [filter setColorMatrix: redGreenDefficiencyMatrix];
+    [gpuCamera removeAllTargets];
+    [gpuCamera addTarget: filter];
+    [filter addTarget:gpuView];
+}
+-(IBAction)clearFilters:(id)sender{
+    [gpuCamera removeAllTargets];
+    [gpuCamera addTarget:gpuView];
+}
 /* startCapture is the final setup step to perform before the screen can display what the camera captures.*/
-#ifdef USE_GPUIMAGE
 -(void) startCapture{
     NSLog(@"GPUImage capture setup");
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
     
-    gpuCamera = [[GPUImageVideoCamera alloc] initWithSessionPreset:AVCaptureSessionPresetMedium cameraPosition:AVCaptureDevicePositionBack];
+    gpuCamera = [[GPUImageVideoCamera alloc]
+                 initWithSessionPreset:AVCaptureSessionPreset640x480
+                 cameraPosition:AVCaptureDevicePositionBack];
     gpuCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     
-    gpuView = [[GPUImageView alloc] initWithFrame:mainScreenFrame];
+    gpuView = [[GPUImageView alloc] initWithFrame:CGRectOffset(mainScreenFrame, 0, -20)];
     [self.view addSubview:gpuView];
     
-    GPUImageColorMatrixFilter * filter3 = [[GPUImageColorMatrixFilter alloc] init];
-
-    GPUMatrix4x4 mat = {
-        {0.5, 0.5, 0, 0},
-        {0.5, 0.5, 0, 0},
-        {0, 0, 1, 0},
-        {0, 0, 0, 1}
-    };
-    [filter3 setColorMatrix:mat];
-    [filter3 forceProcessingAtSize:gpuView.sizeInPixels];
-    
-    [filter3 addTarget:gpuView];
-    [gpuCamera addTarget:filter3];
+    [gpuCamera addTarget:gpuView];
     
     gpuCamera.delegate = self;
     
+    [gpuView addSubview:_bgrLabel];
     [gpuView addSubview:_filterButton];
+    [gpuView addSubview:_backButton];
+    [gpuView addSubview:_filterListView];
+    [gpuView addSubview:_reticuleImage];
+    _reticuleImage.center = gpuView.center;
     
     [gpuCamera startCameraCapture];
-    NSLog(@"GPUImage capture setup complete");
-    NSLog(@"delegate is %p", gpuCamera.delegate);
+    NSLog(@"GPUImage capture setup complete, capture started");
 }
+
+/* samples rgb value of center pixel*/
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer{
     CVImageBufferRef pixelBuf = CMSampleBufferGetImageBuffer(sampleBuffer);
    
@@ -202,7 +229,6 @@ static NSString * filterNames[] ={
         {
             uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuf);
             unsigned bpr = CVPixelBufferGetBytesPerRow(pixelBuf);
-            unsigned width = CVPixelBufferGetWidth(pixelBuf);
             unsigned height = CVPixelBufferGetHeight(pixelBuf);
             unsigned center = height / 2 * bpr + bpr / 2;
             
@@ -255,220 +281,22 @@ static NSString * filterNames[] ={
         rAvg = (rAvg * 7 + r) / 8;
         gAvg = (gAvg * 7 + g) / 8;
         bAvg = (bAvg * 7 + b) / 8;
-        char const * name = colour_string(colour_name(r, g, b));
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            _bgrLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", rAvg, gAvg, bAvg, name];
-        });
+        if (counter)
+        {
+            counter--;
+        }
+        else
+        {
+            counter = 10;
+            char const * name = colour_string(colour_name(r, g, b));
+            dispatch_sync(dispatch_get_main_queue(), ^{
+                _bgrLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", rAvg, gAvg, bAvg, name];
+            });
+        }
     }
+        
     CVPixelBufferUnlockBaseAddress(pixelBuf,kCVPixelBufferLock_ReadOnly);
 }
-#else
-- (void) startCapture{
-    if(_captureSession == nil)
-    {
-
-        NSLog(@"capture session setup");
-        _captureSession = [[AVCaptureSession alloc] init];
-        _captureSession.sessionPreset = AVCaptureSessionPresetMedium;
-        
-        
-        // add input stream
-        AVCaptureDevice * device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-        NSError * error = nil;
-        AVCaptureDeviceInput * avVideoIn= [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
-        if([_captureSession canAddInput: avVideoIn])
-        {
-            NSLog(@"%@",[avVideoIn description]);
-            [_captureSession addInput: avVideoIn];
-        }
-        else
-        {
-            NSLog(@"%@", @"unable to open input device");
-            return;
-        }
-        
-        // add output stream
-        AVCaptureVideoDataOutput *  avVideoOut = [[AVCaptureVideoDataOutput alloc] init];
-        avVideoOut.alwaysDiscardsLateVideoFrames = YES;
-        avVideoOut.videoSettings = [NSDictionary dictionaryWithObject:
-                                    [NSNumber numberWithInt:kCVPixelFormatType_32BGRA]
-                                                               forKey:(id)kCVPixelBufferPixelFormatTypeKey];
-
-        dispatch_queue_t queue = dispatch_queue_create("cameraQueue", NULL);
-        [avVideoOut setSampleBufferDelegate:self queue:queue];
-        dispatch_release(queue);
-        if([_captureSession canAddOutput:avVideoOut])
-        {
-            NSLog(@"%@", [avVideoOut description]);
-            [_captureSession addOutput: avVideoOut];
-        }
-        else
-        {
-            NSLog(@"%@", @"unable to create video output");
-            return;
-        }
-        NSLog(@"capture session setup complete");
-    }
-    
-    // add real time view
-#if 0
-    _previewLayer = [AVCaptureVideoPreviewLayer layerWithSession:_captureSession];
-    {
-        CGRect box = _previewView.bounds;
-        //box.origin.y += 20;
-        //box.size.height += 40;
-        _previewLayer.frame = box;
-        _previewLayer.bounds = box;
-        NSLog(@"%f, %f, %f, %f", box.origin.x, box.origin.y,
-              box.size.width, box.size.height);
-    }
-    [_previewView.layer addSublayer:_previewLayer];
-    [_previewLayer addSublayer: _bgrLabel.layer];
-#else
-    if(_previewLayer == nil)
-    {
-        NSLog(@"preview layer setup");
-        _previewLayer = [[CALayer alloc] init];
-        _previewLayer.frame = _previewView.bounds;
-        _previewLayer.bounds = _previewView.bounds;
-        _previewLayer.affineTransform = CGAffineTransformMakeRotation(M_PI_2);
-        _previewLayer.contentsGravity = kCAGravityResizeAspectFill;
-        [_previewView.layer addSublayer: _previewLayer];
-        [_previewView.layer addSublayer:_bgrLabel.layer];
-        [_previewView.layer addSublayer:_filterButton.layer];
-        NSLog(@"preview layer setup complete");
-    }
-#endif
-    // start capturing
-    [_captureSession startRunning];
-    NSLog(@"started capturing");
-    
-}
-
-/* delegate for accessing pixel buffers of frames.
- this is where the image processing happens*/
-- (void)captureOutput:(AVCaptureOutput *)captureOutput
-didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
-       fromConnection:(AVCaptureConnection *)connection
-{
-    @autoreleasepool {
-#if 1
-        CVImageBufferRef pixelBuf = CMSampleBufferGetImageBuffer(sampleBuffer);
-        
-        CVPixelBufferLockBaseAddress(pixelBuf,0);
-        
-        uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuf);
-        unsigned bpr = CVPixelBufferGetBytesPerRow(pixelBuf);
-        unsigned width = CVPixelBufferGetWidth(pixelBuf);
-        unsigned height = CVPixelBufferGetHeight(pixelBuf);
-        unsigned center = height / 2 * bpr + bpr / 2;
-        
-        unsigned b = baseAddress[center];
-        unsigned g = baseAddress[center + 1];
-        unsigned r = baseAddress[center + 2];
-        
-        rAvg = (rAvg * 7 + r) / 8;
-        gAvg = (gAvg * 7 + g) / 8;
-        bAvg = (bAvg * 7 + b) / 8;
-        
-        //NSLog(@"base:%p, center:%d", baseAddress, center);
-        switch(filter)
-        {
-            case FL_IBLUE:
-            case FL_IGREEN:
-            case FL_IRED:
-                for(unsigned i = filter - FL_IBLUE, end = height * bpr; i < end; i += 4)
-                {
-                    baseAddress[i] = 255 - baseAddress[i];
-                }
-                break;
-            case FL_NOBLUE:
-            case FL_NOGREEN:
-            case FL_NORED:
-                for(unsigned i = filter - FL_NOBLUE, end = height * bpr; i < end; i+=4)
-                {
-                    baseAddress[i] = 0;
-                }
-                break;
-            case FL_REDGREEN:
-                for(unsigned i = 0, end = height * bpr; i < end; i += 4)
-                {
-                    unsigned rgavg = baseAddress[i + 1] + baseAddress[i + 2];
-                    rgavg /= 2;
-                    baseAddress[i + 1] = rgavg;
-                    baseAddress[i + 2] = rgavg;
-                }
-                break;
-            default:
-                break;
-        }
-        char const * name = colour_string(colour_name(r, g, b));
-
-        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-        CGContextRef context = CGBitmapContextCreate(baseAddress, width, height, 8, bpr, colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedFirst);
-        CGImageRef dstImage = CGBitmapContextCreateImage(context);
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            _bgrLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", rAvg, gAvg, bAvg, name];
-            _previewLayer.contents = (__bridge id)(dstImage);
-            CGImageRelease(dstImage);
-        });
-        
-        CGContextRelease(context);
-        CGColorSpaceRelease(colorSpace);
-        CVPixelBufferUnlockBaseAddress(pixelBuf,0);
-#else
-        CVImageBufferRef pixelBuf = CMSampleBufferGetImageBuffer(sampleBuffer);
-        
-        CVPixelBufferLockBaseAddress(pixelBuf,0);
-        
-        uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuf);
-        unsigned bpr = CVPixelBufferGetBytesPerRow(pixelBuf);
-        unsigned width = CVPixelBufferGetWidth(pixelBuf);
-        unsigned height = CVPixelBufferGetHeight(pixelBuf);
-        unsigned center = height / 2 * bpr + bpr / 2;
-        
-        unsigned b = baseAddress[center];
-        unsigned g = baseAddress[center + 1];
-        unsigned r = baseAddress[center + 2];
-        CVPixelBufferUnlockBaseAddress(pixelBuf,0);
-        rAvg = (rAvg * 7 + r) / 8;
-        gAvg = (gAvg * 7 + g) / 8;
-        bAvg = (bAvg * 7 + b) / 8;
-        
-        //NSLog(@"base:%p, center:%d", baseAddress, center);
-
-        char const * name = colour_string(colour_name(r, g, b));
-
-        if(context == nil)
-        {
-            context = [CIContext contextWithOptions:nil];
-        }
-        CIImage *dstImage = [CIImage imageWithCVPixelBuffer:pixelBuf];
-        if(cifilter == nil)
-        {
-            cifilter = [CIFilter filterWithName:@"CIColorMatrix"]; // 2
-            [cifilter setDefaults]; // 3
-            [cifilter setValue:dstImage forKey:kCIInputImageKey]; // 4
-            [cifilter setValue:[CIVector vectorWithX:0.5 Y:0.5 Z:0 W:0] forKey:@"inputRVector"]; // 5
-            [cifilter setValue:[CIVector vectorWithX:0.5 Y:0.5 Z:0 W:0] forKey:@"inputGVector"]; // 6
-            [cifilter setValue:[CIVector vectorWithX:0 Y:0 Z:1 W:0] forKey:@"inputBVector"]; // 7
-            [cifilter setValue:[CIVector vectorWithX:0 Y:0 Z:0 W:1] forKey:@"inputAVector"]; // 8
-        }
-        
-        dstImage = [cifilter outputImage];
-        CGImageRef cgimg = [context createCGImage:dstImage fromRect:[dstImage extent]];
-        dispatch_sync(dispatch_get_main_queue(), ^{
-            _bgrLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", rAvg, gAvg, bAvg, name];
-            _previewLayer.contents = (__bridge id)(cgimg);
-            CGImageRelease(cgimg);
-        });
-        
-        
-#endif
-    }
-    
-}
-#endif
 
 
 @end

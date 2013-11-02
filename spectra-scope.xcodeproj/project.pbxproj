@@ -34,6 +34,8 @@
 		F714AF2E181C3D4400F60D69 /* varstr.c in Sources */ = {isa = PBXBuildFile; fileRef = F714AF26181C3D4400F60D69 /* varstr.c */; };
 		F7186FD5181EB51200DDD126 /* ColourAlgorithmTest.m in Sources */ = {isa = PBXBuildFile; fileRef = F7186FD4181EB51200DDD126 /* ColourAlgorithmTest.m */; };
 		F719033518232C5700881437 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F719033018232C4500881437 /* libGPUImage.a */; };
+		F71B3AA418246F7E005C5506 /* reticule.png in Resources */ = {isa = PBXBuildFile; fileRef = F71B3AA218246F7E005C5506 /* reticule.png */; };
+		F71B3AA518246F7E005C5506 /* reticule.xcf in Resources */ = {isa = PBXBuildFile; fileRef = F71B3AA318246F7E005C5506 /* reticule.xcf */; };
 		F71C9FE01820BA1600FF18BE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F71C9FDF1820BA1600FF18BE /* QuartzCore.framework */; };
 		F7263A28181CF88C0076A04E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7263A27181CF88C0076A04E /* CoreVideo.framework */; };
 		F7263A2A181CF8A00076A04E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7263A29181CF8A00076A04E /* CoreMedia.framework */; };
@@ -110,6 +112,8 @@
 		F7186FD3181EB51200DDD126 /* ColourAlgorithmTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColourAlgorithmTest.h; sourceTree = "<group>"; };
 		F7186FD4181EB51200DDD126 /* ColourAlgorithmTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColourAlgorithmTest.m; sourceTree = "<group>"; };
 		F719032918232C4500881437 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "spectra-scope/GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
+		F71B3AA218246F7E005C5506 /* reticule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reticule.png; sourceTree = "<group>"; };
+		F71B3AA318246F7E005C5506 /* reticule.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = reticule.xcf; sourceTree = "<group>"; };
 		F71C9FDF1820BA1600FF18BE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F7263A27181CF88C0076A04E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		F7263A29181CF8A00076A04E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -155,13 +159,6 @@
 		EF37F69F1811E73600C5ACC8 = {
 			isa = PBXGroup;
 			children = (
-				F719032918232C4500881437 /* GPUImage.xcodeproj */,
-				F729D47B182217480016CEC6 /* CoreImage.framework */,
-				F729D45D1822006A0016CEC6 /* OpenGLES.framework */,
-				F71C9FDF1820BA1600FF18BE /* QuartzCore.framework */,
-				F7263A29181CF8A00076A04E /* CoreMedia.framework */,
-				F7263A27181CF88C0076A04E /* CoreVideo.framework */,
-				EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */,
 				EF37F6B11811E73600C5ACC8 /* spectra-scope */,
 				F70B8316181E2B8A00E12A33 /* spectra-scopeTests */,
 				EF37F6AA1811E73600C5ACC8 /* Frameworks */,
@@ -181,6 +178,13 @@
 		EF37F6AA1811E73600C5ACC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F729D47B182217480016CEC6 /* CoreImage.framework */,
+				F729D45D1822006A0016CEC6 /* OpenGLES.framework */,
+				F71C9FDF1820BA1600FF18BE /* QuartzCore.framework */,
+				F7263A29181CF8A00076A04E /* CoreMedia.framework */,
+				F719032918232C4500881437 /* GPUImage.xcodeproj */,
+				F7263A27181CF88C0076A04E /* CoreVideo.framework */,
+				EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */,
 				EF37F6AB1811E73600C5ACC8 /* UIKit.framework */,
 				EF37F6AD1811E73600C5ACC8 /* Foundation.framework */,
 				EF37F6AF1811E73600C5ACC8 /* CoreGraphics.framework */,
@@ -207,9 +211,9 @@
 				EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */,
 				EF37F6C91811E73600C5ACC8 /* ViewController.h */,
 				EF37F6CA1811E73600C5ACC8 /* ViewController.m */,
-				EF37F6B21811E73600C5ACC8 /* Supporting Files */,
 				F7DB6CEC181BA2AA00931929 /* UserProfile.h */,
 				F7DB6CED181BA2AA00931929 /* UserProfile.m */,
+				EF37F6B21811E73600C5ACC8 /* Supporting Files */,
 			);
 			path = "spectra-scope";
 			sourceTree = "<group>";
@@ -217,6 +221,8 @@
 		EF37F6B21811E73600C5ACC8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F71B3AA218246F7E005C5506 /* reticule.png */,
+				F71B3AA318246F7E005C5506 /* reticule.xcf */,
 				EF37F6B31811E73600C5ACC8 /* spectra-scope-Info.plist */,
 				EF37F6B41811E73600C5ACC8 /* InfoPlist.strings */,
 				EF37F6B71811E73600C5ACC8 /* main.m */,
@@ -374,6 +380,8 @@
 				EF37F6C21811E73600C5ACC8 /* Default-568h@2x.png in Resources */,
 				EF37F6C51811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard in Resources */,
 				EF37F6C81811E73600C5ACC8 /* MainStoryboard_iPad.storyboard in Resources */,
+				F71B3AA418246F7E005C5506 /* reticule.png in Resources */,
+				F71B3AA518246F7E005C5506 /* reticule.xcf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
