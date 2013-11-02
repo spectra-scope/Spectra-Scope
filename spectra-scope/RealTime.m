@@ -44,6 +44,18 @@ GPUMatrix4x4 redGreenDefficiencyMatrix = {
     {0.5, 0.5, 0, 0},
     {0, 0, 1, 0},
     {0, 0, 0, 1}
+},
+markGreenMatrix = {
+    {1.0/3.0, 1.0/3.0, 1.0/3.0, 0},
+    {1.0/3.0, 1.0/3.0, 1.0/3.0, 0},
+    {0, 1.2, 0, 0},
+    {0, 0, 0, 1}
+},
+markRedMartix = {
+    {1.0/3.0, 1.0/3.0, 1.0/3.0, 0},
+    {1.0/3.0, 1.0/3.0, 1.0/3.0, 0},
+    {1.2, 0, 0, 0},
+    {0, 0, 0, 1}
 };
 #else
 enum filter_type{
@@ -183,6 +195,35 @@ static NSString * filterNames[] ={
     [filter setColorMatrix: redGreenDefficiencyMatrix];
     [gpuCamera removeAllTargets];
     [gpuCamera addTarget: filter];
+    [filter addTarget:gpuView];
+}
+-(IBAction)turnOnMarkGreenFilter:(id)sender{
+    GPUImageColorMatrixFilter * filter = [[GPUImageColorMatrixFilter alloc] init];
+    [filter setColorMatrix: markGreenMatrix];
+    [gpuCamera removeAllTargets];
+    [gpuCamera addTarget: filter];
+    [filter addTarget:gpuView];
+}
+-(IBAction)pushFilter:(id)sender{
+    GPUMatrix4x4 * filterMat;
+    if(sender == _rgdFilterButton)
+        filterMat = &redGreenDefficiencyMatrix;
+    else if(sender == _markGreenFilterButton)
+        filterMat = &markGreenMatrix;
+    else if(sender == _markRedFilterButton)
+        filterMat = &markRedMartix;
+    else
+        return;
+    
+    GPUImageColorMatrixFilter * filter = [[GPUImageColorMatrixFilter alloc] init];
+    [filter setColorMatrix:*filterMat];
+    
+    id currentOutput = gpuCamera;
+    while([[currentOutput targets] objectAtIndex:0] != gpuView){
+        currentOutput = [[currentOutput targets] objectAtIndex:0];
+    }
+    [currentOutput removeAllTargets];
+    [currentOutput addTarget:filter];
     [filter addTarget:gpuView];
 }
 -(IBAction)clearFilters:(id)sender{

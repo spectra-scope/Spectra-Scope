@@ -211,7 +211,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="turnOnRGDFilter:" destination="wnn-ah-IDg" eventType="touchUpInside" id="pc9-Jl-pSG"/>
+                                            <action selector="pushFilter:" destination="wnn-ah-IDg" eventType="touchUpInside" id="TI8-tM-A6W"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="mMz-N0-z3g">
@@ -225,6 +225,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pushFilter:" destination="wnn-ah-IDg" eventType="touchUpInside" id="FJ3-2y-P9B"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kRe-J7-7It">
                                         <rect key="frame" x="0.0" y="102" width="280" height="44"/>
@@ -237,6 +240,9 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="pushFilter:" destination="wnn-ah-IDg" eventType="touchUpInside" id="OXU-ZJ-Aw6"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="PrT-Q0-aFD">
                                         <rect key="frame" x="78" y="287" width="125" height="44"/>
@@ -453,9 +459,11 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTime.h"/>
             <relationships>
                 <relationship kind="action" name="clearFilters:"/>
+                <relationship kind="action" name="pushFilter:"/>
                 <relationship kind="action" name="touchedBackButton:"/>
                 <relationship kind="action" name="touchedFilterButton:"/>
                 <relationship kind="action" name="touchedView:"/>
+                <relationship kind="action" name="turnOnMarkGreenFilter:"/>
                 <relationship kind="action" name="turnOnRGDFilter:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bgrLabel" candidateClass="UILabel"/>
@@ -487,7 +495,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
                 <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="logInPress:"/>
                 <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
