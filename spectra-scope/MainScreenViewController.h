@@ -16,13 +16,9 @@
 
 @interface MainScreenViewController :UIViewController<UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
 {
-    UIImagePickerController *picker;
-    UIImagePickerController *picker2;
-    UIImage *image;
-    IBOutlet UIImageView *imageView;
-    
+
+
 }
 
-// opens up an image chooser
--(IBAction)ChooseExisting;
+
 @end

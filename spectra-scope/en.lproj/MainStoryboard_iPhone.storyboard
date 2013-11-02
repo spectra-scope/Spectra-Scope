@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="11G63b" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zyW-w9-PxA">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3084" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="zyW-w9-PxA">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2083"/>
     </dependencies>
@@ -121,7 +121,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="ChooseExisting" destination="bKg-xT-7lH" eventType="touchUpInside" id="btK-pB-9lZ"/>
+                                    <segue destination="Hci-Qi-wn0" kind="push" id="3ob-Hi-PzM"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tk3-y8-xKx">
@@ -285,6 +285,41 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aEJ-WX-UWJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1381" y="172"/>
+        </scene>
+        <!--Still Image Display-->
+        <scene sceneID="pXr-OE-X0B">
+            <objects>
+                <viewController id="Hci-Qi-wn0" customClass="stillImageDisplay" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lkf-PW-dfh" customClass="UIImageView">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="fk0-Dc-KmB">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="pm5-fO-ChH">
+                                <rect key="frame" x="0.0" y="460" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <items>
+                                    <barButtonItem title="Select Image" id="VV5-zd-fL6">
+                                        <connections>
+                                            <action selector="ChooseExisting" destination="fTP-70-Xn9" id="ySP-Iz-un3"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="blu-Qc-dFB"/>
+                    <connections>
+                        <outlet property="imageView" destination="fk0-Dc-KmB" id="w92-2A-2T8"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fTP-70-Xn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1395" y="858"/>
         </scene>
         <!--Sign Up View Controller - sign up-->
         <scene sceneID="ltn-He-I7T">
@@ -450,21 +485,10 @@
     <classes>
         <class className="MainScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainScreenViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="ChooseExisting"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-            </relationships>
         </class>
         <class className="RealTime" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTime.h"/>
             <relationships>
-                <relationship kind="action" name="clearFilters:"/>
-                <relationship kind="action" name="pushFilter:"/>
-                <relationship kind="action" name="touchedBackButton:"/>
-                <relationship kind="action" name="touchedFilterButton:"/>
-                <relationship kind="action" name="touchedView:"/>
-                <relationship kind="action" name="turnOnMarkGreenFilter:"/>
-                <relationship kind="action" name="turnOnRGDFilter:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bgrLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="clearFilterButton" candidateClass="UIButton"/>
@@ -480,8 +504,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
             <relationships>
                 <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="sexButtonPress:"/>
-                <relationship kind="action" name="signupButtonPress:"/>
                 <relationship kind="outlet" name="ageInput" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="ethnicityInput" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
@@ -498,6 +520,13 @@
                 <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="stillImageDisplay" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/stillImageDisplay.h"/>
+            <relationships>
+                <relationship kind="action" name="ChooseExisting"/>
+                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
             </relationships>
         </class>
     </classes>

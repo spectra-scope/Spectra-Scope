@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8BC8F4F418249C48002DF36B /* stillImageDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC8F4F318249C48002DF36B /* stillImageDisplay.m */; };
+		8BC8F4F518249C48002DF36B /* stillImageDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC8F4F318249C48002DF36B /* stillImageDisplay.m */; };
 		8BF798601819C68000844EBC /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7985F1819C68000844EBC /* MainScreenViewController.m */; };
 		EF277C60181CA21D004BAFB3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */; };
 		EF277C63181CA7F6004BAFB3 /* RealTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C62181CA7F6004BAFB3 /* RealTime.m */; };
@@ -70,6 +72,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8BC8F4F218249C48002DF36B /* stillImageDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stillImageDisplay.h; sourceTree = "<group>"; };
+		8BC8F4F318249C48002DF36B /* stillImageDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stillImageDisplay.m; sourceTree = "<group>"; };
 		8BF7985E1819C68000844EBC /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		8BF7985F1819C68000844EBC /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
 		EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -202,6 +206,8 @@
 				EF37F6BA1811E73600C5ACC8 /* AppDelegate.h */,
 				EF37F6BB1811E73600C5ACC8 /* AppDelegate.m */,
 				EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */,
+				8BC8F4F218249C48002DF36B /* stillImageDisplay.h */,
+				8BC8F4F318249C48002DF36B /* stillImageDisplay.m */,
 				8BF7985E1819C68000844EBC /* MainScreenViewController.h */,
 				8BF7985F1819C68000844EBC /* MainScreenViewController.m */,
 				EF277C61181CA7F6004BAFB3 /* RealTime.h */,
@@ -428,6 +434,7 @@
 				F714AF2E181C3D4400F60D69 /* varstr.c in Sources */,
 				EF277C63181CA7F6004BAFB3 /* RealTime.m in Sources */,
 				F70B830A181DED9700E12A33 /* colour_name.c in Sources */,
+				8BC8F4F418249C48002DF36B /* stillImageDisplay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +444,7 @@
 			files = (
 				F70B8325181E329800E12A33 /* UserProfileTest.m in Sources */,
 				F7186FD5181EB51200DDD126 /* ColourAlgorithmTest.m in Sources */,
+				8BC8F4F518249C48002DF36B /* stillImageDisplay.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
