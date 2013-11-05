@@ -38,49 +38,55 @@
 #import <CoreImage/CoreImage.h>
 
 #import "colour_name.h"
-#ifdef USE_GPUIMAGE
-GPUMatrix4x4 redGreenDefficiencyMatrix = {
-    {0.5, 0.5, 0, 0},
-    {0.5, 0.5, 0, 0},
-    {0, 0, 1, 0},
-    {0, 0, 0, 1}
-},
-markGreenMatrix = {
-    {1.0/3.0, 1.0/3.0, 1.0/3.0, 0},
-    {1.0/3.0, 1.0/3.0, 1.0/3.0, 0},
-    {0, 1.2, 0, 0},
-    {0, 0, 0, 1}
-},
-markRedMartix = {
-    {1.0/3.0, 1.0/3.0, 1.0/3.0, 0},
-    {1.0/3.0, 1.0/3.0, 1.0/3.0, 0},
-    {1.2, 0, 0, 0},
-    {0, 0, 0, 1}
+#import "matrix.h"
+struct mat4x4{
+    float entries[16];
 };
-#else
-enum filter_type{
-    FL_NONE,
-    FL_IBLUE,
-    FL_IGREEN,
-    FL_IRED,
-    FL_NOBLUE,
-    FL_NOGREEN,
-    FL_NORED,
-    FL_REDGREEN,
-    FL_LAST
-};
-static NSString * filterNames[] ={
-    [FL_NONE] = @"none",
-    [FL_IBLUE] = @"invert blue",
-    [FL_IGREEN] = @"invert green",
-    [FL_IRED] = @"invert red",
-    [FL_NOBLUE] = @"zero blue",
-    [FL_NOGREEN] = @"zero green",
-    [FL_NORED] = @"zero red",
-    [FL_REDGREEN] = @"rg defficiency"
-};
-#endif
-
+static struct mat4x4 const identityMatrix4 = {{
+1.0, 0, 0, 0,
+0, 1.0, 0, 0,
+0, 0, 1.0, 0,
+0, 0, 0, 1.0
+}},
+redGreenDefficiencyMatrix = {{
+0.5, 0.5, 0, 0,
+0.5, 0.5, 0, 0,
+0, 0, 1, 0,
+0, 0, 0, 1
+}},
+markGreenMatrix = {{
+-0.5, 1.0, -0.5, 0,
+-0.5, 1.0, -0.5, 0,
+-0.5, 1.0, -0.5, 0,
+0, 0, 0, 1
+}},
+markRedMartix = {{
+1.0, -0.5, -0.5, 0,
+1.0, -0.5, -0.5, 0,
+1.0, -0.5, -0.5, 0,
+0, 0, 0, 1
+}},
+brightenGreenMatrix = {{
+    1, 0, 0, 0,
+    -0.3, 1.3, -0.3, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+}},
+brightenRedMatrix = {{
+    1.3, -0.3, -0.3, 0,
+    0, 1, 0, 0,
+    0, 0, 1, 0,
+    0, 0, 0, 1
+}};
+GPUMatrix4x4 GPUMatrix4x4FromArray(float const * a)
+{
+    return (GPUMatrix4x4){
+        {a[0], a[1], a[2], a[3]},
+        {a[4], a[5], a[6], a[7]},
+        {a[8], a[9], a[10], a[11]},
+        {a[12], a[13], a[14], a[15]}
+    };
+}
 @interface RealTime ()
 {
     BOOL hiddenFilterList;
@@ -88,7 +94,8 @@ static NSString * filterNames[] ={
     unsigned counter;
     GPUImageVideoCamera * gpuCamera;
     GPUImageView * gpuView;
-    
+    GPUImageColorMatrixFilter * gpuFilter;
+    struct mat4x4 colorMatrix;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *bgrLabel;
@@ -100,6 +107,8 @@ static NSString * filterNames[] ={
 @property (weak, nonatomic) IBOutlet UIButton *markGreenFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *markRedFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearFilterButton;
+@property (weak, nonatomic) IBOutlet UIButton *brightenGreenButton;
+@property (weak, nonatomic) IBOutlet UIButton *brightenRedButton;
 @end
 @implementation RealTime
 
@@ -133,6 +142,7 @@ static NSString * filterNames[] ={
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     hiddenFilterList = YES;
     [_filterListView setHidden:hiddenFilterList];
+    colorMatrix = identityMatrix4;
     [self startCapture];
     
 }
@@ -154,12 +164,15 @@ static NSString * filterNames[] ={
     [self setMarkGreenFilterButton:nil];
     [self setMarkRedFilterButton:nil];
     [self setClearFilterButton:nil];
+    [self setBrightenGreenButton:nil];
+    [self setBrightenRedButton:nil];
     [super viewDidUnload];
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [gpuCamera stopCameraCapture];
     gpuCamera = nil;
     gpuView = nil;
+    gpuFilter = nil;
     NSLog(@"stopped capturing");
     
     [super viewDidDisappear:animated];
@@ -190,45 +203,37 @@ static NSString * filterNames[] ={
     }
 
 }
--(IBAction)turnOnRGDFilter:(id)sender{
-    GPUImageColorMatrixFilter * filter = [[GPUImageColorMatrixFilter alloc] init];
-    [filter setColorMatrix: redGreenDefficiencyMatrix];
-    [gpuCamera removeAllTargets];
-    [gpuCamera addTarget: filter];
-    [filter addTarget:gpuView];
-}
--(IBAction)turnOnMarkGreenFilter:(id)sender{
-    GPUImageColorMatrixFilter * filter = [[GPUImageColorMatrixFilter alloc] init];
-    [filter setColorMatrix: markGreenMatrix];
-    [gpuCamera removeAllTargets];
-    [gpuCamera addTarget: filter];
-    [filter addTarget:gpuView];
-}
+
 -(IBAction)pushFilter:(id)sender{
-    GPUMatrix4x4 * filterMat;
+    struct mat4x4 const * filterMat;
     if(sender == _rgdFilterButton)
         filterMat = &redGreenDefficiencyMatrix;
     else if(sender == _markGreenFilterButton)
         filterMat = &markGreenMatrix;
     else if(sender == _markRedFilterButton)
         filterMat = &markRedMartix;
+    else if(sender == _brightenGreenButton)
+        filterMat = &brightenGreenMatrix;
+    else if(sender == _brightenRedButton)
+        filterMat = &brightenRedMatrix;
     else
         return;
-    
-    GPUImageColorMatrixFilter * filter = [[GPUImageColorMatrixFilter alloc] init];
-    [filter setColorMatrix:*filterMat];
-    
-    id currentOutput = gpuCamera;
-    while([[currentOutput targets] objectAtIndex:0] != gpuView){
-        currentOutput = [[currentOutput targets] objectAtIndex:0];
+    [gpuCamera pauseCameraCapture];
+    {
+        struct mat4x4 dst;
+        mat_mul(dst.entries, filterMat->entries, colorMatrix.entries, 4);
+        colorMatrix = dst;
+        [gpuFilter setColorMatrix:GPUMatrix4x4FromArray(dst.entries)];
     }
-    [currentOutput removeAllTargets];
-    [currentOutput addTarget:filter];
-    [filter addTarget:gpuView];
+    [gpuCamera resumeCameraCapture];
 }
 -(IBAction)clearFilters:(id)sender{
-    [gpuCamera removeAllTargets];
-    [gpuCamera addTarget:gpuView];
+    [gpuCamera pauseCameraCapture];
+    {
+        colorMatrix = identityMatrix4;
+        [gpuFilter setColorMatrix:GPUMatrix4x4FromArray(colorMatrix.entries)];
+    }
+    [gpuCamera resumeCameraCapture];
 }
 /* startCapture is the final setup step to perform before the screen can display what the camera captures.*/
 -(void) startCapture{
@@ -243,7 +248,11 @@ static NSString * filterNames[] ={
     gpuView = [[GPUImageView alloc] initWithFrame:CGRectOffset(mainScreenFrame, 0, -20)];
     [self.view addSubview:gpuView];
     
-    [gpuCamera addTarget:gpuView];
+    gpuFilter = [[GPUImageColorMatrixFilter alloc] init];
+    [gpuFilter setColorMatrix:GPUMatrix4x4FromArray(identityMatrix4.entries)];
+    
+    [gpuCamera addTarget:gpuFilter];
+    [gpuFilter addTarget:gpuView];
     
     gpuCamera.delegate = self;
     

@@ -45,6 +45,7 @@
 		F729D47C182217480016CEC6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F729D47B182217480016CEC6 /* CoreImage.framework */; };
 		F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
 		F7DB6CEE181BA2AA00931929 /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CED181BA2AA00931929 /* UserProfile.m */; };
+		F7FBDFA71828B36E008E323D /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = F7FBDFA61828B36E008E323D /* matrix.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,8 @@
 		F79AF6C21818DB4800AB781F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		F7DB6CEC181BA2AA00931929 /* UserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfile.h; sourceTree = "<group>"; };
 		F7DB6CED181BA2AA00931929 /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
+		F7FBDFA31828B359008E323D /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
+		F7FBDFA61828B36E008E323D /* matrix.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = matrix.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -212,6 +215,8 @@
 				8BF7985F1819C68000844EBC /* MainScreenViewController.m */,
 				EF277C61181CA7F6004BAFB3 /* RealTime.h */,
 				EF277C62181CA7F6004BAFB3 /* RealTime.m */,
+				F7FBDFA31828B359008E323D /* matrix.h */,
+				F7FBDFA61828B36E008E323D /* matrix.c */,
 				F79AF6C11818DB4800AB781F /* SignUpViewController.h */,
 				F79AF6C21818DB4800AB781F /* SignUpViewController.m */,
 				EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */,
@@ -435,6 +440,7 @@
 				EF277C63181CA7F6004BAFB3 /* RealTime.m in Sources */,
 				F70B830A181DED9700E12A33 /* colour_name.c in Sources */,
 				8BC8F4F418249C48002DF36B /* stillImageDisplay.m in Sources */,
+				F7FBDFA71828B36E008E323D /* matrix.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
