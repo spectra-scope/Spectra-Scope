@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8BC8F4F418249C48002DF36B /* StillImageModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */; };
-		8BC8F4F518249C48002DF36B /* StillImageModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */; };
 		8BF798601819C68000844EBC /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7985F1819C68000844EBC /* MainScreenViewController.m */; };
 		EF277C60181CA21D004BAFB3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */; };
 		EF277C63181CA7F6004BAFB3 /* RealTimeModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C62181CA7F6004BAFB3 /* RealTimeModeViewController.m */; };
@@ -464,7 +463,6 @@
 			files = (
 				F70B8325181E329800E12A33 /* UserProfileTest.m in Sources */,
 				F7186FD5181EB51200DDD126 /* ColourAlgorithmTest.m in Sources */,
-				8BC8F4F518249C48002DF36B /* StillImageModeViewController.m in Sources */,
 				F71C68E9182B6409005DEC98 /* ArcBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

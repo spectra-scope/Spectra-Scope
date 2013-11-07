@@ -21,10 +21,11 @@ bugs:
 #import "StillImageModeViewController.h"
 #import "GPUImage.h"
 #import "colour_name.h"
+#import "ArcBuffer.h"
 @interface StillImageModeViewController (){
     UIImagePickerController *picker;
     UIImage * image;
-    
+    ArcBuffer * pixelBuf;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIView *uiGroup;
@@ -81,17 +82,46 @@ bugs:
     
 }
 
--(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
-{
-    image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    image = [UIImage imageWithCGImage:[image CGImage] scale:1.0 orientation:UIImageOrientationRight];
-    [_imageView setImage:image];
+-(void) imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    // get the image from picker, discard its orientation
+    UIImage * pickerImageResult = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage * fixedImage = [UIImage imageWithCGImage:[pickerImageResult CGImage]
+                                               scale:1.0
+                                         orientation:UIImageOrientationRight];
+    [self setupImageForProcessing:fixedImage];
     [self dismissViewControllerAnimated:YES completion:NULL];
-    
 }
 
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [self dismissViewControllerAnimated:YES completion:NULL];
+}
+-(void) setupImageForProcessing:(UIImage*) img{
+    // first save a copy of the unmodified image
+    image = img;
+    [_imageView setImage:img];
+    
+    // then save pixel array in memory
+    // based on http://stackoverflow.com/a/1262893
+    CGImageRef imageRef = [image CGImage];
+    NSUInteger width = CGImageGetWidth(imageRef);
+    NSUInteger height = CGImageGetHeight(imageRef);
+    
+    ArcBuffer * bufObj = [[ArcBuffer alloc ] initWithSize:height * width * 4 * sizeof(uint8_t)];
+    uint8_t * data = (uint8_t*)[bufObj head];
+    NSUInteger bytesPerPixel = 4;
+    NSUInteger bytesPerRow = bytesPerPixel * width;
+    NSUInteger bitsPerComponent = 8;
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(data, width, height,
+                                                 bitsPerComponent, bytesPerRow, colorSpace,
+                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
+    CGColorSpaceRelease(colorSpace);
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
+    CGContextRelease(context);
+    
+    pixelBuf = bufObj;
 }
 #pragma mark - ui control
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
@@ -128,33 +158,32 @@ bugs:
 
 #pragma mark - processing
 -(IBAction)queryColour:(id)sender{
+    // use previously saved pixel array to get colour, instead of making a new pixel array every time
     // based on http://stackoverflow.com/a/1262893
+    
     CGImageRef imageRef = [image CGImage];
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    unsigned char *rawData = (unsigned char*) calloc(height * width * 4, sizeof(unsigned char));
+    
     NSUInteger bytesPerPixel = 4;
     NSUInteger bytesPerRow = bytesPerPixel * width;
-    NSUInteger bitsPerComponent = 8;
-    CGContextRef context = CGBitmapContextCreate(rawData, width, height,
-                                                 bitsPerComponent, bytesPerRow, colorSpace,
-                                                 kCGImageAlphaPremultipliedLast | kCGBitmapByteOrder32Big);
-    CGColorSpaceRelease(colorSpace);
+
+    uint8_t * pixels = (uint8_t*) [pixelBuf head];
     
-    CGContextDrawImage(context, CGRectMake(0, 0, width, height), imageRef);
-    CGContextRelease(context);
-    
+    /*  all pictures are viewed in landscape, so the y is actually the inverted x position of the reticule
+        , and x is actually the y position of the reticule
+     */
     unsigned yy = ((self.view.bounds.size.width - _reticule.center.x) * height) / self.view.bounds.size.width;
     unsigned xx = (_reticule.center.y * width) / self.view.bounds.size.height;
+    
     NSLog(@"image size: %d %d\n"
           @"query point: %d %d", width, height, xx, yy);
-    int byteIndex = (bytesPerRow * yy) + xx * bytesPerPixel;
-    uint8_t r = rawData[byteIndex];
-    uint8_t g = rawData[byteIndex + 1];
-    uint8_t b = rawData[byteIndex + 2];
     
-    free(rawData);
+    int byteIndex = (bytesPerRow * yy) + xx * bytesPerPixel;
+    uint8_t r = pixels[byteIndex];
+    uint8_t g = pixels[byteIndex + 1];
+    uint8_t b = pixels[byteIndex + 2];
+    
     char const * name = colour_string(colour_name(r, g, b));
     _infoLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", r, g, b, name];
 }
