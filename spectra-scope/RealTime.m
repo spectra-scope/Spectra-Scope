@@ -38,55 +38,10 @@
 #import <CoreImage/CoreImage.h>
 
 #import "colour_name.h"
+#import "Filters.h"
 #import "matrix.h"
-struct mat4x4{
-    float entries[16];
-};
-static struct mat4x4 const identityMatrix4 = {{
-    1.0, 0, 0, 0,
-    0, 1.0, 0, 0,
-    0, 0, 1.0, 0,
-    0, 0, 0, 1.0
-}},
-redGreenDefficiencyMatrix = {{
-    0.5, 0.5, 0, 0,
-    0.5, 0.5, 0, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 1
-}},
-markGreenMatrix = {{
-    -0.7, 1.0, -0.7, 0,
-    -0.7, 1.0, -0.7, 0,
-    0.3, 0, 0.3, 0,
-    0, 0, 0, 1
-}},
-markRedMartix = {{
-    1.0, -0.6, 0, 0,
-    1.0, -0.7, -0.6, 0,
-    0, 1.0, 0.3, 0,
-    0, 0, 0, 1
-}},
-brightenGreenMatrix = {{
-    1, 0, 0, 0,
-    -0.15, 1.3, -0.15, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 1
-}},
-brightenRedMatrix = {{
-    1.3, -0.15, -0.15, 0,
-    0, 1, 0, 0,
-    0, 0, 1, 0,
-    0, 0, 0, 1
-}};
-GPUMatrix4x4 GPUMatrix4x4FromArray(float const * a)
-{
-    return (GPUMatrix4x4){
-        {a[0], a[1], a[2], a[3]},
-        {a[4], a[5], a[6], a[7]},
-        {a[8], a[9], a[10], a[11]},
-        {a[12], a[13], a[14], a[15]}
-    };
-}
+
+
 @interface RealTime ()
 {
     BOOL hiddenFilterList;
@@ -112,6 +67,8 @@ GPUMatrix4x4 GPUMatrix4x4FromArray(float const * a)
 @end
 @implementation RealTime
 
+#pragma mark -
+#pragma mark init and uninit
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     NSLog(@"initWithNibName");
@@ -178,6 +135,8 @@ GPUMatrix4x4 GPUMatrix4x4FromArray(float const * a)
     [super viewDidDisappear:animated];
 }
 
+#pragma mark -
+#pragma mark ui control
 // toggle the hiding of the navigation bar
 -(IBAction)touchedView:(id)sender{
     NSLog(@"tickles");
@@ -187,6 +146,7 @@ GPUMatrix4x4 GPUMatrix4x4FromArray(float const * a)
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark -
 #pragma mark filter button actions
 -(IBAction)touchedFilterButton:(id)sender{
     hiddenFilterList = !hiddenFilterList;
@@ -235,6 +195,8 @@ GPUMatrix4x4 GPUMatrix4x4FromArray(float const * a)
     }
     [gpuCamera resumeCameraCapture];
 }
+#pragma mark -
+#pragma mark capture functions
 /* startCapture is the final setup step to perform before the screen can display what the camera captures.*/
 -(void) startCapture{
     NSLog(@"GPUImage capture setup");

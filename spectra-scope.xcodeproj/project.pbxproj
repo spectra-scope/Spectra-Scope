@@ -38,6 +38,9 @@
 		F719033518232C5700881437 /* libGPUImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F719033018232C4500881437 /* libGPUImage.a */; };
 		F71B3AA418246F7E005C5506 /* reticule.png in Resources */ = {isa = PBXBuildFile; fileRef = F71B3AA218246F7E005C5506 /* reticule.png */; };
 		F71B3AA518246F7E005C5506 /* reticule.xcf in Resources */ = {isa = PBXBuildFile; fileRef = F71B3AA318246F7E005C5506 /* reticule.xcf */; };
+		F71C68E3182B2329005DEC98 /* Filters.m in Sources */ = {isa = PBXBuildFile; fileRef = F71C68E2182B2329005DEC98 /* Filters.m */; };
+		F71C68E8182B6409005DEC98 /* ArcBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = F71C68E7182B6409005DEC98 /* ArcBuffer.m */; };
+		F71C68E9182B6409005DEC98 /* ArcBuffer.m in Sources */ = {isa = PBXBuildFile; fileRef = F71C68E7182B6409005DEC98 /* ArcBuffer.m */; };
 		F71C9FE01820BA1600FF18BE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F71C9FDF1820BA1600FF18BE /* QuartzCore.framework */; };
 		F7263A28181CF88C0076A04E /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7263A27181CF88C0076A04E /* CoreVideo.framework */; };
 		F7263A2A181CF8A00076A04E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7263A29181CF8A00076A04E /* CoreMedia.framework */; };
@@ -119,6 +122,10 @@
 		F719032918232C4500881437 /* GPUImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = GPUImage.xcodeproj; path = "spectra-scope/GPUImage-master/framework/GPUImage.xcodeproj"; sourceTree = "<group>"; };
 		F71B3AA218246F7E005C5506 /* reticule.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reticule.png; sourceTree = "<group>"; };
 		F71B3AA318246F7E005C5506 /* reticule.xcf */ = {isa = PBXFileReference; lastKnownFileType = file; path = reticule.xcf; sourceTree = "<group>"; };
+		F71C68E1182B2329005DEC98 /* Filters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Filters.h; sourceTree = "<group>"; };
+		F71C68E2182B2329005DEC98 /* Filters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Filters.m; sourceTree = "<group>"; };
+		F71C68E6182B6409005DEC98 /* ArcBuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArcBuffer.h; sourceTree = "<group>"; };
+		F71C68E7182B6409005DEC98 /* ArcBuffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArcBuffer.m; sourceTree = "<group>"; };
 		F71C9FDF1820BA1600FF18BE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		F7263A27181CF88C0076A04E /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		F7263A29181CF8A00076A04E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
@@ -209,12 +216,16 @@
 				EF37F6BA1811E73600C5ACC8 /* AppDelegate.h */,
 				EF37F6BB1811E73600C5ACC8 /* AppDelegate.m */,
 				EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */,
+				F71C68E6182B6409005DEC98 /* ArcBuffer.h */,
+				F71C68E7182B6409005DEC98 /* ArcBuffer.m */,
 				8BC8F4F218249C48002DF36B /* stillImageDisplay.h */,
 				8BC8F4F318249C48002DF36B /* stillImageDisplay.m */,
 				8BF7985E1819C68000844EBC /* MainScreenViewController.h */,
 				8BF7985F1819C68000844EBC /* MainScreenViewController.m */,
 				EF277C61181CA7F6004BAFB3 /* RealTime.h */,
 				EF277C62181CA7F6004BAFB3 /* RealTime.m */,
+				F71C68E1182B2329005DEC98 /* Filters.h */,
+				F71C68E2182B2329005DEC98 /* Filters.m */,
 				F7FBDFA31828B359008E323D /* matrix.h */,
 				F7FBDFA61828B36E008E323D /* matrix.c */,
 				F79AF6C11818DB4800AB781F /* SignUpViewController.h */,
@@ -441,6 +452,8 @@
 				F70B830A181DED9700E12A33 /* colour_name.c in Sources */,
 				8BC8F4F418249C48002DF36B /* stillImageDisplay.m in Sources */,
 				F7FBDFA71828B36E008E323D /* matrix.c in Sources */,
+				F71C68E3182B2329005DEC98 /* Filters.m in Sources */,
+				F71C68E8182B6409005DEC98 /* ArcBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -451,6 +464,7 @@
 				F70B8325181E329800E12A33 /* UserProfileTest.m in Sources */,
 				F7186FD5181EB51200DDD126 /* ColourAlgorithmTest.m in Sources */,
 				8BC8F4F518249C48002DF36B /* stillImageDisplay.m in Sources */,
+				F71C68E9182B6409005DEC98 /* ArcBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

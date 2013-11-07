@@ -322,17 +322,31 @@
         <scene sceneID="pXr-OE-X0B">
             <objects>
                 <viewController id="Hci-Qi-wn0" customClass="stillImageDisplay" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="lkf-PW-dfh" customClass="UIControl">
+                    <view key="view" contentMode="scaleToFill" id="lkf-PW-dfh" userLabel="Control - parent view" customClass="UIControl">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" id="gOM-vM-2qX" customClass="UIControl">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.70000000000000007" contentMode="left" text="color info" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tYm-JT-Ve5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="aom-VK-hC3">
+                                <rect key="frame" x="40" y="188" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <gestureRecognizers/>
+                            </imageView>
+                            <view alpha="0.70000000000000007" contentMode="scaleToFill" id="gOM-vM-2qX" customClass="UIControl">
+                                <rect key="frame" x="0.0" y="410" width="320" height="43"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="w4q-ZW-Gin">
-                                        <rect key="frame" x="192" y="401" width="108" height="44"/>
+                                        <rect key="frame" x="192" y="0.0" width="108" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="open image">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -346,7 +360,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wor-Jz-vdJ">
-                                        <rect key="frame" x="20" y="401" width="59" height="44"/>
+                                        <rect key="frame" x="20" y="0.0" width="59" height="44"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="back">
@@ -356,25 +370,55 @@
                                         <state key="highlighted">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="touchedBackButton:" destination="Hci-Qi-wn0" eventType="touchUpInside" id="9lQ-v3-uA6"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NVw-zH-WVH">
+                                        <rect key="frame" x="101" y="0.0" width="65" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" title="query">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="queryColour:" destination="Hci-Qi-wn0" eventType="touchUpInside" id="BjP-nh-XXw"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <action selector="hideUI:" destination="Hci-Qi-wn0" eventType="touchUpInside" id="Pna-mO-z6X"/>
-                                </connections>
+                                <gestureRecognizers/>
                             </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="reticule.png" id="TyD-z2-wqD">
+                                <rect key="frame" x="144" y="127" width="32" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <connections>
-                            <action selector="showUI:" destination="Hci-Qi-wn0" eventType="touchUpInside" id="mlb-xk-cOK"/>
+                            <action selector="showHideUIGroup:" destination="Hci-Qi-wn0" eventType="touchUpInside" id="YcD-e5-pFz"/>
+                            <outletCollection property="gestureRecognizers" destination="cAM-cR-kkF" appends="YES" id="ht5-Vi-RJS"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="blu-Qc-dFB"/>
                     <connections>
+                        <outlet property="imageView" destination="aom-VK-hC3" id="OlL-89-yT6"/>
+                        <outlet property="infoLabel" destination="tYm-JT-Ve5" id="jz1-P2-EwU"/>
+                        <outlet property="reticule" destination="TyD-z2-wqD" id="xsc-Fa-g8F"/>
                         <outlet property="uiGroup" destination="gOM-vM-2qX" id="Lky-T3-X2q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fTP-70-Xn9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="cAM-cR-kkF" userLabel="query location pan">
+                    <connections>
+                        <action selector="handlePan:" destination="Hci-Qi-wn0" id="duu-UQ-bhq"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1381" y="877"/>
         </scene>
@@ -568,8 +612,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
             <relationships>
                 <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="sexButtonPress:"/>
-                <relationship kind="action" name="signupButtonPress:"/>
                 <relationship kind="outlet" name="ageInput" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="ethnicityInput" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
@@ -592,10 +634,13 @@
         <class className="stillImageDisplay" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/stillImageDisplay.h"/>
             <relationships>
-                <relationship kind="action" name="ChooseExisting"/>
-                <relationship kind="action" name="hideUI:"/>
-                <relationship kind="action" name="showUI:"/>
+                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="queryColour:"/>
+                <relationship kind="action" name="showHideUIGroup:"/>
+                <relationship kind="action" name="touchedBackButton:"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="reticule" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="uiGroup" candidateClass="UIView"/>
             </relationships>
         </class>
