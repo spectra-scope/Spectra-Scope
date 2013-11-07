@@ -9,6 +9,7 @@
 #import "stillImageDisplay.h"
 
 @interface stillImageDisplay ()
+@property (weak, nonatomic) IBOutlet UIView *uiGroup;
 
 @end
 
@@ -28,7 +29,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
-
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -56,5 +61,16 @@
 -(void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
-
+-(IBAction)hideUI:(id)sender{
+    NSLog(@"hide ui");
+    [_uiGroup setHidden:YES];
+}
+-(IBAction)showUI:(id)sender{
+    NSLog(@"show ui");
+    [_uiGroup setHidden:NO];
+}
+- (void)viewDidUnload {
+    [self setUiGroup:nil];
+    [super viewDidUnload];
+}
 @end
