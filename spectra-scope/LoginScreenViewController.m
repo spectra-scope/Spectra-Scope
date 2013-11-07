@@ -17,14 +17,14 @@ revisions:
  bugs:
  - view is not reset every time the screen this screen switches to other screens
  */
-#import "ViewController.h"
+#import "LoginScreenViewController.h"
 #import "MainScreenViewController.h"
 #import "UserProfile.h"
-@interface ViewController ()
+@interface LoginScreenViewController ()
 
 @end
 
-@implementation ViewController
+@implementation LoginScreenViewController
 - (void)viewDidLoad
 {
     [super viewDidLoad];

@@ -6,10 +6,22 @@
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
 
-#import "stillImageDisplay.h"
+/*
+revisions:
+ 1.0: by Tian Lin Tan
+ - changed layout of ui
+ - navigation controller is not always hidden
+ 1.1: by Tian Lin Tan
+ - added reticule for aiming colour query
+ - added gesture recognizer to aim reticule
+ - added function to query colour info at reticule
+ 
+bugs:
+*/
+#import "StillImageModeViewController.h"
 #import "GPUImage.h"
 #import "colour_name.h"
-@interface stillImageDisplay (){
+@interface StillImageModeViewController (){
     UIImagePickerController *picker;
     UIImage * image;
     
@@ -21,7 +33,7 @@
 
 @end
 
-@implementation stillImageDisplay
+@implementation StillImageModeViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

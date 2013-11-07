@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
 
+/* ArcBuffer is a wrapper class for calloc, in ARC enabled projects.*/
 #import <Foundation/Foundation.h>
-
 @interface ArcBuffer : NSObject
 -(ArcBuffer *)initWithSize:(size_t)size;
 -(char*)head;

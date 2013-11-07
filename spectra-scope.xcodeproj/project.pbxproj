@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8BC8F4F418249C48002DF36B /* stillImageDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC8F4F318249C48002DF36B /* stillImageDisplay.m */; };
-		8BC8F4F518249C48002DF36B /* stillImageDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC8F4F318249C48002DF36B /* stillImageDisplay.m */; };
+		8BC8F4F418249C48002DF36B /* StillImageModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */; };
+		8BC8F4F518249C48002DF36B /* StillImageModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */; };
 		8BF798601819C68000844EBC /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7985F1819C68000844EBC /* MainScreenViewController.m */; };
 		EF277C60181CA21D004BAFB3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */; };
-		EF277C63181CA7F6004BAFB3 /* RealTime.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C62181CA7F6004BAFB3 /* RealTime.m */; };
+		EF277C63181CA7F6004BAFB3 /* RealTimeModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C62181CA7F6004BAFB3 /* RealTimeModeViewController.m */; };
 		EF37F6AC1811E73600C5ACC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AB1811E73600C5ACC8 /* UIKit.framework */; };
 		EF37F6AE1811E73600C5ACC8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AD1811E73600C5ACC8 /* Foundation.framework */; };
 		EF37F6B01811E73600C5ACC8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AF1811E73600C5ACC8 /* CoreGraphics.framework */; };
@@ -23,7 +23,7 @@
 		EF37F6C21811E73600C5ACC8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = EF37F6C11811E73600C5ACC8 /* Default-568h@2x.png */; };
 		EF37F6C51811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */; };
 		EF37F6C81811E73600C5ACC8 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */; };
-		EF37F6CB1811E73600C5ACC8 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF37F6CA1811E73600C5ACC8 /* ViewController.m */; };
+		EF37F6CB1811E73600C5ACC8 /* LoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */; };
 		F70B830A181DED9700E12A33 /* colour_name.c in Sources */ = {isa = PBXBuildFile; fileRef = F70B8309181DED9700E12A33 /* colour_name.c */; };
 		F70B8313181E2B8A00E12A33 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6D21811E73600C5ACC8 /* SenTestingKit.framework */; };
 		F70B8314181E2B8A00E12A33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AB1811E73600C5ACC8 /* UIKit.framework */; };
@@ -76,13 +76,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8BC8F4F218249C48002DF36B /* stillImageDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stillImageDisplay.h; sourceTree = "<group>"; };
-		8BC8F4F318249C48002DF36B /* stillImageDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = stillImageDisplay.m; sourceTree = "<group>"; };
+		8BC8F4F218249C48002DF36B /* StillImageModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StillImageModeViewController.h; sourceTree = "<group>"; };
+		8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StillImageModeViewController.m; sourceTree = "<group>"; };
 		8BF7985E1819C68000844EBC /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		8BF7985F1819C68000844EBC /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
 		EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		EF277C61181CA7F6004BAFB3 /* RealTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTime.h; sourceTree = "<group>"; };
-		EF277C62181CA7F6004BAFB3 /* RealTime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTime.m; sourceTree = "<group>"; };
+		EF277C61181CA7F6004BAFB3 /* RealTimeModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeModeViewController.h; sourceTree = "<group>"; };
+		EF277C62181CA7F6004BAFB3 /* RealTimeModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeModeViewController.m; sourceTree = "<group>"; };
 		EF37F6A81811E73600C5ACC8 /* spectra-scope.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "spectra-scope.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EF37F6AB1811E73600C5ACC8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		EF37F6AD1811E73600C5ACC8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -98,8 +98,8 @@
 		EF37F6C11811E73600C5ACC8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		EF37F6C41811E73600C5ACC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		EF37F6C71811E73600C5ACC8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
-		EF37F6C91811E73600C5ACC8 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		EF37F6CA1811E73600C5ACC8 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		EF37F6C91811E73600C5ACC8 /* LoginScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginScreenViewController.h; sourceTree = "<group>"; };
+		EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginScreenViewController.m; sourceTree = "<group>"; };
 		EF37F6D21811E73600C5ACC8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		F70B8309181DED9700E12A33 /* colour_name.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = colour_name.c; sourceTree = "<group>"; };
 		F70B830C181DEDA800E12A33 /* colour_name.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colour_name.h; sourceTree = "<group>"; };
@@ -192,6 +192,7 @@
 		EF37F6AA1811E73600C5ACC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F714AF1F181C3D4400F60D69 /* iniparser */,
 				F729D47B182217480016CEC6 /* CoreImage.framework */,
 				F729D45D1822006A0016CEC6 /* OpenGLES.framework */,
 				F71C9FDF1820BA1600FF18BE /* QuartzCore.framework */,
@@ -210,31 +211,30 @@
 		EF37F6B11811E73600C5ACC8 /* spectra-scope */ = {
 			isa = PBXGroup;
 			children = (
-				F70B830C181DEDA800E12A33 /* colour_name.h */,
-				F70B8309181DED9700E12A33 /* colour_name.c */,
-				F714AF1F181C3D4400F60D69 /* iniparser */,
+				EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */,
+				EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */,
 				EF37F6BA1811E73600C5ACC8 /* AppDelegate.h */,
 				EF37F6BB1811E73600C5ACC8 /* AppDelegate.m */,
-				EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */,
-				F71C68E6182B6409005DEC98 /* ArcBuffer.h */,
-				F71C68E7182B6409005DEC98 /* ArcBuffer.m */,
-				8BC8F4F218249C48002DF36B /* stillImageDisplay.h */,
-				8BC8F4F318249C48002DF36B /* stillImageDisplay.m */,
-				8BF7985E1819C68000844EBC /* MainScreenViewController.h */,
-				8BF7985F1819C68000844EBC /* MainScreenViewController.m */,
-				EF277C61181CA7F6004BAFB3 /* RealTime.h */,
-				EF277C62181CA7F6004BAFB3 /* RealTime.m */,
-				F71C68E1182B2329005DEC98 /* Filters.h */,
-				F71C68E2182B2329005DEC98 /* Filters.m */,
-				F7FBDFA31828B359008E323D /* matrix.h */,
-				F7FBDFA61828B36E008E323D /* matrix.c */,
+				EF37F6C91811E73600C5ACC8 /* LoginScreenViewController.h */,
+				EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */,
 				F79AF6C11818DB4800AB781F /* SignUpViewController.h */,
 				F79AF6C21818DB4800AB781F /* SignUpViewController.m */,
-				EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */,
-				EF37F6C91811E73600C5ACC8 /* ViewController.h */,
-				EF37F6CA1811E73600C5ACC8 /* ViewController.m */,
+				8BF7985E1819C68000844EBC /* MainScreenViewController.h */,
+				8BF7985F1819C68000844EBC /* MainScreenViewController.m */,
+				EF277C61181CA7F6004BAFB3 /* RealTimeModeViewController.h */,
+				EF277C62181CA7F6004BAFB3 /* RealTimeModeViewController.m */,
+				8BC8F4F218249C48002DF36B /* StillImageModeViewController.h */,
+				8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */,
+				F71C68E6182B6409005DEC98 /* ArcBuffer.h */,
+				F71C68E7182B6409005DEC98 /* ArcBuffer.m */,
+				F71C68E1182B2329005DEC98 /* Filters.h */,
+				F71C68E2182B2329005DEC98 /* Filters.m */,
 				F7DB6CEC181BA2AA00931929 /* UserProfile.h */,
 				F7DB6CED181BA2AA00931929 /* UserProfile.m */,
+				F7FBDFA31828B359008E323D /* matrix.h */,
+				F7FBDFA61828B36E008E323D /* matrix.c */,
+				F70B830C181DEDA800E12A33 /* colour_name.h */,
+				F70B8309181DED9700E12A33 /* colour_name.c */,
 				EF37F6B21811E73600C5ACC8 /* Supporting Files */,
 			);
 			path = "spectra-scope";
@@ -290,7 +290,8 @@
 				F714AF26181C3D4400F60D69 /* varstr.c */,
 				F714AF27181C3D4400F60D69 /* varstr.h */,
 			);
-			path = iniparser;
+			name = iniparser;
+			path = "spectra-scope/iniparser";
 			sourceTree = "<group>";
 		};
 		F719032A18232C4500881437 /* Products */ = {
@@ -440,7 +441,7 @@
 			files = (
 				EF37F6B81811E73600C5ACC8 /* main.m in Sources */,
 				EF37F6BC1811E73600C5ACC8 /* AppDelegate.m in Sources */,
-				EF37F6CB1811E73600C5ACC8 /* ViewController.m in Sources */,
+				EF37F6CB1811E73600C5ACC8 /* LoginScreenViewController.m in Sources */,
 				F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */,
 				8BF798601819C68000844EBC /* MainScreenViewController.m in Sources */,
 				F7DB6CEE181BA2AA00931929 /* UserProfile.m in Sources */,
@@ -448,9 +449,9 @@
 				F714AF2A181C3D4400F60D69 /* iniparser.c in Sources */,
 				F714AF2C181C3D4400F60D69 /* stringop.c in Sources */,
 				F714AF2E181C3D4400F60D69 /* varstr.c in Sources */,
-				EF277C63181CA7F6004BAFB3 /* RealTime.m in Sources */,
+				EF277C63181CA7F6004BAFB3 /* RealTimeModeViewController.m in Sources */,
 				F70B830A181DED9700E12A33 /* colour_name.c in Sources */,
-				8BC8F4F418249C48002DF36B /* stillImageDisplay.m in Sources */,
+				8BC8F4F418249C48002DF36B /* StillImageModeViewController.m in Sources */,
 				F7FBDFA71828B36E008E323D /* matrix.c in Sources */,
 				F71C68E3182B2329005DEC98 /* Filters.m in Sources */,
 				F71C68E8182B6409005DEC98 /* ArcBuffer.m in Sources */,
@@ -463,7 +464,7 @@
 			files = (
 				F70B8325181E329800E12A33 /* UserProfileTest.m in Sources */,
 				F7186FD5181EB51200DDD126 /* ColourAlgorithmTest.m in Sources */,
-				8BC8F4F518249C48002DF36B /* stillImageDisplay.m in Sources */,
+				8BC8F4F518249C48002DF36B /* StillImageModeViewController.m in Sources */,
 				F71C68E9182B6409005DEC98 /* ArcBuffer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

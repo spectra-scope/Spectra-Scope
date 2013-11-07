@@ -12,7 +12,7 @@
  */
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UITextFieldDelegate >
+@interface LoginScreenViewController : UIViewController<UITextFieldDelegate >
 
 
 -(IBAction)backgroundTouched:(id)sender;

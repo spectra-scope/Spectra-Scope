@@ -33,7 +33,7 @@
  - (fixed)empty bar below preview view, another wasted 20 rows of pixels
  */
 #define USE_GPUIMAGE
-#import "RealTime.h"
+#import "RealTimeModeViewController.h"
 #import <AVFoundation/AVFoundation.h>
 #import <CoreImage/CoreImage.h>
 
@@ -42,7 +42,7 @@
 #import "matrix.h"
 
 
-@interface RealTime ()
+@interface RealTimeModeViewController ()
 {
     BOOL hiddenFilterList;
     unsigned rAvg, gAvg, bAvg;
@@ -65,7 +65,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *brightenGreenButton;
 @property (weak, nonatomic) IBOutlet UIButton *brightenRedButton;
 @end
-@implementation RealTime
+@implementation RealTimeModeViewController
 
 #pragma mark -
 #pragma mark init and uninit

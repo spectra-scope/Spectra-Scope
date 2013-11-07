@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface stillImageDisplay : UIViewController<UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
+@interface StillImageModeViewController : UIViewController<UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
 
 @end
 
