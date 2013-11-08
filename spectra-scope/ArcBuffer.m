@@ -7,24 +7,19 @@
 //
 
 #import "ArcBuffer.h"
-@interface ArcBuffer ()
-{
-    char * head;
-}
-@end
+
 @implementation ArcBuffer
+
 -(ArcBuffer *)initWithSize:(size_t)size{
     self = [super init];
     if(self != nil)
     {
-        head = calloc(1, size);
+        _size = size;
+        _head = calloc(1, size);
     }
     return self;
 }
 -(void)dealloc{
-    free(head);
-}
--(char*)head{
-    return head;
+    free(_head);
 }
 @end

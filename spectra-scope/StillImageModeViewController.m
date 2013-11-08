@@ -17,11 +17,17 @@ revisions:
  - added function to query colour info at reticule
  
 bugs:
+ - index out of bounds when querying the corner pixels (fixed with cliping of index first)
 */
 #import "StillImageModeViewController.h"
 #import "GPUImage.h"
 #import "colour_name.h"
 #import "ArcBuffer.h"
+#import "Queue.h"
+
+
+#define clip(n, lo, hi)((n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n))
+
 @interface StillImageModeViewController (){
     UIImagePickerController *picker;
     UIImage * image;
@@ -44,11 +50,13 @@ bugs:
     }
     return self;
 }
-#pragma mark - viewdid
+#pragma mark - viewdidsomething
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+    _imageView.frame = CGRectOffset(mainScreenFrame, 0, -20);
+    [_imageView addSubview:_infoLabel];
 }
 - (void)viewDidUnload {
     [self setUiGroup:nil];
@@ -60,11 +68,13 @@ bugs:
 -(void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
+
     
-    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
-    _imageView.frame = CGRectOffset(mainScreenFrame, 0, -20);
-    [_imageView addSubview:_infoLabel];
-    //_imageView.layer.affineTransform = CGAffineTransformMakeRotation(M_PI_2);
+}
+-(void) viewDidDisappear:(BOOL)animated{
+    image = nil;
+    pixelBuf = nil;
+    [super viewDidDisappear:animated];
 }
 - (void)didReceiveMemoryWarning
 {
@@ -75,7 +85,7 @@ bugs:
 #pragma mark - picker functions
 - (IBAction)ChooseExisting{
     
-    picker= [[UIImagePickerController alloc]init];
+    picker= [[UIImagePickerController alloc] init];
     picker.delegate= self;
     [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
     [self presentViewController:picker animated:YES completion:NULL];
@@ -107,7 +117,7 @@ bugs:
     NSUInteger height = CGImageGetHeight(imageRef);
     
     ArcBuffer * bufObj = [[ArcBuffer alloc ] initWithSize:height * width * 4 * sizeof(uint8_t)];
-    uint8_t * data = (uint8_t*)[bufObj head];
+    char * data = [bufObj head];
     NSUInteger bytesPerPixel = 4;
     NSUInteger bytesPerRow = bytesPerPixel * width;
     NSUInteger bitsPerComponent = 8;
@@ -127,18 +137,15 @@ bugs:
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
     
     CGPoint translation = [recognizer translationInView:self.view];
+    
     CGFloat newx = _reticule.center.x + translation.x;
-    if(newx < 0)
-        newx = 0;
-    else if(newx > self.view.bounds.size.width)
-        newx = self.view.bounds.size.width;
+    newx = clip(newx, 0, self.view.bounds.size.width);
+    
     CGFloat newy = _reticule.center.y + translation.y;
-    if(newy < 0)
-        newy = 0;
-    else if(newy > self.view.bounds.size.height)
-        newy = self.view.bounds.size.height;
+    newy = clip(newy, 0, self.view.bounds.size.height);
+    
     _reticule.center = CGPointMake(newx, newy);
-    NSLog(@"translation: %f, %f", translation.x, translation.y);
+    [self queryColour:nil];
     [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
     
 }
@@ -158,6 +165,8 @@ bugs:
 
 #pragma mark - processing
 -(IBAction)queryColour:(id)sender{
+    if(pixelBuf == nil)
+        return;
     // use previously saved pixel array to get colour, instead of making a new pixel array every time
     // based on http://stackoverflow.com/a/1262893
     
@@ -166,25 +175,32 @@ bugs:
     NSUInteger height = CGImageGetHeight(imageRef);
     
     NSUInteger bytesPerPixel = 4;
-    NSUInteger bytesPerRow = bytesPerPixel * width;
 
-    uint8_t * pixels = (uint8_t*) [pixelBuf head];
+    uint8_t * pixels = pixelBuf.head;
     
     /*  all pictures are viewed in landscape, so the y is actually the inverted x position of the reticule
         , and x is actually the y position of the reticule
      */
-    unsigned yy = ((self.view.bounds.size.width - _reticule.center.x) * height) / self.view.bounds.size.width;
-    unsigned xx = (_reticule.center.y * width) / self.view.bounds.size.height;
+    NSUInteger yy = ((self.view.bounds.size.width - _reticule.center.x) * height) / self.view.bounds.size.width;
+    yy = clip(yy, 0, height - 1);
+    NSUInteger xx = (_reticule.center.y * width) / self.view.bounds.size.height;
+    xx = clip(xx, 0, width - 1);
     
-    NSLog(@"image size: %d %d\n"
-          @"query point: %d %d", width, height, xx, yy);
+#define RINDEX(x, y) (((width) * (y) + (x)) * (bytesPerPixel))
+#define GINDEX(x, y) (RINDEX((x), (y)) + 1)
+#define BINDEX(x, y) (RINDEX((x), (y)) + 2)
+    uint8_t r = pixels[RINDEX(xx, yy)];
+    uint8_t g = pixels[GINDEX(xx, yy)];
+    uint8_t b = pixels[BINDEX(xx, yy)];
     
-    int byteIndex = (bytesPerRow * yy) + xx * bytesPerPixel;
-    uint8_t r = pixels[byteIndex];
-    uint8_t g = pixels[byteIndex + 1];
-    uint8_t b = pixels[byteIndex + 2];
+    Queue * queue = [[Queue alloc] init];
+    NSMutableSet * visited = [[NSMutableSet alloc] init];
     
     char const * name = colour_string(colour_name(r, g, b));
     _infoLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", r, g, b, name];
+
+#undef BINDEX
+#undef GINDEX
+#undef RINDEX
 }
 @end

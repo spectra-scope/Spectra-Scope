@@ -23,6 +23,9 @@
 		EF37F6C51811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */; };
 		EF37F6C81811E73600C5ACC8 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */; };
 		EF37F6CB1811E73600C5ACC8 /* LoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */; };
+		EFCC78B4182C635800331135 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B3182C635800331135 /* Queue.m */; };
+		EFCC78B5182C635800331135 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B3182C635800331135 /* Queue.m */; };
+		EFCC78B9182C706C00331135 /* QueueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B7182C69C800331135 /* QueueTest.m */; };
 		F70B830A181DED9700E12A33 /* colour_name.c in Sources */ = {isa = PBXBuildFile; fileRef = F70B8309181DED9700E12A33 /* colour_name.c */; };
 		F70B8313181E2B8A00E12A33 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6D21811E73600C5ACC8 /* SenTestingKit.framework */; };
 		F70B8314181E2B8A00E12A33 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AB1811E73600C5ACC8 /* UIKit.framework */; };
@@ -100,6 +103,10 @@
 		EF37F6C91811E73600C5ACC8 /* LoginScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginScreenViewController.h; sourceTree = "<group>"; };
 		EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginScreenViewController.m; sourceTree = "<group>"; };
 		EF37F6D21811E73600C5ACC8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		EFCC78B2182C635800331135 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		EFCC78B3182C635800331135 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
+		EFCC78B6182C69C800331135 /* QueueTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueTest.h; sourceTree = "<group>"; };
+		EFCC78B7182C69C800331135 /* QueueTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueTest.m; sourceTree = "<group>"; };
 		F70B8309181DED9700E12A33 /* colour_name.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = colour_name.c; sourceTree = "<group>"; };
 		F70B830C181DEDA800E12A33 /* colour_name.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = colour_name.h; sourceTree = "<group>"; };
 		F70B8312181E2B8A00E12A33 /* unittest.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = unittest.octest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -224,6 +231,8 @@
 				EF277C62181CA7F6004BAFB3 /* RealTimeModeViewController.m */,
 				8BC8F4F218249C48002DF36B /* StillImageModeViewController.h */,
 				8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */,
+				EFCC78B2182C635800331135 /* Queue.h */,
+				EFCC78B3182C635800331135 /* Queue.m */,
 				F71C68E6182B6409005DEC98 /* ArcBuffer.h */,
 				F71C68E7182B6409005DEC98 /* ArcBuffer.m */,
 				F71C68E1182B2329005DEC98 /* Filters.h */,
@@ -262,6 +271,8 @@
 				F70B8324181E329800E12A33 /* UserProfileTest.m */,
 				F7186FD3181EB51200DDD126 /* ColourAlgorithmTest.h */,
 				F7186FD4181EB51200DDD126 /* ColourAlgorithmTest.m */,
+				EFCC78B6182C69C800331135 /* QueueTest.h */,
+				EFCC78B7182C69C800331135 /* QueueTest.m */,
 				F70B8317181E2B8A00E12A33 /* Supporting Files */,
 			);
 			path = "spectra-scopeTests";
@@ -454,6 +465,7 @@
 				F7FBDFA71828B36E008E323D /* matrix.c in Sources */,
 				F71C68E3182B2329005DEC98 /* Filters.m in Sources */,
 				F71C68E8182B6409005DEC98 /* ArcBuffer.m in Sources */,
+				EFCC78B4182C635800331135 /* Queue.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +476,8 @@
 				F70B8325181E329800E12A33 /* UserProfileTest.m in Sources */,
 				F7186FD5181EB51200DDD126 /* ColourAlgorithmTest.m in Sources */,
 				F71C68E9182B6409005DEC98 /* ArcBuffer.m in Sources */,
+				EFCC78B5182C635800331135 /* Queue.m in Sources */,
+				EFCC78B9182C706C00331135 /* QueueTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

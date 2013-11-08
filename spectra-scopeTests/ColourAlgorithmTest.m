@@ -63,7 +63,7 @@ and test if the colour name algo have the same "opinion"
                     };
     
 }
--(void) testeColourName{
+-(void) testColourName{
     for(NSNumber * name in colourPairs)
     {
         enum colour nameID = [name intValue];
