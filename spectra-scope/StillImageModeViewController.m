@@ -55,10 +55,33 @@ bugs:
 @property (weak, nonatomic) IBOutlet UIView *uiGroup;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *reticule;
-
+@property (weak, nonatomic) IBOutlet UIImageView *playButton2;
 @end
 
 @implementation StillImageModeViewController
+@synthesize fliteController;
+@synthesize slt;
+
+-(IBAction)Play2:(id)sender{
+    
+    NSString *name = [NSString stringWithUTF8String:colour_string(colour_name(rAvg, gAvg, bAvg))];
+    [self.fliteController say:name withVoice:self.slt];
+    
+}
+
+- (FliteController *)fliteController {
+	if (fliteController == nil) {
+		fliteController = [[FliteController alloc] init];
+	}
+	return fliteController;
+}
+
+- (Slt *)slt {
+	if (slt == nil) {
+		slt = [[Slt alloc] init];
+	}
+	return slt;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

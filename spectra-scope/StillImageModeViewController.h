@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "RealTimeModeViewController.h"
 @interface StillImageModeViewController : UIViewController<UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
+{
+    FliteController *fliteController;
+    Slt *slt;
+    unsigned rAvg, gAvg, bAvg;
+}
 
+@property (strong, nonatomic) FliteController *fliteController;
+@property (strong, nonatomic) Slt *slt;
 @end
 
 

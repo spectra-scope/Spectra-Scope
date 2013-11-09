@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8B400C9F182DBD2B000D1C61 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B400C9E182DBD2B000D1C61 /* AudioToolbox.framework */; };
+		8B400CA3182DBD48000D1C61 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B400CA2182DBD48000D1C61 /* OpenEars.framework */; };
+		8B400CA5182DBD57000D1C61 /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B400CA4182DBD57000D1C61 /* Slt.framework */; };
 		8BC8F4F418249C48002DF36B /* StillImageModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */; };
 		8BF798601819C68000844EBC /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7985F1819C68000844EBC /* MainScreenViewController.m */; };
 		EF277C60181CA21D004BAFB3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */; };
@@ -78,6 +81,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8B400C9E182DBD2B000D1C61 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		8B400CA2182DBD48000D1C61 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenEars.framework; path = ../../OpenEarsDistribution/Framework/OpenEars.framework; sourceTree = "<group>"; };
+		8B400CA4182DBD57000D1C61 /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Slt.framework; path = ../../OpenEarsDistribution/Framework/Slt.framework; sourceTree = "<group>"; };
 		8BC8F4F218249C48002DF36B /* StillImageModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StillImageModeViewController.h; sourceTree = "<group>"; };
 		8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StillImageModeViewController.m; sourceTree = "<group>"; };
 		8BF7985E1819C68000844EBC /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
@@ -150,6 +156,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B400C9F182DBD2B000D1C61 /* AudioToolbox.framework in Frameworks */,
 				F719033518232C5700881437 /* libGPUImage.a in Frameworks */,
 				F729D47C182217480016CEC6 /* CoreImage.framework in Frameworks */,
 				F729D45E1822006A0016CEC6 /* OpenGLES.framework in Frameworks */,
@@ -160,6 +167,8 @@
 				EF37F6AC1811E73600C5ACC8 /* UIKit.framework in Frameworks */,
 				EF37F6AE1811E73600C5ACC8 /* Foundation.framework in Frameworks */,
 				EF37F6B01811E73600C5ACC8 /* CoreGraphics.framework in Frameworks */,
+				8B400CA3182DBD48000D1C61 /* OpenEars.framework in Frameworks */,
+				8B400CA5182DBD57000D1C61 /* Slt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,6 +188,7 @@
 		EF37F69F1811E73600C5ACC8 = {
 			isa = PBXGroup;
 			children = (
+				8B400C9E182DBD2B000D1C61 /* AudioToolbox.framework */,
 				EF37F6B11811E73600C5ACC8 /* spectra-scope */,
 				F70B8316181E2B8A00E12A33 /* spectra-scopeTests */,
 				EF37F6AA1811E73600C5ACC8 /* Frameworks */,
@@ -198,6 +208,8 @@
 		EF37F6AA1811E73600C5ACC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8B400CA4182DBD57000D1C61 /* Slt.framework */,
+				8B400CA2182DBD48000D1C61 /* OpenEars.framework */,
 				F714AF1F181C3D4400F60D69 /* iniparser */,
 				F729D47B182217480016CEC6 /* CoreImage.framework */,
 				F729D45D1822006A0016CEC6 /* OpenGLES.framework */,
@@ -592,7 +604,10 @@
 		EF37F6E41811E73600C5ACC8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../OpenEarsDistribution/Framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "spectra-scope/spectra-scope-Prefix.pch";
 				HEADER_SEARCH_PATHS = "spectra-scope/GPUImage-master/framework/**";
@@ -608,7 +623,10 @@
 		EF37F6E51811E73600C5ACC8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../../OpenEarsDistribution/Framework\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "spectra-scope/spectra-scope-Prefix.pch";
 				HEADER_SEARCH_PATHS = "spectra-scope/GPUImage-master/framework/**";

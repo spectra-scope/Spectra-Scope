@@ -26,6 +26,9 @@
  - added filters
  1.7: by Tian Lin Tan
  - added library GPUImage, for real time filtering
+ 1.8: by Archit Sood
+ - Added Text to Speech Functionality in real time mode
+ - Open Ears Library Used
  bugs:
  - (not a bug) viewDidunload is not called when user goes back one screen
  - (fixed)stopRunning isn't called, creating a new capture session every time the user moves to this screen
@@ -64,8 +67,35 @@
 @property (weak, nonatomic) IBOutlet UIButton *clearFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *brightenGreenButton;
 @property (weak, nonatomic) IBOutlet UIButton *brightenRedButton;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
+
 @end
 @implementation RealTimeModeViewController
+
+@synthesize fliteController;
+@synthesize slt;
+
+-(IBAction)Play:(id)sender{
+    
+    NSString *name = [NSString stringWithUTF8String:colour_string(colour_name(rAvg, gAvg, bAvg))];
+    [self.fliteController say:name withVoice:self.slt];
+    
+}
+
+- (FliteController *)fliteController {
+	if (fliteController == nil) {
+		fliteController = [[FliteController alloc] init];
+	}
+	return fliteController;
+}
+
+- (Slt *)slt {
+	if (slt == nil) {
+		slt = [[Slt alloc] init];
+	}
+	return slt;
+}
+
 
 #pragma mark -
 #pragma mark init and uninit
@@ -223,6 +253,7 @@
     [gpuView addSubview:_backButton];
     [gpuView addSubview:_filterListView];
     [gpuView addSubview:_reticuleImage];
+    [gpuView addSubview:_playButton];
     _reticuleImage.center = gpuView.center;
     
     [gpuCamera startCameraCapture];
