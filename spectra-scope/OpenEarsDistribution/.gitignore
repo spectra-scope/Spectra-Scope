@@ -1,0 +1,7 @@
+build/
+*.swp
+*~.nib
+*.o
+*.pyc
+OpenEars/OpenEars.xcodeproj/project.xcworkspace/xcuserdata/me.xcuserdatad/UserInterfaceState.xcuserstate
+OpenEarsSampleApp/OpenEarsSampleApp.xcodeproj/project.xcworkspace/xcuserdata/me.xcuserdatad/UserInterfaceState.xcuserstate

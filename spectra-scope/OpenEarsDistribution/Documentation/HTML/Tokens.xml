@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tokens version="1.0">
+  <Token>
+    <TokenIdentifier>
+      <Name>AcousticModel</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>AcousticModel</Scope>
+    </TokenIdentifier>
+    <Path>interface_acoustic_model.html</Path>
+    <Abstract>Convenience class for accessing the acoustic model bundles. All this does is allow you to reference y...</Abstract>
+    <DeclaredIn>AcousticModel.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>FliteController</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>FliteController</Scope>
+    </TokenIdentifier>
+    <Path>interface_flite_controller.html</Path>
+    <Abstract>The class that controls speech synthesis (TTS) in OpenEars.</Abstract>
+    <DeclaredIn>FliteController.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>LanguageModelGenerator</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>LanguageModelGenerator</Scope>
+    </TokenIdentifier>
+    <Path>interface_language_model_generator.html</Path>
+    <Abstract>The class that generates the vocabulary the PocketsphinxController is able to understand.</Abstract>
+    <DeclaredIn>LanguageModelGenerator.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>OpenEarsEventsObserver</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>OpenEarsEventsObserver</Scope>
+    </TokenIdentifier>
+    <Path>interface_open_ears_events_observer.html</Path>
+    <Abstract>OpenEarsEventsObserver provides a large set of delegate methods that allow you to receive information...</Abstract>
+    <DeclaredIn>OpenEarsEventsObserver.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>OpenEarsEventsObserverDelegate</Name>
+      <APILanguage>c</APILanguage>
+      <Type>intf</Type>
+      <Scope>OpenEarsEventsObserverDelegate</Scope>
+    </TokenIdentifier>
+    <Path>protocol_open_ears_events_observer_delegate-p.html</Path>
+    <Abstract>OpenEarsEventsObserver provides a large set of delegate methods that allow you to receive information...</Abstract>
+    <DeclaredIn>OpenEarsEventsObserver.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>OpenEarsLogging</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>OpenEarsLogging</Scope>
+    </TokenIdentifier>
+    <Path>interface_open_ears_logging.html</Path>
+    <Abstract>A singleton which turns logging on or off for the entire framework. The type of logging is related to...</Abstract>
+    <DeclaredIn>OpenEarsLogging.h</DeclaredIn>
+  </Token>
+  <Token>
+    <TokenIdentifier>
+      <Name>PocketsphinxController</Name>
+      <APILanguage>c</APILanguage>
+      <Type>cl</Type>
+      <Scope>PocketsphinxController</Scope>
+    </TokenIdentifier>
+    <Path>interface_pocketsphinx_controller.html</Path>
+    <Abstract>The class that controls local speech recognition in OpenEars.</Abstract>
+    <DeclaredIn>PocketsphinxController.h</DeclaredIn>
+  </Token>
+</Tokens>
