@@ -57,7 +57,11 @@
 }
 -(void) pull{
     if(head != nil)
+    {
         head = head.next;
+        if(head == nil)
+            tail = nil;
+    }
 }
 -(void) push:(id)item{
     if(head != nil)

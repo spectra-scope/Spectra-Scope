@@ -27,6 +27,24 @@ bugs:
 
 
 #define clip(n, lo, hi)((n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n))
+@interface Point2D : NSObject
+@property (nonatomic, readwrite) unsigned x, y;
++(id) pointWith:(unsigned)x and:(unsigned)y;
+@end
+
+@implementation Point2D
++(id) pointWith:(unsigned)x and:(unsigned)y{
+    Point2D * point = [[Point2D alloc] init];
+    point.x = x;
+    point.y = y;
+    return point;
+}
+-(BOOL)isEqual:(id)object{
+    Point2D * other = object;
+    return _x == other.x && _y == other.y;
+}
+@end
+
 
 @interface StillImageModeViewController (){
     UIImagePickerController *picker;
@@ -145,7 +163,6 @@ bugs:
     newy = clip(newy, 0, self.view.bounds.size.height);
     
     _reticule.center = CGPointMake(newx, newy);
-    [self queryColour:nil];
     [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
     
 }
@@ -176,7 +193,12 @@ bugs:
     
     NSUInteger bytesPerPixel = 4;
 
-    uint8_t * pixels = pixelBuf.head;
+
+    typedef struct{
+        uint32_t r:8, g:8, b:8, a:8;
+    } pixel_t;
+    assert(sizeof(pixel_t) == 4);
+    pixel_t * pixels = pixelBuf.head;
     
     /*  all pictures are viewed in landscape, so the y is actually the inverted x position of the reticule
         , and x is actually the y position of the reticule
@@ -189,15 +211,56 @@ bugs:
 #define RINDEX(x, y) (((width) * (y) + (x)) * (bytesPerPixel))
 #define GINDEX(x, y) (RINDEX((x), (y)) + 1)
 #define BINDEX(x, y) (RINDEX((x), (y)) + 2)
-    uint8_t r = pixels[RINDEX(xx, yy)];
-    uint8_t g = pixels[GINDEX(xx, yy)];
-    uint8_t b = pixels[BINDEX(xx, yy)];
     
+    pixel_t startPixel = pixels[width * yy + xx];
+    int startPixelSum = startPixel.r + startPixel.g + startPixel.b;
+    unsigned rAvg = 0, bAvg = 0, gAvg = 0;
     Queue * queue = [[Queue alloc] init];
     NSMutableSet * visited = [[NSMutableSet alloc] init];
+    [queue push:[Point2D pointWith:xx and:yy]];
+    [visited addObject:[Point2D pointWith:xx and:yy]];
+    while(![queue isEmpty])
+    {
+        Point2D * point = [queue top];
+        [queue pull];
+        pixel_t px = pixels[width * point.y + point.x];
+        
+        int rgbSum = px.r + px.g + px.b;
+        
+        
+        rAvg = (rAvg * 7 + px.r) / 8;
+        bAvg = (bAvg * 7 + px.b) / 8;
+        gAvg = (gAvg * 7 + px.g) / 8;
+        
+        
+        NSArray * neighbors = @[[Point2D pointWith:point.x + 1  and: point.y],
+                                [Point2D pointWith:point.x + 1  and: point.y + 1],
+                                [Point2D pointWith:point.x      and: point.y + 1],
+                                [Point2D pointWith:point.x - 1  and: point.y + 1],
+                                [Point2D pointWith:point.x - 1  and: point.y],
+                                [Point2D pointWith:point.x - 1  and: point.y - 1],
+                                [Point2D pointWith:point.x      and: point.y - 1],
+                                [Point2D pointWith:point.x + 1  and: point.y - 1],];
+        for(Point2D * neighbor in neighbors)
+        {
+            if(neighbor.x >= width || neighbor.y >= height)
+            {
+                NSLog(@"out of bounds!");
+            }
+            else if([visited containsObject:neighbor])
+            {
+                NSLog(@"contains!");
+            }
+            else
+            {
+                [visited addObject:neighbor];
+                [queue push:neighbor];
+            }
+        }
+    }
     
-    char const * name = colour_string(colour_name(r, g, b));
-    _infoLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", r, g, b, name];
+    char const * name = colour_string(colour_name(rAvg, gAvg, bAvg));
+    _infoLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", rAvg, gAvg, bAvg, name];
 
 #undef BINDEX
 #undef GINDEX
