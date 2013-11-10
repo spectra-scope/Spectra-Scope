@@ -32,73 +32,59 @@
  bugs:
  - (not a bug) viewDidunload is not called when user goes back one screen
  - (fixed)stopRunning isn't called, creating a new capture session every time the user moves to this screen
- - (fixe)empty bar below navigation bar, a wasted 20 rows of pixels
+ - (fixed)empty bar below navigation bar, a wasted 20 rows of pixels
  - (fixed)empty bar below preview view, another wasted 20 rows of pixels
  */
 #define USE_GPUIMAGE
 #import "RealTimeModeViewController.h"
-#import <AVFoundation/AVFoundation.h>
-#import <CoreImage/CoreImage.h>
-
 #import "colour_name.h"
 #import "Filters.h"
 #import "matrix.h"
 
+#import "Slt/Slt.h"
+#import "OpenEars/FliteController.h"
+#import "OpenEars/LanguageModelGenerator.h"
+#import "OpenEars/PocketsphinxController.h"
+#import "OpenEars/AcousticModel.h"
+#import "OpenEars/OpenEarsEventsObserver.h"
+
+
+
 
 @interface RealTimeModeViewController ()
 {
-    BOOL hiddenFilterList;
     unsigned rAvg, gAvg, bAvg;
     unsigned counter;
     GPUImageVideoCamera * gpuCamera;
     GPUImageView * gpuView;
     GPUImageColorMatrixFilter * gpuFilter;
     struct mat4x4 colorMatrix;
+    dispatch_queue_t soundQueue;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *bgrLabel;
-@property (weak, nonatomic) IBOutlet UIButton *filterButton;
-@property (weak, nonatomic) IBOutlet UIButton *backButton;
-@property (weak, nonatomic) IBOutlet UIView *filterListView;
+
 @property (weak, nonatomic) IBOutlet UIImageView *reticuleImage;
+
+@property (weak, nonatomic) IBOutlet UIView *filterListView;
 @property (weak, nonatomic) IBOutlet UIButton *rgdFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *markGreenFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *markRedFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *clearFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *brightenGreenButton;
 @property (weak, nonatomic) IBOutlet UIButton *brightenRedButton;
+
+@property (weak, nonatomic) IBOutlet UIView *buttonGroup;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIButton *filterButton;
+@property (weak, nonatomic) IBOutlet UIButton *backButton;
+
+@property (strong, nonatomic) FliteController *fliteController;
+@property (strong, nonatomic) Slt *slt;
 
 @end
 @implementation RealTimeModeViewController
-
-@synthesize fliteController;
-@synthesize slt;
-
--(IBAction)Play:(id)sender{
-    
-    NSString *name = [NSString stringWithUTF8String:colour_string(colour_name(rAvg, gAvg, bAvg))];
-    [self.fliteController say:name withVoice:self.slt];
-    
-}
-
-- (FliteController *)fliteController {
-	if (fliteController == nil) {
-		fliteController = [[FliteController alloc] init];
-	}
-	return fliteController;
-}
-
-- (Slt *)slt {
-	if (slt == nil) {
-		slt = [[Slt alloc] init];
-	}
-	return slt;
-}
-
-
-#pragma mark -
-#pragma mark init and uninit
+#pragma mark - view controller
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     NSLog(@"initWithNibName");
@@ -120,16 +106,30 @@
 }
 - (void)viewDidLoad
 {
+     NSLog(@"real time view did load");
     [super viewDidLoad];
     
     
 }
 -(void)viewDidAppear:(BOOL)animated{
+     NSLog(@"real time view did appear");
     [super viewDidAppear:animated];
+    
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    hiddenFilterList = YES;
-    [_filterListView setHidden:hiddenFilterList];
+    
     colorMatrix = identityMatrix4;
+    
+    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+    gpuView = [[GPUImageView alloc] initWithFrame:mainScreenFrame];
+    self.view = gpuView;
+    [gpuView addSubview:_bgrLabel];
+    [gpuView addSubview:_reticuleImage];
+    [gpuView addSubview:_filterListView];
+    [gpuView addSubview:_buttonGroup];
+    _reticuleImage.center = gpuView.center;
+    
+    [self initSound];
+    
     [self startCapture];
     
 }
@@ -153,9 +153,12 @@
     [self setClearFilterButton:nil];
     [self setBrightenGreenButton:nil];
     [self setBrightenRedButton:nil];
+    [self setButtonGroup:nil];
     [super viewDidUnload];
+    NSLog(@"real time view did unload");
 }
 -(void)viewDidDisappear:(BOOL)animated{
+    [self cleanSound];
     [gpuCamera stopCameraCapture];
     gpuCamera = nil;
     gpuView = nil;
@@ -163,34 +166,23 @@
     NSLog(@"stopped capturing");
     
     [super viewDidDisappear:animated];
+     NSLog(@"real time view did disappear");
 }
 
-#pragma mark -
-#pragma mark ui control
-// toggle the hiding of the navigation bar
--(IBAction)touchedView:(id)sender{
-    NSLog(@"tickles");
-}
+#pragma mark - ui control
 -(IBAction)touchedBackButton:(id)sender{
     [self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark -
-#pragma mark filter button actions
+#pragma mark - filter button actions
 -(IBAction)touchedFilterButton:(id)sender{
-    hiddenFilterList = !hiddenFilterList;
-    if(hiddenFilterList)
-    {
-        [_filterListView setHidden:YES];
-        NSLog(@"hide filter list");
-        
-    }
-    else
-    {
-        [_filterListView setHidden:NO];
+    BOOL hiding = _filterListView.isHidden;
+    if(hiding)
         NSLog(@"show filter list");
-    }
+    else
+        NSLog(@"hide filter list");
+    [_filterListView setHidden:!hiding];
 
 }
 
@@ -225,20 +217,36 @@
     }
     [gpuCamera resumeCameraCapture];
 }
-#pragma mark -
-#pragma mark capture functions
+
+#pragma mark - sound
+-(IBAction)sayColourName:(id)sender{
+    
+    NSString *name = [NSString stringWithUTF8String:colour_string(colour_name(rAvg, gAvg, bAvg))];
+    dispatch_async(soundQueue, ^{
+        [self.fliteController say:name withVoice:self.slt];
+    });
+}
+
+- (void)initSound {
+    _fliteController = [[FliteController alloc] init];
+    _slt = [[Slt alloc] init];
+    soundQueue = dispatch_queue_create("sound_queue", NULL);
+}
+-(void)cleanSound{
+    _fliteController = nil;
+    _slt = nil;
+    dispatch_release(soundQueue);
+}
+
+#pragma mark - capture functions
 /* startCapture is the final setup step to perform before the screen can display what the camera captures.*/
 -(void) startCapture{
     NSLog(@"GPUImage capture setup");
-    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
     
     gpuCamera = [[GPUImageVideoCamera alloc]
                  initWithSessionPreset:AVCaptureSessionPreset640x480
                  cameraPosition:AVCaptureDevicePositionBack];
     gpuCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
-    
-    gpuView = [[GPUImageView alloc] initWithFrame:CGRectOffset(mainScreenFrame, 0, -20)];
-    [self.view addSubview:gpuView];
     
     gpuFilter = [[GPUImageColorMatrixFilter alloc] init];
     [gpuFilter setColorMatrix:GPUMatrix4x4FromArray(identityMatrix4.entries)];
@@ -247,14 +255,6 @@
     [gpuFilter addTarget:gpuView];
     
     gpuCamera.delegate = self;
-    
-    [gpuView addSubview:_bgrLabel];
-    [gpuView addSubview:_filterButton];
-    [gpuView addSubview:_backButton];
-    [gpuView addSubview:_filterListView];
-    [gpuView addSubview:_reticuleImage];
-    [gpuView addSubview:_playButton];
-    _reticuleImage.center = gpuView.center;
     
     [gpuCamera startCameraCapture];
     NSLog(@"GPUImage capture setup complete, capture started");

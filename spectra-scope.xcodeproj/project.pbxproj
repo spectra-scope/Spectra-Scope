@@ -192,7 +192,6 @@
 		EF37F69F1811E73600C5ACC8 = {
 			isa = PBXGroup;
 			children = (
-				8B400C9E182DBD2B000D1C61 /* AudioToolbox.framework */,
 				EF37F6B11811E73600C5ACC8 /* spectra-scope */,
 				F70B8316181E2B8A00E12A33 /* spectra-scopeTests */,
 				EF37F6AA1811E73600C5ACC8 /* Frameworks */,
@@ -212,13 +211,14 @@
 		EF37F6AA1811E73600C5ACC8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F7C4AE65182EF97800D81490 /* OpenEars Framework */,
 				F714AF1F181C3D4400F60D69 /* iniparser */,
+				F7C4AE65182EF97800D81490 /* OpenEars Framework */,
+				F719032918232C4500881437 /* GPUImage.xcodeproj */,
+				8B400C9E182DBD2B000D1C61 /* AudioToolbox.framework */,
 				F729D47B182217480016CEC6 /* CoreImage.framework */,
 				F729D45D1822006A0016CEC6 /* OpenGLES.framework */,
 				F71C9FDF1820BA1600FF18BE /* QuartzCore.framework */,
 				F7263A29181CF8A00076A04E /* CoreMedia.framework */,
-				F719032918232C4500881437 /* GPUImage.xcodeproj */,
 				F7263A27181CF88C0076A04E /* CoreVideo.framework */,
 				EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */,
 				EF37F6AB1811E73600C5ACC8 /* UIKit.framework */,
@@ -623,8 +623,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../OpenEarsDistribution/Framework\"",
-					"\"$(SRCROOT)/spectra-scope/OpenEarsDistribution/Framework\"",
+					"spectra-scope/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "spectra-scope/spectra-scope-Prefix.pch";
@@ -643,8 +642,7 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../OpenEarsDistribution/Framework\"",
-					"\"$(SRCROOT)/spectra-scope/OpenEarsDistribution/Framework\"",
+					"spectra-scope/**",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "spectra-scope/spectra-scope-Prefix.pch";

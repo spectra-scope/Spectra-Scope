@@ -19,12 +19,21 @@ revisions:
 bugs:
  - index out of bounds when querying the corner pixels (fixed with cliping of index first)
 */
+
+
 #import "StillImageModeViewController.h"
-#import "GPUImage.h"
 #import "colour_name.h"
 #import "ArcBuffer.h"
 #import "Queue.h"
 
+#import "GPUImage.h"
+
+#import "Slt/Slt.h"
+#import "OpenEars/FliteController.h"
+#import "OpenEars/LanguageModelGenerator.h"
+#import "OpenEars/PocketsphinxController.h"
+#import "OpenEars/AcousticModel.h"
+#import "OpenEars/OpenEarsEventsObserver.h"
 
 #define clip(n, lo, hi)((n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n))
 @interface Point2D : NSObject
@@ -50,38 +59,22 @@ bugs:
     UIImagePickerController *picker;
     UIImage * image;
     ArcBuffer * pixelBuf;
+    unsigned rAvg, gAvg, bAvg;
+    dispatch_queue_t soundQueue;
 }
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIView *uiGroup;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *reticule;
 @property (weak, nonatomic) IBOutlet UIImageView *playButton2;
+
+@property (strong, nonatomic) FliteController *fliteController;
+@property (strong, nonatomic) Slt *slt;
 @end
 
 @implementation StillImageModeViewController
-@synthesize fliteController;
-@synthesize slt;
 
--(IBAction)Play2:(id)sender{
-    
-    NSString *name = [NSString stringWithUTF8String:colour_string(colour_name(rAvg, gAvg, bAvg))];
-    [self.fliteController say:name withVoice:self.slt];
-    
-}
 
-- (FliteController *)fliteController {
-	if (fliteController == nil) {
-		fliteController = [[FliteController alloc] init];
-	}
-	return fliteController;
-}
-
-- (Slt *)slt {
-	if (slt == nil) {
-		slt = [[Slt alloc] init];
-	}
-	return slt;
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -92,12 +85,30 @@ bugs:
     return self;
 }
 #pragma mark - viewdidsomething
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
+    NSLog(@"still image view did load: %p", self);
     [super viewDidLoad];
-	CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+	
+}
+-(void)viewDidAppear:(BOOL)animated{
+    NSLog(@"still image view did appear");
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
     _imageView.frame = CGRectOffset(mainScreenFrame, 0, -20);
+    
     [_imageView addSubview:_infoLabel];
+    
+    [self initSound];
+}
+-(void) viewDidDisappear:(BOOL)animated{
+    [self cleanSound];
+    
+    image = nil;
+    pixelBuf = nil;
+    [super viewDidDisappear:animated];
+    NSLog(@"still image view did disappear");
 }
 - (void)viewDidUnload {
     [self setUiGroup:nil];
@@ -105,18 +116,10 @@ bugs:
     [self setInfoLabel:nil];
     [self setReticule:nil];
     [super viewDidUnload];
+    NSLog(@"still image view did unload");
 }
--(void)viewDidAppear:(BOOL)animated{
-    [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
 
-    
-}
--(void) viewDidDisappear:(BOOL)animated{
-    image = nil;
-    pixelBuf = nil;
-    [super viewDidDisappear:animated];
-}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -203,6 +206,25 @@ bugs:
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+#pragma mark - sound
+-(IBAction)sayColourName:(id)sender{
+    NSLog(@"say");
+    NSString *name = [NSString stringWithUTF8String:colour_string(colour_name(rAvg, gAvg, bAvg))];
+    dispatch_async(soundQueue, ^{
+        [self.fliteController say:name withVoice:self.slt];
+    });
+}
+
+- (void)initSound {
+    _fliteController = [[FliteController alloc] init];
+    _slt = [[Slt alloc] init];
+    soundQueue = dispatch_queue_create("sound_queue", NULL);
+}
+-(void)cleanSound{
+    _fliteController = nil;
+    _slt = nil;
+    dispatch_release(soundQueue);
+}
 #pragma mark - processing
 -(IBAction)queryColour:(id)sender{
     if(pixelBuf == nil)
@@ -237,7 +259,6 @@ bugs:
     
     pixel_t startPixel = pixels[width * yy + xx];
     int startPixelSum = startPixel.r + startPixel.g + startPixel.b;
-    unsigned rAvg = 0, bAvg = 0, gAvg = 0;
     Queue * queue = [[Queue alloc] init];
     NSMutableSet * visited = [[NSMutableSet alloc] init];
     [queue push:[Point2D pointWith:xx and:yy]];

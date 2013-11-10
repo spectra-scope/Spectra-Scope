@@ -28,7 +28,7 @@ revisions:
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    NSLog(@"enter authentication screen");
+    NSLog(@"enter authentication screen:%p", self);
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
