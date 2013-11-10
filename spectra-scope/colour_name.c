@@ -149,3 +149,9 @@ char const * brightness_string(enum brightness b)
 {
     return brightness_table[b];
 }
+unsigned pixel_dif(pixel_t a, pixel_t b)
+{
+    int ar = a.r, ag = a.g, ab = a.b;
+    int br = b.r, bg = b.g, bb = b.b;
+    return abs(ar - br) + abs(ag - bg) + abs(ab - bb);
+}

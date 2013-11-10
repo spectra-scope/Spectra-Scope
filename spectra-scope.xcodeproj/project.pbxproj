@@ -152,6 +152,7 @@
 		F7C4AE69182EF97800D81490 /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
 		F7C4AE6E182F48BD00D81490 /* SpeechSynthesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesis.h; sourceTree = "<group>"; };
 		F7C4AE6F182F48BD00D81490 /* SpeechSynthesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechSynthesis.m; sourceTree = "<group>"; };
+		F7C4AE71182F763400D81490 /* ringbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ringbuffer.h; sourceTree = "<group>"; };
 		F7DB6CEC181BA2AA00931929 /* UserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfile.h; sourceTree = "<group>"; };
 		F7DB6CED181BA2AA00931929 /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
 		F7FBDFA31828B359008E323D /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
@@ -251,6 +252,7 @@
 				8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */,
 				F7C4AE6E182F48BD00D81490 /* SpeechSynthesis.h */,
 				F7C4AE6F182F48BD00D81490 /* SpeechSynthesis.m */,
+				F7C4AE71182F763400D81490 /* ringbuffer.h */,
 				EFCC78B2182C635800331135 /* Queue.h */,
 				EFCC78B3182C635800331135 /* Queue.m */,
 				F71C68E6182B6409005DEC98 /* ArcBuffer.h */,

@@ -24,7 +24,7 @@ bugs:
 #import "StillImageModeViewController.h"
 #import "colour_name.h"
 #import "ArcBuffer.h"
-#import "Queue.h"
+#import "ringbuffer.h"
 
 #import "GPUImage.h"
 
@@ -223,9 +223,7 @@ bugs:
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);
 
-    typedef struct{
-        uint32_t r:8, g:8, b:8, a:8;
-    } pixel_t;
+    
     assert(sizeof(pixel_t) == 4);
     pixel_t * pixels = pixelBuf.head;
     
@@ -237,11 +235,43 @@ bugs:
     NSUInteger xx = (_reticule.center.y * width) / self.view.bounds.size.height;
     xx = clip(xx, 0, width - 1);
     
-
     pixel_t startPixel = pixels[width * yy + xx];
     rAvg = startPixel.r;
     gAvg = startPixel.g;
     bAvg = startPixel.b;
+   
+    struct point{unsigned x, y;} startPoint = {xx, yy};
+    struct ringbuffer queue = ringbuffer_create(1000, sizeof(struct point));
+    char * visited = calloc(width * height, 1);
+    ringbuffer_enq(&queue, &startPoint);
+    while(queue.len > 0)
+    {
+        struct point p;
+        ringbuffer_top(&queue, &p);
+        ringbuffer_deq(&queue);
+        struct point neighbors[4] = {
+            {p.x - 1, p.y}, {p.x, p.y + 1}, {p.x + 1, p.y}, {p.x, p.y - 1}
+        };
+        for(int i = 0; i < 4; i++)
+        {
+            if(!((neighbors[i].x >= width || neighbors[i].y >= height) ||
+                (visited[neighbors[i].y * width + neighbors[i].x])))
+            {
+                visited[neighbors[i].y * width + neighbors[i].x] = 1;
+                pixel_t a = pixels[p.y * width + p.x];
+                pixel_t b = pixels[neighbors[i].y * width + neighbors[i].x];
+                unsigned dif = pixel_dif(a, b);
+                if(dif < 10 && queue.len < queue.size)
+                    ringbuffer_enq(&queue, neighbors + i);
+            }
+        }
+        pixel_t current = pixels[p.y * width + p.x];
+        rAvg = (rAvg * 7 + current.r) / 8;
+        gAvg = (gAvg * 7 + current.g) / 8;
+        bAvg = (bAvg * 7 + current.b) / 8;
+    }
+    
+   
 
 
     char const * colour_str = colour_string(colour_name(rAvg, gAvg, bAvg));

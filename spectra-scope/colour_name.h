@@ -7,6 +7,7 @@
 //
 #ifndef COLOUR_NAME
 #define COLOUR_NAME
+#include <stdint.h>
 enum colour{
 	RED, GREEN, BLUE,
 	MAGENTA, CYAN, YELLOW,
@@ -30,4 +31,9 @@ enum brightness{
 
 enum brightness brightness_id(unsigned r, unsigned g, unsigned b);
 char const * brightness_string(enum brightness b);
+
+typedef struct{
+    uint32_t r:8, g:8, b:8, a:8;
+} pixel_t;
+unsigned pixel_dif(pixel_t a, pixel_t b);
 #endif
