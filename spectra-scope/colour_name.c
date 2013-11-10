@@ -34,7 +34,7 @@ enum colour colour_name(int r, int g, int b)
 		return BLACK;
     
     //if difference between the three components aren't a lot, it's grey
-	else if(abs(r - g) < 15 && abs(g - b) < 15)
+	else if(abs(r - g) + abs(g - b) < 30)
 		return GREY;
 
     /* the next 6 cases maps colours based on the greatest component.
@@ -122,4 +122,30 @@ static char const * colour_table[] = {
 char const * colour_string(enum colour c)
 {
 	return colour_table[c];
+}
+
+enum brightness brightness_id(unsigned r, unsigned g, unsigned b)
+{
+    unsigned brightness = (r + g + b) / 3;
+    if(brightness > 230)
+        return VERY_BRIGHT;
+    else if(brightness > 190)
+        return BRIGHT;
+    else if(brightness > 100)
+        return MEDIUM;
+    else if(brightness > 50)
+        return DARK;
+    else
+        return VERY_DARK;
+}
+static char const * brightness_table[] = {
+    [VERY_BRIGHT] = "very bright",
+    [BRIGHT] = "bright",
+    [MEDIUM] = "medium",
+    [DARK] = "dark",
+    [VERY_DARK] = "very dark"
+};
+char const * brightness_string(enum brightness b)
+{
+    return brightness_table[b];
 }

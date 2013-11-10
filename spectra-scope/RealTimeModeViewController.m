@@ -102,7 +102,7 @@
     [super viewDidLoad];
     
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
-    gpuView = [[GPUImageView alloc] initWithFrame:mainScreenFrame];
+    gpuView = [[GPUImageView alloc] initWithFrame:CGRectOffset(mainScreenFrame, 0, -20)];
     self.view = gpuView;
     [gpuView addSubview:_bgrLabel];
     [gpuView addSubview:_reticuleImage];
@@ -112,7 +112,7 @@
     NSLog(@"GPUImage view setup complete");
     
     gpuCamera = [[GPUImageVideoCamera alloc]
-                 initWithSessionPreset:AVCaptureSessionPreset640x480
+                 initWithSessionPreset:AVCaptureSessionPresetMedium
                  cameraPosition:AVCaptureDevicePositionBack];
     gpuCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     NSLog(@"GPUImage camera setup complete");

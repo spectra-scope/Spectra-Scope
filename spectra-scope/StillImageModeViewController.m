@@ -31,6 +31,7 @@ bugs:
 #import "SpeechSynthesis.h"
 
 #define clip(n, lo, hi)((n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n))
+/*
 @interface Point2D : NSObject
 @property (nonatomic, readwrite) unsigned x, y;
 +(id) pointWith:(unsigned)x and:(unsigned)y;
@@ -48,7 +49,7 @@ bugs:
     return _x == other.x && _y == other.y;
 }
 @end
-
+*/
 
 @interface StillImageModeViewController (){
     UIImagePickerController *picker;
@@ -221,9 +222,6 @@ bugs:
     CGImageRef imageRef = [image CGImage];
     NSUInteger width = CGImageGetWidth(imageRef);
     NSUInteger height = CGImageGetHeight(imageRef);
-    
-    NSUInteger bytesPerPixel = 4;
-
 
     typedef struct{
         uint32_t r:8, g:8, b:8, a:8;
@@ -239,61 +237,16 @@ bugs:
     NSUInteger xx = (_reticule.center.y * width) / self.view.bounds.size.height;
     xx = clip(xx, 0, width - 1);
     
-#define RINDEX(x, y) (((width) * (y) + (x)) * (bytesPerPixel))
-#define GINDEX(x, y) (RINDEX((x), (y)) + 1)
-#define BINDEX(x, y) (RINDEX((x), (y)) + 2)
-    
-    pixel_t startPixel = pixels[width * yy + xx];
-    int startPixelSum = startPixel.r + startPixel.g + startPixel.b;
-    Queue * queue = [[Queue alloc] init];
-    NSMutableSet * visited = [[NSMutableSet alloc] init];
-    [queue push:[Point2D pointWith:xx and:yy]];
-    [visited addObject:[Point2D pointWith:xx and:yy]];
-    while(![queue isEmpty])
-    {
-        Point2D * point = [queue top];
-        [queue pull];
-        pixel_t px = pixels[width * point.y + point.x];
-        
-        int rgbSum = px.r + px.g + px.b;
-        
-        
-        rAvg = (rAvg * 7 + px.r) / 8;
-        bAvg = (bAvg * 7 + px.b) / 8;
-        gAvg = (gAvg * 7 + px.g) / 8;
-        
-        
-        NSArray * neighbors = @[[Point2D pointWith:point.x + 1  and: point.y],
-                                [Point2D pointWith:point.x + 1  and: point.y + 1],
-                                [Point2D pointWith:point.x      and: point.y + 1],
-                                [Point2D pointWith:point.x - 1  and: point.y + 1],
-                                [Point2D pointWith:point.x - 1  and: point.y],
-                                [Point2D pointWith:point.x - 1  and: point.y - 1],
-                                [Point2D pointWith:point.x      and: point.y - 1],
-                                [Point2D pointWith:point.x + 1  and: point.y - 1],];
-        for(Point2D * neighbor in neighbors)
-        {
-            if(neighbor.x >= width || neighbor.y >= height)
-            {
-                NSLog(@"out of bounds!");
-            }
-            else if([visited containsObject:neighbor])
-            {
-                NSLog(@"contains!");
-            }
-            else
-            {
-                [visited addObject:neighbor];
-                [queue push:neighbor];
-            }
-        }
-    }
-    
-    char const * name = colour_string(colour_name(rAvg, gAvg, bAvg));
-    _infoLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", rAvg, gAvg, bAvg, name];
 
-#undef BINDEX
-#undef GINDEX
-#undef RINDEX
+    pixel_t startPixel = pixels[width * yy + xx];
+    rAvg = startPixel.r;
+    gAvg = startPixel.g;
+    bAvg = startPixel.b;
+
+
+    char const * colour_str = colour_string(colour_name(rAvg, gAvg, bAvg));
+    char const * brightness_str = brightness_string(brightness_id(rAvg, gAvg, bAvg));
+    _infoLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d %s %s", rAvg, gAvg, bAvg, brightness_str, colour_str];
+
 }
 @end
