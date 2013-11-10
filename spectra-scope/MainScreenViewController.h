@@ -15,10 +15,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MainScreenViewController :UIViewController<UIImagePickerControllerDelegate ,UINavigationControllerDelegate>
-{
-
-
-}
 
 
 @end

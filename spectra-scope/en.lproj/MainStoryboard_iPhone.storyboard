@@ -107,7 +107,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="wnn-ah-IDg" kind="push" id="HQW-Ej-UQ3"/>
+                                    <action selector="gotoRealTimeMode:" destination="1wX-bH-w9n" eventType="touchUpInside" id="Ki9-Mf-yRw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zQa-qI-Keh">
@@ -121,7 +121,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="Hci-Qi-wn0" kind="push" id="3ob-Hi-PzM"/>
+                                    <action selector="gotoStillImageMode:" destination="1wX-bH-w9n" eventType="touchUpInside" id="aQh-Mq-inY"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tk3-y8-xKx">
@@ -139,6 +139,10 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="main screen" id="gPc-1q-Mgn"/>
+                    <connections>
+                        <segue destination="wnn-ah-IDg" kind="push" identifier="mainScreenToRealTimeModeSegue" id="K1U-e4-HYN"/>
+                        <segue destination="Hci-Qi-wn0" kind="push" id="sZ9-Ud-VeF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKg-xT-7lH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -147,7 +151,7 @@
         <!--Real Time Mode View Controller - real time mode-->
         <scene sceneID="m8A-Dr-Jmz">
             <objects>
-                <viewController id="wnn-ah-IDg" customClass="RealTimeModeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RealTimeModeViewController" id="wnn-ah-IDg" customClass="RealTimeModeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ITH-pu-rxm" userLabel="main view" customClass="UIControl">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -266,11 +270,11 @@
                                 </connections>
                             </view>
                             <view alpha="0.50000000000000011" contentMode="scaleToFill" id="4Qx-uU-oGF" userLabel="button group">
-                                <rect key="frame" x="0.0" y="415" width="320" height="38"/>
+                                <rect key="frame" x="0.0" y="415" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WC1-Ij-lGs">
-                                        <rect key="frame" x="20" y="0.0" width="59" height="39"/>
+                                        <rect key="frame" x="20" y="0.0" width="60" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="back">
@@ -285,10 +289,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qIQ-98-t0i">
-                                        <rect key="frame" x="110" y="0.0" width="100" height="40"/>
+                                        <rect key="frame" x="130" y="0.0" width="60" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="say colour">
+                                        <state key="normal" title="say">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -300,10 +304,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EhC-tu-Hak">
-                                        <rect key="frame" x="239" y="0.0" width="61" height="39"/>
+                                        <rect key="frame" x="240" y="0.0" width="60" height="40"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="filters">
+                                        <state key="normal" title="filter">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -345,7 +349,7 @@
         <!--Still Image Mode View Controller-->
         <scene sceneID="pXr-OE-X0B">
             <objects>
-                <viewController id="Hci-Qi-wn0" customClass="StillImageModeViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="StillImageModeViewController" id="Hci-Qi-wn0" customClass="StillImageModeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lkf-PW-dfh" userLabel="Control - parent view" customClass="UIControl">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -364,7 +368,7 @@
                                 <gestureRecognizers/>
                             </imageView>
                             <view alpha="0.70000000000000007" contentMode="scaleToFill" id="gOM-vM-2qX" customClass="UIControl">
-                                <rect key="frame" x="0.0" y="413" width="320" height="39"/>
+                                <rect key="frame" x="0.0" y="413" width="320" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="w4q-ZW-Gin">
@@ -380,7 +384,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="ChooseExisting" destination="fTP-70-Xn9" eventType="touchUpInside" id="yGQ-H9-rjQ"/>
+                                            <action selector="choosePicture" destination="Hci-Qi-wn0" eventType="touchUpInside" id="ETg-Vg-Bln"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Wor-Jz-vdJ">
@@ -625,74 +629,6 @@
     <resources>
         <image name="reticule.png" width="32" height="32"/>
     </resources>
-    <classes>
-        <class className="LoginScreenViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginScreenViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="logInPress:"/>
-                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MainScreenViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainScreenViewController.h"/>
-        </class>
-        <class className="RealTimeModeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTimeModeViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="clearFilters:"/>
-                <relationship kind="action" name="pushFilter:"/>
-                <relationship kind="action" name="sayColourName:"/>
-                <relationship kind="action" name="touchedBackButton:"/>
-                <relationship kind="action" name="touchedFilterButton:"/>
-                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="bgrLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="brightenGreenButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="brightenRedButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="buttonGroup" candidateClass="UIView"/>
-                <relationship kind="outlet" name="clearFilterButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="filterButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="filterListView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="markGreenFilterButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="markRedFilterButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="reticuleImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="rgdFilterButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="SignUpViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="sexButtonPress:"/>
-                <relationship kind="action" name="signupButtonPress:"/>
-                <relationship kind="outlet" name="ageInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ethnicityInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordInputAgain" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="sexButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="StillImageModeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StillImageModeViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="queryColour:"/>
-                <relationship kind="action" name="sayColourName:"/>
-                <relationship kind="action" name="showHideUIGroup:"/>
-                <relationship kind="action" name="touchedBackButton:"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playButton2" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="reticule" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="uiGroup" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

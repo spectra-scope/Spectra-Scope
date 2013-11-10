@@ -29,25 +29,20 @@
  1.8: by Archit Sood
  - Added Text to Speech Functionality in real time mode
  - Open Ears Library Used
- bugs:
+ bugs (iteration 1):
  - (not a bug) viewDidunload is not called when user goes back one screen
  - (fixed)stopRunning isn't called, creating a new capture session every time the user moves to this screen
  - (fixed)empty bar below navigation bar, a wasted 20 rows of pixels
  - (fixed)empty bar below preview view, another wasted 20 rows of pixels
+ bugs (iteration 2):
+ - (fixed)viewDidUnload is never called, but viewDidload is called every time this screen is entered
  */
 #define USE_GPUIMAGE
 #import "RealTimeModeViewController.h"
 #import "colour_name.h"
 #import "Filters.h"
 #import "matrix.h"
-
-#import "Slt/Slt.h"
-#import "OpenEars/FliteController.h"
-#import "OpenEars/LanguageModelGenerator.h"
-#import "OpenEars/PocketsphinxController.h"
-#import "OpenEars/AcousticModel.h"
-#import "OpenEars/OpenEarsEventsObserver.h"
-
+#import "SpeechSynthesis.h"
 
 
 
@@ -79,9 +74,6 @@
 @property (weak, nonatomic) IBOutlet UIButton *filterButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
-@property (strong, nonatomic) FliteController *fliteController;
-@property (strong, nonatomic) Slt *slt;
-
 @end
 @implementation RealTimeModeViewController
 #pragma mark - view controller
@@ -106,18 +98,8 @@
 }
 - (void)viewDidLoad
 {
-     NSLog(@"real time view did load");
+     NSLog(@"real time view did load: %p", self);
     [super viewDidLoad];
-    
-    
-}
--(void)viewDidAppear:(BOOL)animated{
-     NSLog(@"real time view did appear");
-    [super viewDidAppear:animated];
-    
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
-    colorMatrix = identityMatrix4;
     
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
     gpuView = [[GPUImageView alloc] initWithFrame:mainScreenFrame];
@@ -127,22 +109,51 @@
     [gpuView addSubview:_filterListView];
     [gpuView addSubview:_buttonGroup];
     _reticuleImage.center = gpuView.center;
+    NSLog(@"GPUImage view setup complete");
+    
+    gpuCamera = [[GPUImageVideoCamera alloc]
+                 initWithSessionPreset:AVCaptureSessionPreset640x480
+                 cameraPosition:AVCaptureDevicePositionBack];
+    gpuCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
+    NSLog(@"GPUImage camera setup complete");
+    
+    gpuFilter = [[GPUImageColorMatrixFilter alloc] init];
+    [gpuFilter setColorMatrix:GPUMatrix4x4FromArray(identityMatrix4.entries)];
+    NSLog(@"GPUImage colour matrix filter setup complete");
+    
+    [gpuCamera addTarget:gpuFilter];
+    [gpuFilter addTarget:gpuView];
+    
+    gpuCamera.delegate = self;
+    NSLog(@"GPUImage setup complete");
+}
+-(void)viewDidAppear:(BOOL)animated{
+     NSLog(@"real time view did appear");
+    [super viewDidAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    colorMatrix = identityMatrix4;
     
     [self initSound];
     
-    [self startCapture];
+    NSLog(@"starting GPUImage camera capture");
+    [gpuCamera startCameraCapture];
+    NSLog(@"GPUImage camera capture started");
+}
+-(void)viewDidDisappear:(BOOL)animated{
+    [gpuCamera stopCameraCapture];
+    NSLog(@"stopped GPUImage camera capture");
     
+    [self cleanSound];
+    
+    [super viewDidDisappear:animated];
+    NSLog(@"real time view did disappear");
 }
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
 - (void)viewDidUnload {
-    gpuView = nil;
     gpuCamera = nil;
+    gpuView = nil;
+    gpuFilter = nil;
     [self setFilterButton:nil];
     [self setBackButton:nil];
     [self setFilterListView:nil];
@@ -157,17 +168,14 @@
     [super viewDidUnload];
     NSLog(@"real time view did unload");
 }
--(void)viewDidDisappear:(BOOL)animated{
-    [self cleanSound];
-    [gpuCamera stopCameraCapture];
-    gpuCamera = nil;
-    gpuView = nil;
-    gpuFilter = nil;
-    NSLog(@"stopped capturing");
-    
-    [super viewDidDisappear:animated];
-     NSLog(@"real time view did disappear");
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
 }
+
+
+
 
 #pragma mark - ui control
 -(IBAction)touchedBackButton:(id)sender{
@@ -223,43 +231,19 @@
     
     NSString *name = [NSString stringWithUTF8String:colour_string(colour_name(rAvg, gAvg, bAvg))];
     dispatch_async(soundQueue, ^{
-        [self.fliteController say:name withVoice:self.slt];
+        [SpeechSynthesis say:name];
     });
 }
 
 - (void)initSound {
-    _fliteController = [[FliteController alloc] init];
-    _slt = [[Slt alloc] init];
+    [SpeechSynthesis initSingleton];
     soundQueue = dispatch_queue_create("sound_queue", NULL);
 }
 -(void)cleanSound{
-    _fliteController = nil;
-    _slt = nil;
     dispatch_release(soundQueue);
 }
 
 #pragma mark - capture functions
-/* startCapture is the final setup step to perform before the screen can display what the camera captures.*/
--(void) startCapture{
-    NSLog(@"GPUImage capture setup");
-    
-    gpuCamera = [[GPUImageVideoCamera alloc]
-                 initWithSessionPreset:AVCaptureSessionPreset640x480
-                 cameraPosition:AVCaptureDevicePositionBack];
-    gpuCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
-    
-    gpuFilter = [[GPUImageColorMatrixFilter alloc] init];
-    [gpuFilter setColorMatrix:GPUMatrix4x4FromArray(identityMatrix4.entries)];
-    
-    [gpuCamera addTarget:gpuFilter];
-    [gpuFilter addTarget:gpuView];
-    
-    gpuCamera.delegate = self;
-    
-    [gpuCamera startCameraCapture];
-    NSLog(@"GPUImage capture setup complete, capture started");
-}
-
 /* samples rgb value of center pixel*/
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer{
     CVImageBufferRef pixelBuf = CMSampleBufferGetImageBuffer(sampleBuffer);

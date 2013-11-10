@@ -54,6 +54,7 @@
 		F7C4AE6B182EF97800D81490 /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C4AE67182EF97800D81490 /* AcousticModelSpanish.bundle */; };
 		F7C4AE6C182EF97800D81490 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C4AE68182EF97800D81490 /* OpenEars.framework */; };
 		F7C4AE6D182EF97800D81490 /* Slt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C4AE69182EF97800D81490 /* Slt.framework */; };
+		F7C4AE70182F48BD00D81490 /* SpeechSynthesis.m in Sources */ = {isa = PBXBuildFile; fileRef = F7C4AE6F182F48BD00D81490 /* SpeechSynthesis.m */; };
 		F7DB6CEE181BA2AA00931929 /* UserProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = F7DB6CED181BA2AA00931929 /* UserProfile.m */; };
 		F7FBDFA71828B36E008E323D /* matrix.c in Sources */ = {isa = PBXBuildFile; fileRef = F7FBDFA61828B36E008E323D /* matrix.c */; };
 /* End PBXBuildFile section */
@@ -149,6 +150,8 @@
 		F7C4AE67182EF97800D81490 /* AcousticModelSpanish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelSpanish.bundle; sourceTree = "<group>"; };
 		F7C4AE68182EF97800D81490 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
 		F7C4AE69182EF97800D81490 /* Slt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Slt.framework; sourceTree = "<group>"; };
+		F7C4AE6E182F48BD00D81490 /* SpeechSynthesis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpeechSynthesis.h; sourceTree = "<group>"; };
+		F7C4AE6F182F48BD00D81490 /* SpeechSynthesis.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpeechSynthesis.m; sourceTree = "<group>"; };
 		F7DB6CEC181BA2AA00931929 /* UserProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfile.h; sourceTree = "<group>"; };
 		F7DB6CED181BA2AA00931929 /* UserProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfile.m; sourceTree = "<group>"; };
 		F7FBDFA31828B359008E323D /* matrix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = matrix.h; sourceTree = "<group>"; };
@@ -246,6 +249,8 @@
 				EF277C62181CA7F6004BAFB3 /* RealTimeModeViewController.m */,
 				8BC8F4F218249C48002DF36B /* StillImageModeViewController.h */,
 				8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */,
+				F7C4AE6E182F48BD00D81490 /* SpeechSynthesis.h */,
+				F7C4AE6F182F48BD00D81490 /* SpeechSynthesis.m */,
 				EFCC78B2182C635800331135 /* Queue.h */,
 				EFCC78B3182C635800331135 /* Queue.m */,
 				F71C68E6182B6409005DEC98 /* ArcBuffer.h */,
@@ -495,6 +500,7 @@
 				F71C68E3182B2329005DEC98 /* Filters.m in Sources */,
 				F71C68E8182B6409005DEC98 /* ArcBuffer.m in Sources */,
 				EFCC78B4182C635800331135 /* Queue.m in Sources */,
+				F7C4AE70182F48BD00D81490 /* SpeechSynthesis.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

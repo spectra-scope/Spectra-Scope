@@ -28,12 +28,7 @@ bugs:
 
 #import "GPUImage.h"
 
-#import "Slt/Slt.h"
-#import "OpenEars/FliteController.h"
-#import "OpenEars/LanguageModelGenerator.h"
-#import "OpenEars/PocketsphinxController.h"
-#import "OpenEars/AcousticModel.h"
-#import "OpenEars/OpenEarsEventsObserver.h"
+#import "SpeechSynthesis.h"
 
 #define clip(n, lo, hi)((n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n))
 @interface Point2D : NSObject
@@ -67,9 +62,6 @@ bugs:
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *reticule;
 @property (weak, nonatomic) IBOutlet UIImageView *playButton2;
-
-@property (strong, nonatomic) FliteController *fliteController;
-@property (strong, nonatomic) Slt *slt;
 @end
 
 @implementation StillImageModeViewController
@@ -88,29 +80,27 @@ bugs:
 - (void)viewDidLoad{
     NSLog(@"still image view did load: %p", self);
     [super viewDidLoad];
-	
+    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
+    _imageView.frame = CGRectOffset(mainScreenFrame, 0, -20);
+    [_imageView addSubview:_infoLabel];
 }
 -(void)viewDidAppear:(BOOL)animated{
     NSLog(@"still image view did appear");
     [super viewDidAppear:animated];
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     
-    CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
-    _imageView.frame = CGRectOffset(mainScreenFrame, 0, -20);
-    
-    [_imageView addSubview:_infoLabel];
-    
     [self initSound];
 }
 -(void) viewDidDisappear:(BOOL)animated{
     [self cleanSound];
     
-    image = nil;
-    pixelBuf = nil;
+   
     [super viewDidDisappear:animated];
     NSLog(@"still image view did disappear");
 }
 - (void)viewDidUnload {
+    image = nil;
+    pixelBuf = nil;
     [self setUiGroup:nil];
     [self setImageView:nil];
     [self setInfoLabel:nil];
@@ -127,8 +117,7 @@ bugs:
 }
 
 #pragma mark - picker functions
-- (IBAction)ChooseExisting{
-    
+- (IBAction)choosePicture{
     picker= [[UIImagePickerController alloc] init];
     picker.delegate= self;
     [picker setSourceType:UIImagePickerControllerSourceTypePhotoLibrary];
@@ -211,18 +200,15 @@ bugs:
     NSLog(@"say");
     NSString *name = [NSString stringWithUTF8String:colour_string(colour_name(rAvg, gAvg, bAvg))];
     dispatch_async(soundQueue, ^{
-        [self.fliteController say:name withVoice:self.slt];
+        [SpeechSynthesis say:name];
     });
 }
 
 - (void)initSound {
-    _fliteController = [[FliteController alloc] init];
-    _slt = [[Slt alloc] init];
+    [SpeechSynthesis initSingleton];
     soundQueue = dispatch_queue_create("sound_queue", NULL);
 }
 -(void)cleanSound{
-    _fliteController = nil;
-    _slt = nil;
     dispatch_release(soundQueue);
 }
 #pragma mark - processing

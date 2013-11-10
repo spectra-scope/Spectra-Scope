@@ -15,8 +15,12 @@
  - migrated camera function for real time mode to storyboard
  */
 #import "MainScreenViewController.h"
+#import "RealTimeModeViewController.h"
 @interface MainScreenViewController ()
-
+{
+    UIViewController * realTimeModeVC;
+    UIViewController * stillImageModeVC;
+}
 @end
 
 @implementation MainScreenViewController
@@ -32,6 +36,7 @@
 
 - (void)viewDidLoad
 {
+    NSLog(@"main screen did load: %p", self);
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -41,6 +46,26 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
+-(IBAction) gotoRealTimeMode:(id)sender{
+    [self.navigationController pushViewController:[self realTimeModeVC] animated:YES];
+}
+-(UIViewController*) realTimeModeVC{
+    if(realTimeModeVC == nil)
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        realTimeModeVC = [storyboard instantiateViewControllerWithIdentifier:@"RealTimeModeViewController"];
+    }
+    return realTimeModeVC;
+}
+-(IBAction)gotoStillImageMode:(id)sender{
+    [self.navigationController pushViewController:[self stillImageModeVC] animated:YES];
+}
+-(UIViewController*) stillImageModeVC{
+    if(stillImageModeVC == nil)
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        stillImageModeVC = [storyboard instantiateViewControllerWithIdentifier:@"StillImageModeViewController"];
+    }
+    return stillImageModeVC;
+}
 @end
