@@ -41,6 +41,7 @@
  - (fixed)empty bar below preview view, another wasted 20 rows of pixels
  bugs (iteration 2):
  - (fixed)viewDidUnload is never called, but viewDidload is called every time this screen is entered
+ - (fixed) changing filters  would randmoly make the program abort
  */
 #define USE_GPUIMAGE
 #import "RealTimeModeViewController.h"
