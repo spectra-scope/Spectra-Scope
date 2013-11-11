@@ -29,6 +29,11 @@
  1.8: by Archit Sood
  - Added Text to Speech Functionality in real time mode
  - Open Ears Library Used
+ 1.9: by Tian Lin Tan
+ - added more detailed colour information
+ - fixed colour information to moving average
+ - displays warning message if run on simulator
+ 
  bugs (iteration 1):
  - (not a bug) viewDidunload is not called when user goes back one screen
  - (fixed)stopRunning isn't called, creating a new capture session every time the user moves to this screen
@@ -98,7 +103,7 @@
 }
 - (void)viewDidLoad
 {
-     NSLog(@"real time view did load: %p", self);
+     NSLog(@"real time view did load");
     [super viewDidLoad];
     
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
@@ -140,6 +145,10 @@
     NSLog(@"starting GPUImage camera capture");
     [gpuCamera startCameraCapture];
     NSLog(@"GPUImage camera capture started");
+    
+#if TARGET_IPHONE_SIMULATOR
+    NSLog(@"REAL TIME MODE DOES NOT WORK ON IPHONE SIMULATOR, BECAUSE CAMERA DOES NOT WORK ON IPHONE SIMULATOR.");
+#endif
 }
 -(void)viewDidDisappear:(BOOL)animated{
     [gpuCamera stopCameraCapture];

@@ -25,7 +25,6 @@
  */
 #import "SignUpViewController.h"
 #import "UserProfile.h"
-#import <string.h>
 BOOL isProperName(NSString * str)
 {
     unichar c;

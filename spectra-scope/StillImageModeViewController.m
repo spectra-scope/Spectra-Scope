@@ -79,7 +79,7 @@ bugs:
 }
 #pragma mark - viewdidsomething
 - (void)viewDidLoad{
-    NSLog(@"still image view did load: %p", self);
+    NSLog(@"still image view did load");
     [super viewDidLoad];
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
     _imageView.frame = CGRectOffset(mainScreenFrame, 0, -20);

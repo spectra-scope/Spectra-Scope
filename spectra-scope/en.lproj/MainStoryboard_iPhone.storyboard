@@ -82,10 +82,10 @@
             </objects>
             <point key="canvasLocation" x="529" y="172"/>
         </scene>
-        <!--Main Screen View Controller - main screen-->
+        <!--Main Screen View Controller - welcome-->
         <scene sceneID="XGA-O0-OrQ">
             <objects>
-                <viewController storyboardIdentifier="mainScreen" id="1wX-bH-w9n" customClass="MainScreenViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainScreenViewController" id="1wX-bH-w9n" customClass="MainScreenViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AR4-d4-gHK">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -138,12 +138,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="main screen" id="gPc-1q-Mgn"/>
+                    <navigationItem key="navigationItem" title="welcome" id="gPc-1q-Mgn"/>
                     <connections>
                         <outlet property="realTimeButton" destination="4EE-u4-Ie2" id="xHb-5j-QaZ"/>
                         <outlet property="stillImageButton" destination="zQa-qI-Keh" id="Ltu-uf-HOl"/>
                         <segue destination="wnn-ah-IDg" kind="push" identifier="mainScreenToRealTimeModeSegue" id="K1U-e4-HYN"/>
-                        <segue destination="Hci-Qi-wn0" kind="push" id="sZ9-Ud-VeF"/>
+                        <segue destination="Hci-Qi-wn0" kind="push" identifier="mainScreenToStillImageModeSegue" id="sZ9-Ud-VeF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKg-xT-7lH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -628,79 +628,6 @@
     <resources>
         <image name="reticule.png" width="32" height="32"/>
     </resources>
-    <classes>
-        <class className="LoginScreenViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginScreenViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="logInPress:"/>
-                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="MainScreenViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MainScreenViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="gotoNextScreen:"/>
-                <relationship kind="action" name="gotoRealTimeMode:"/>
-                <relationship kind="action" name="gotoStillImageMode:"/>
-                <relationship kind="outlet" name="realTimeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="stillImageButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="RealTimeModeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTimeModeViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="clearFilters:"/>
-                <relationship kind="action" name="pushFilter:"/>
-                <relationship kind="action" name="sayColourName:"/>
-                <relationship kind="action" name="touchedBackButton:"/>
-                <relationship kind="action" name="touchedFilterButton:"/>
-                <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="bgrLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="brightenGreenButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="brightenRedButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="buttonGroup" candidateClass="UIView"/>
-                <relationship kind="outlet" name="clearFilterButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="filterButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="filterListView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="markGreenFilterButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="markRedFilterButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="reticuleImage" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="rgdFilterButton" candidateClass="UIButton"/>
-            </relationships>
-        </class>
-        <class className="SignUpViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="outlet" name="ageInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="ethnicityInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="passwordInputAgain" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="sexButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-        <class className="StillImageModeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/StillImageModeViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
-                <relationship kind="action" name="queryColour:"/>
-                <relationship kind="action" name="sayColourName:"/>
-                <relationship kind="action" name="showHideUIGroup:"/>
-                <relationship kind="action" name="touchedBackButton:"/>
-                <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="playButton2" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="reticule" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="uiGroup" candidateClass="UIView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
