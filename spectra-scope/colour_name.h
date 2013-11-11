@@ -40,4 +40,7 @@ typedef struct{
     uint32_t r:8, g:8, b:8, a:8;
 } pixel_t;
 unsigned pixel_dif(pixel_t a, pixel_t b);
+
+// get average colour near the x y point
+pixel_t colour_average(pixel_t * pixels, unsigned width, unsigned height, unsigned x, unsigned y, unsigned tolerance, unsigned deviation, unsigned queue_size);
 #endif

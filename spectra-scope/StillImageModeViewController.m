@@ -33,9 +33,15 @@ bugs:
 #import "SpeechSynthesis.h"
 
 #define clip(n, lo, hi)((n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n))
+
+// size of the queue for the algorithm
 #define QUEUE_SIZE 1024
+
+// allowable difference between neighbor pixels
 #define NEIGHBOR_TOLERANCE 20
-#define DEVIANCE 100
+
+//allowable difference between pixel and starting pixel
+#define DEVIATION 100
 
 @interface StillImageModeViewController (){
     UIImagePickerController *picker;
@@ -224,44 +230,11 @@ bugs:
     NSUInteger xx = (_reticule.center.y * width) / self.view.bounds.size.height;
     xx = clip(xx, 0, width - 1);
     
-    pixel_t startPixel = pixels[width * yy + xx];
-    rAvg = startPixel.r;
-    gAvg = startPixel.g;
-    bAvg = startPixel.b;
-   
-    struct point{unsigned x, y;} startPoint = {xx, yy};
-    struct ringbuffer queue = ringbuffer_create(QUEUE_SIZE, sizeof(struct point));
-    char * visited = calloc(width * height, 1);
-    ringbuffer_enq(&queue, &startPoint);
-    while(queue.len > 0)
-    {
-        struct point p;
-        ringbuffer_top(&queue, &p);
-        ringbuffer_deq(&queue);
-        struct point neighbors[4] = {
-            {p.x - 1, p.y}, {p.x, p.y + 1}, {p.x + 1, p.y}, {p.x, p.y - 1}
-        };
-        for(int i = 0; i < 4; i++)
-        {
-            if(!((neighbors[i].x >= width || neighbors[i].y >= height) ||
-                (visited[neighbors[i].y * width + neighbors[i].x])))
-            {
-                visited[neighbors[i].y * width + neighbors[i].x] = 1;
-                pixel_t current = pixels[p.y * width + p.x];
-                pixel_t neighbor = pixels[neighbors[i].y * width + neighbors[i].x];
-                unsigned sdif = pixel_dif(startPixel, neighbor);
-                unsigned ndif = pixel_dif(current, neighbor);
-                if(sdif < DEVIANCE && ndif < NEIGHBOR_TOLERANCE && queue.len < queue.size)
-                    ringbuffer_enq(&queue, neighbors + i);
-            }
-        }
-        pixel_t current = pixels[p.y * width + p.x];
-        rAvg = (rAvg * 7 + current.r) / 8;
-        gAvg = (gAvg * 7 + current.g) / 8;
-        bAvg = (bAvg * 7 + current.b) / 8;
-    }
-    
-   
+
+    pixel_t result = colour_average(pixels, width, height, xx, yy, NEIGHBOR_TOLERANCE, DEVIATION, QUEUE_SIZE);
+    rAvg = result.r;
+    gAvg = result.g;
+    bAvg = result.b;
 
 
     char const * colour_str = colour_string(colour_id(rAvg, gAvg, bAvg));
