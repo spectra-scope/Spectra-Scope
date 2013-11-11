@@ -2,7 +2,7 @@
 //  matrix.c
 //  spectra-scope
 //
-//  Created by tt on 13-11-04.
+//  Created by Tian Lin Tan on 13-11-04.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
 

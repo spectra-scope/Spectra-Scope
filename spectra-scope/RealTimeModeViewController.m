@@ -1,5 +1,5 @@
 //
-//  RealTime.m
+//  RealTimeModeViewController.m
 //  spectra-scope
 //
 //  Created by Tian Lin Tan on 10/26/13.
@@ -113,7 +113,8 @@
     
     gpuCamera = [[GPUImageVideoCamera alloc]
                  initWithSessionPreset:AVCaptureSessionPresetMedium
-                 cameraPosition:AVCaptureDevicePositionBack];
+                 cameraPosition:AVCaptureDevicePositionBack
+                 usingYUV:NO];
     gpuCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
     NSLog(@"GPUImage camera setup complete");
     
@@ -132,7 +133,6 @@
     [super viewDidAppear:animated];
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    
     colorMatrix = identityMatrix4;
     
     [self initSound];
@@ -146,7 +146,6 @@
     NSLog(@"stopped GPUImage camera capture");
     
     [self cleanSound];
-    
     [super viewDidDisappear:animated];
     NSLog(@"real time view did disappear");
 }
@@ -229,7 +228,10 @@
 #pragma mark - sound
 -(IBAction)sayColourName:(id)sender{
     
-    NSString *name = [NSString stringWithUTF8String:colour_string(colour_name(rAvg, gAvg, bAvg))];
+    NSString * name = [NSString stringWithFormat:@"%s %s",
+                       brightness_string(brightness_id(rAvg, gAvg, bAvg)),
+                       colour_string(colour_id(rAvg, gAvg, bAvg))];
+    NSLog(@"say %@", name);
     dispatch_async(soundQueue, ^{
         [SpeechSynthesis say:name];
     });
@@ -315,9 +317,12 @@
         else
         {
             counter = 10;
-            char const * name = colour_string(colour_name(r, g, b));
+            NSString * name = [NSString stringWithFormat:@"%03d %03d %03d %s %s",
+                               rAvg, gAvg, bAvg,
+                               brightness_string(brightness_id(rAvg, gAvg, bAvg)),
+                               colour_string(colour_id(rAvg, gAvg, bAvg))];
             dispatch_sync(dispatch_get_main_queue(), ^{
-                _bgrLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d name:%s", rAvg, gAvg, bAvg, name];
+                _bgrLabel.text = name;
             });
         }
     }

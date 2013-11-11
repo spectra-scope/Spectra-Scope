@@ -1,5 +1,5 @@
 //
-//  RealTime.h
+//  RealTimeModeViewController.h
 //  spectra-scope
 //
 //  Created by Tian Lin Tan on 10/26/13.

@@ -1,5 +1,5 @@
 //
-//  stillImageDisplay.m
+//  StillImageModeViewController.m
 //  spectra-scope
 //
 //  Created by Archit Sood on 11/1/13.
@@ -198,8 +198,10 @@ bugs:
 
 #pragma mark - sound
 -(IBAction)sayColourName:(id)sender{
-    NSLog(@"say");
-    NSString *name = [NSString stringWithUTF8String:colour_string(colour_name(rAvg, gAvg, bAvg))];
+    NSString *name = [NSString stringWithFormat:@"%s %s",
+                        brightness_string(brightness_id(rAvg, gAvg, bAvg)),
+                                          colour_string(colour_id(rAvg, gAvg, bAvg))];
+    NSLog(@"say %@", name);
     dispatch_async(soundQueue, ^{
         [SpeechSynthesis say:name];
     });
@@ -274,7 +276,7 @@ bugs:
    
 
 
-    char const * colour_str = colour_string(colour_name(rAvg, gAvg, bAvg));
+    char const * colour_str = colour_string(colour_id(rAvg, gAvg, bAvg));
     char const * brightness_str = brightness_string(brightness_id(rAvg, gAvg, bAvg));
     _infoLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d %s %s", rAvg, gAvg, bAvg, brightness_str, colour_str];
 

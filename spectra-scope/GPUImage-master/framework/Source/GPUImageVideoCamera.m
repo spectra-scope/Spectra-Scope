@@ -107,15 +107,16 @@ NSString *const kGPUImageYUVVideoRangeConversionForLAFragmentShaderString = SHAD
 
 - (id)init;
 {
-    if (!(self = [self initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionBack]))
-    {
-		return nil;
-    }
-    
+    self = [self initWithSessionPreset:AVCaptureSessionPreset640x480 cameraPosition:AVCaptureDevicePositionBack];
     return self;
 }
 
-- (id)initWithSessionPreset:(NSString *)sessionPreset cameraPosition:(AVCaptureDevicePosition)cameraPosition; 
+- (id)initWithSessionPreset:(NSString *)sessionPreset cameraPosition:(AVCaptureDevicePosition)cameraPosition;
+{
+    self = [self initWithSessionPreset:sessionPreset cameraPosition:cameraPosition usingYUV:YES];
+    return self;
+}
+- (id)initWithSessionPreset:(NSString *)sessionPreset cameraPosition:(AVCaptureDevicePosition)cameraPosition usingYUV:(BOOL)yuv;
 {
 	if (!(self = [super init]))
     {
@@ -131,7 +132,7 @@ NSString *const kGPUImageYUVVideoRangeConversionForLAFragmentShaderString = SHAD
     _runBenchmark = NO;
     capturePaused = NO;
     outputRotation = kGPUImageNoRotation;
-    captureAsYUV = YES;
+    captureAsYUV = yuv;
     _preferredConversion = kColorConversion709;
 
     runSynchronouslyOnVideoProcessingQueue(^{

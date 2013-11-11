@@ -1,5 +1,5 @@
 //
-//  stillImageDisplay.h
+//  StillImageModeViewController.h
 //  spectra-scope
 //
 //  Created by Archit Sood on 11/1/13.

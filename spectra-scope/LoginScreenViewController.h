@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  LoginScreenViewController.h
 //  spectra-scope
 //
 //  Created by Tian Lin Tan on 2013-10-18.

@@ -20,7 +20,7 @@
 
 /* maps rgb values to a basic colour name
  */
-enum colour colour_name(int r, int g, int b)
+enum colour colour_id(int r, int g, int b)
 {
     // brightness is the average of three components
 	int brightness = (r + g + b) / 3;

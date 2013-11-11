@@ -107,7 +107,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="gotoRealTimeMode:" destination="1wX-bH-w9n" eventType="touchUpInside" id="Ki9-Mf-yRw"/>
+                                    <action selector="gotoNextScreen:" destination="1wX-bH-w9n" eventType="touchUpInside" id="8NC-fZ-mBX"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="zQa-qI-Keh">
@@ -121,7 +121,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="gotoStillImageMode:" destination="1wX-bH-w9n" eventType="touchUpInside" id="aQh-Mq-inY"/>
+                                    <action selector="gotoNextScreen:" destination="1wX-bH-w9n" eventType="touchUpInside" id="ynX-MZ-BLG"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="tk3-y8-xKx">
@@ -140,6 +140,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="main screen" id="gPc-1q-Mgn"/>
                     <connections>
+                        <outlet property="realTimeButton" destination="4EE-u4-Ie2" id="xHb-5j-QaZ"/>
+                        <outlet property="stillImageButton" destination="zQa-qI-Keh" id="Ltu-uf-HOl"/>
                         <segue destination="wnn-ah-IDg" kind="push" identifier="mainScreenToRealTimeModeSegue" id="K1U-e4-HYN"/>
                         <segue destination="Hci-Qi-wn0" kind="push" id="sZ9-Ud-VeF"/>
                     </connections>
@@ -639,6 +641,13 @@
         </class>
         <class className="MainScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainScreenViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="gotoNextScreen:"/>
+                <relationship kind="action" name="gotoRealTimeMode:"/>
+                <relationship kind="action" name="gotoStillImageMode:"/>
+                <relationship kind="outlet" name="realTimeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="stillImageButton" candidateClass="UIButton"/>
+            </relationships>
         </class>
         <class className="RealTimeModeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTimeModeViewController.h"/>
@@ -667,8 +676,6 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
             <relationships>
                 <relationship kind="action" name="backgroundTouched:"/>
-                <relationship kind="action" name="sexButtonPress:"/>
-                <relationship kind="action" name="signupButtonPress:"/>
                 <relationship kind="outlet" name="ageInput" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="ethnicityInput" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>

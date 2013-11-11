@@ -21,6 +21,8 @@
     UIViewController * realTimeModeVC;
     UIViewController * stillImageModeVC;
 }
+@property (weak, nonatomic) IBOutlet UIButton *realTimeButton;
+@property (weak, nonatomic) IBOutlet UIButton *stillImageButton;
 @end
 
 @implementation MainScreenViewController
@@ -46,8 +48,16 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
--(IBAction) gotoRealTimeMode:(id)sender{
-    [self.navigationController pushViewController:[self realTimeModeVC] animated:YES];
+-(IBAction)gotoNextScreen:(id)sender{
+    UIViewController * next = nil;
+    if(sender == _realTimeButton)
+        next = [self realTimeModeVC];
+    else if(sender == _stillImageButton)
+        next = [self stillImageModeVC];
+    else
+        return;
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    [self.navigationController pushViewController:next animated:YES];
 }
 -(UIViewController*) realTimeModeVC{
     if(realTimeModeVC == nil)
@@ -57,9 +67,6 @@
     }
     return realTimeModeVC;
 }
--(IBAction)gotoStillImageMode:(id)sender{
-    [self.navigationController pushViewController:[self stillImageModeVC] animated:YES];
-}
 -(UIViewController*) stillImageModeVC{
     if(stillImageModeVC == nil)
     {
@@ -67,5 +74,10 @@
         stillImageModeVC = [storyboard instantiateViewControllerWithIdentifier:@"StillImageModeViewController"];
     }
     return stillImageModeVC;
+}
+- (void)viewDidUnload {
+    [self setRealTimeButton:nil];
+    [self setStillImageButton:nil];
+    [super viewDidUnload];
 }
 @end
