@@ -47,7 +47,7 @@ bugs:
 @property (weak, nonatomic) IBOutlet UIView *uiGroup;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *reticule;
-@property (weak, nonatomic) IBOutlet UIImageView *playButton2;
+@property (weak, nonatomic) IBOutlet UIButton *playButton;
 @end
 
 @implementation StillImageModeViewController
@@ -91,6 +91,7 @@ bugs:
     [self setImageView:nil];
     [self setInfoLabel:nil];
     [self setReticule:nil];
+    [self setPlayButton:nil];
     [super viewDidUnload];
     NSLog(@"still image view did unload");
 }

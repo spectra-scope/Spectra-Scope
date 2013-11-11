@@ -62,10 +62,13 @@
     dispatch_queue_t soundQueue;
 }
 
+//colour info label
 @property (weak, nonatomic) IBOutlet UILabel *bgrLabel;
 
+//aiming reticule
 @property (weak, nonatomic) IBOutlet UIImageView *reticuleImage;
 
+//filter ui
 @property (weak, nonatomic) IBOutlet UIView *filterListView;
 @property (weak, nonatomic) IBOutlet UIButton *rgdFilterButton;
 @property (weak, nonatomic) IBOutlet UIButton *markGreenFilterButton;
@@ -74,6 +77,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *brightenGreenButton;
 @property (weak, nonatomic) IBOutlet UIButton *brightenRedButton;
 
+//function ui
 @property (weak, nonatomic) IBOutlet UIView *buttonGroup;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
 @property (weak, nonatomic) IBOutlet UIButton *filterButton;
@@ -216,22 +220,22 @@
         filterMat = &brightenRedMatrix;
     else
         return;
-    [gpuCamera pauseCameraCapture];
+    [gpuCamera stopCameraCapture];
     {
         struct mat4x4 dst;
         mat_mul(dst.entries, filterMat->entries, colorMatrix.entries, 4);
         colorMatrix = dst;
         [gpuFilter setColorMatrix:GPUMatrix4x4FromArray(dst.entries)];
     }
-    [gpuCamera resumeCameraCapture];
+    [gpuCamera startCameraCapture];
 }
 -(IBAction)clearFilters:(id)sender{
-    [gpuCamera pauseCameraCapture];
+    [gpuCamera stopCameraCapture];
     {
         colorMatrix = identityMatrix4;
         [gpuFilter setColorMatrix:GPUMatrix4x4FromArray(colorMatrix.entries)];
     }
-    [gpuCamera resumeCameraCapture];
+    [gpuCamera startCameraCapture];
 }
 
 #pragma mark - sound

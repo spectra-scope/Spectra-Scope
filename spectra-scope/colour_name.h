@@ -29,9 +29,13 @@ enum brightness{
     BRIGHT, VERY_BRIGHT
 };
 
+/* calculate the brightness level of a pixel.*/
 enum brightness brightness_id(unsigned r, unsigned g, unsigned b);
+
+/* get a c string for printing out a brightness*/
 char const * brightness_string(enum brightness b);
 
+/* calculate the difference between two pixels.*/
 typedef struct{
     uint32_t r:8, g:8, b:8, a:8;
 } pixel_t;

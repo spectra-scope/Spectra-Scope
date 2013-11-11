@@ -9,6 +9,7 @@
 #ifndef matrix_h
 #define matrix_h
 
+/* matrix multiplication for square matrix arranged in row major order*/
 void mat_mul(float * restrict dst, float const * restrict a, float const * restrict b, unsigned size);
 
 #endif
