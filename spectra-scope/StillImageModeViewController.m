@@ -34,7 +34,8 @@ bugs:
 
 #define clip(n, lo, hi)((n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n))
 #define QUEUE_SIZE 1024
-#define TOLERANCE 20
+#define NEIGHBOR_TOLERANCE 20
+#define DEVIANCE 100
 
 @interface StillImageModeViewController (){
     UIImagePickerController *picker;
@@ -246,10 +247,11 @@ bugs:
                 (visited[neighbors[i].y * width + neighbors[i].x])))
             {
                 visited[neighbors[i].y * width + neighbors[i].x] = 1;
-                pixel_t a = pixels[p.y * width + p.x];
-                pixel_t b = pixels[neighbors[i].y * width + neighbors[i].x];
-                unsigned dif = pixel_dif(a, b);
-                if(dif < TOLERANCE && queue.len < queue.size)
+                pixel_t current = pixels[p.y * width + p.x];
+                pixel_t neighbor = pixels[neighbors[i].y * width + neighbors[i].x];
+                unsigned sdif = pixel_dif(startPixel, neighbor);
+                unsigned ndif = pixel_dif(current, neighbor);
+                if(sdif < DEVIANCE && ndif < NEIGHBOR_TOLERANCE && queue.len < queue.size)
                     ringbuffer_enq(&queue, neighbors + i);
             }
         }
