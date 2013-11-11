@@ -127,13 +127,13 @@ char const * colour_string(enum colour c)
 enum brightness brightness_id(unsigned r, unsigned g, unsigned b)
 {
     unsigned brightness = (r + g + b) / 3;
-    if(brightness > 230)
+    if(brightness > 200)
         return VERY_BRIGHT;
-    else if(brightness > 190)
+    else if(brightness > 120)
         return BRIGHT;
-    else if(brightness > 100)
+    else if(brightness > 70)
         return MEDIUM;
-    else if(brightness > 50)
+    else if(brightness > 30)
         return DARK;
     else
         return VERY_DARK;

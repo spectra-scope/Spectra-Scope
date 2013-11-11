@@ -15,6 +15,8 @@ revisions:
  - added reticule for aiming colour query
  - added gesture recognizer to aim reticule
  - added function to query colour info at reticule
+ 1.2: by Tian Lin Tan
+ - changed to use flood fill algorithm with tolerance and moving average to find colour
  
 bugs:
  - index out of bounds when querying the corner pixels (fixed with cliping of index first)
@@ -31,25 +33,8 @@ bugs:
 #import "SpeechSynthesis.h"
 
 #define clip(n, lo, hi)((n) < (lo) ? (lo) : (n) > (hi) ? (hi) : (n))
-/*
-@interface Point2D : NSObject
-@property (nonatomic, readwrite) unsigned x, y;
-+(id) pointWith:(unsigned)x and:(unsigned)y;
-@end
-
-@implementation Point2D
-+(id) pointWith:(unsigned)x and:(unsigned)y{
-    Point2D * point = [[Point2D alloc] init];
-    point.x = x;
-    point.y = y;
-    return point;
-}
--(BOOL)isEqual:(id)object{
-    Point2D * other = object;
-    return _x == other.x && _y == other.y;
-}
-@end
-*/
+#define QUEUE_SIZE 1024
+#define TOLERANCE 20
 
 @interface StillImageModeViewController (){
     UIImagePickerController *picker;
@@ -243,7 +228,7 @@ bugs:
     bAvg = startPixel.b;
    
     struct point{unsigned x, y;} startPoint = {xx, yy};
-    struct ringbuffer queue = ringbuffer_create(1000, sizeof(struct point));
+    struct ringbuffer queue = ringbuffer_create(QUEUE_SIZE, sizeof(struct point));
     char * visited = calloc(width * height, 1);
     ringbuffer_enq(&queue, &startPoint);
     while(queue.len > 0)
@@ -263,7 +248,7 @@ bugs:
                 pixel_t a = pixels[p.y * width + p.x];
                 pixel_t b = pixels[neighbors[i].y * width + neighbors[i].x];
                 unsigned dif = pixel_dif(a, b);
-                if(dif < 10 && queue.len < queue.size)
+                if(dif < TOLERANCE && queue.len < queue.size)
                     ringbuffer_enq(&queue, neighbors + i);
             }
         }
