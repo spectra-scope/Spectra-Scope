@@ -131,7 +131,7 @@ enum login_status{
     {
         NSLog(@"%p %p %p %p", ini_get(profiles, username, "continent"), ini_get(profiles, username, "age"), ini_get(profiles, username, "sex"), ini_get(profiles, username, "upload"));
 
-        _continent = [NSString stringWithUTF8String:ini_get(profiles, username, "continent")];
+        //_continent = [NSString stringWithUTF8String:ini_get(profiles, username, "continent")];
         _age = [[NSString stringWithUTF8String:ini_get(profiles, username, "age")] intValue];
         _sex = string2sex([NSString stringWithUTF8String:ini_get(profiles, username, "sex")]);
         _allowUploadUsageData = string2bool([NSString stringWithUTF8String:ini_get(profiles, username, "upload")]);

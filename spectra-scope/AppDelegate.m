@@ -60,6 +60,7 @@
     //get the documents directory:
     NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString * dir = [paths objectAtIndex:0];
+    NSLog(@"%@", dir);
     return [NSString stringWithFormat:@"%@/profiles.txt", dir];
     
 }

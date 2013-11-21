@@ -8,8 +8,10 @@
 
 #import "OptionsViewController.h"
 #import "AppDelegate.h"
-@interface OptionsViewController ()
 
+@interface OptionsViewController ()
+@property (nonatomic, getter = getProfile) UserProfile * profile;
+@property (weak, nonatomic) IBOutlet UIButton *uploadButton;
 @end
 
 @implementation OptionsViewController
@@ -31,12 +33,21 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    
+    
 }
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(UserProfile *)getProfile
+{
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    return appDelegate.currentProfile;
+}
+- (void)viewDidUnload {
+    [self setUploadButton:nil];
+    [super viewDidUnload];
+}
 @end

@@ -50,6 +50,7 @@
 		F729D45E1822006A0016CEC6 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F729D45D1822006A0016CEC6 /* OpenGLES.framework */; };
 		F729D47C182217480016CEC6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F729D47B182217480016CEC6 /* CoreImage.framework */; };
 		F732245F183D82E700ACBDB5 /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F732245E183D82E700ACBDB5 /* OptionsViewController.m */; };
+		F7322468183DE0A900ACBDB5 /* tokenizer.c in Sources */ = {isa = PBXBuildFile; fileRef = F7322466183DE0A900ACBDB5 /* tokenizer.c */; };
 		F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
 		F7C4AE6A182EF97800D81490 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C4AE66182EF97800D81490 /* AcousticModelEnglish.bundle */; };
 		F7C4AE6B182EF97800D81490 /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C4AE67182EF97800D81490 /* AcousticModelSpanish.bundle */; };
@@ -147,6 +148,8 @@
 		F729D47B182217480016CEC6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		F732245D183D82E700ACBDB5 /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
 		F732245E183D82E700ACBDB5 /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
+		F7322466183DE0A900ACBDB5 /* tokenizer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tokenizer.c; sourceTree = "<group>"; };
+		F7322467183DE0A900ACBDB5 /* tokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tokenizer.h; sourceTree = "<group>"; };
 		F79AF6C11818DB4800AB781F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		F79AF6C21818DB4800AB781F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		F7C4AE66182EF97800D81490 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
@@ -295,6 +298,8 @@
 		F714AF1F181C3D4400F60D69 /* iniparser */ = {
 			isa = PBXGroup;
 			children = (
+				F7322466183DE0A900ACBDB5 /* tokenizer.c */,
+				F7322467183DE0A900ACBDB5 /* tokenizer.h */,
 				F714AF20181C3D4400F60D69 /* hashsetv.h */,
 				F714AF21181C3D4400F60D69 /* hashsetvsc.c */,
 				F714AF22181C3D4400F60D69 /* iniparser.c */,
@@ -541,6 +546,7 @@
 				EFCC78B4182C635800331135 /* Queue.m in Sources */,
 				F7C4AE70182F48BD00D81490 /* SpeechSynthesis.m in Sources */,
 				F732245F183D82E700ACBDB5 /* OptionsViewController.m in Sources */,
+				F7322468183DE0A900ACBDB5 /* tokenizer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
