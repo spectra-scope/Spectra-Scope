@@ -22,35 +22,24 @@ CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 POSSIBILITY OF SUCH DAMAGE.
 */
-#ifndef STRINGOP_H
-#define STRINGOP_H
-#include <stdbool.h>
-/* removes trailing whitespaces*/
-void cstr_chomp(char * cstr);
+#ifndef TOKENIZER_H
+#define TOKENIZER_H
+#include <stdio.h>
+enum token_type{
+	TOKEN_TYPE_SECTION,
+	TOKEN_TYPE_NAME,
+	TOKEN_TYPE_ASSIGNMENT,
+	TOKEN_TYPE_STRING,
+	TOKEN_TYPE_NEWLINE,
+	TOKEN_TYPE_END
+};
+struct token{
+	enum token_type type;
+	char * text;
+};
+struct token_stream;
 
-bool cstr_has(char const * cstr, char c);
-
-/* string substitution.
-all occurrences of a is changed to b.
-make sure cstr has enough space.*/
-void cstr_subst(char * restrict cstr, char const * restrict a, char const * restrict b);
-
-/* converts a string to an int.
-intptr: the int pointed to by this pointer will be set to the converted value.
-
-returns:
-- zero for success
-- non-zero for failure*/
-int cstr2int(char const *, int * intptr);
-int cstr2uint(char const *, unsigned * uintptr);
-double cstr2double(char const *, char const ** endptr);
-
-/* make a new copy of a char array string*/
-char * cstr_dup(char const *);
-
-/* checks if a char is whitespace*/
-int is_whitespace(char c);
-
-/* checks if a string is represents a valid int*/
-int is_int(char const * cstr);
-#endif // STRINGOP_H
+struct token_stream * token_stream_new(FILE * fid);
+void token_stream_del(struct token_stream * ts);
+struct token token_stream_read(struct token_stream * ts);
+#endif
