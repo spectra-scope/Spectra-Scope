@@ -14,7 +14,6 @@
  - added log in functions
  */
 #import "UserProfile.h"
-#import "iniparser/iniparser.h"
 
 
 NSString const * const sexNames[] = {
@@ -23,86 +22,23 @@ NSString const * const sexNames[] = {
     [SEX_FEMALE] = @"female",
     [SEX_OTHER] = @"other"
 };
-
-
-struct ini * profiles = NULL;
-NSString * getProfilePath(void)
+enum sex string2sex(NSString * str)
 {
-    //get the documents directory:
-    NSArray * paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString * dir = [paths objectAtIndex:0];
-    return [NSString stringWithFormat:@"%@/profiles.txt", dir];
-
-}
-void createProfileFileIfNotExist(void)
-{
-    NSString * profile_path = getProfilePath();
-    FILE * fid;
-    fid = fopen([profile_path UTF8String], "r");
-    if(fid == NULL)
-    {
-        fid = fopen([profile_path UTF8String], "w");
-        if(fid != NULL)
-            fclose(fid);
-        else
-            perror("createpProfileFileIfNotExist");
-    }
-}
-void loadProfileIniIfNotLoaded(void)
-{
-    if(profiles == NULL)
-    {
-        NSString * profile_path = getProfilePath();
-        profiles = ini_new();
-        assert(profiles != NULL);
-        createProfileFileIfNotExist();
-        FILE * fid = fopen([profile_path UTF8String], "rb");
-        if(fid != NULL)
-        {
-            ini_read(profiles, fid);
-            fclose(fid);
-        }
-        else
-        {
-            NSLog(@"unable to create profile file");
-            perror("loadProfileIniIfNotLoaded");
-        }
-    }
-}
-void storeProfileIni(void)
-{
-    if(profiles != NULL)
-    {
-        NSString * profile_path = getProfilePath();
-        
-        FILE * fid = fopen([profile_path UTF8String], "wb");
-        if(fid != NULL)
-        {
-            ini_write(profiles, fid);
-            NSLog(@"saved profile to %@", profile_path);
-            fclose(fid);
-        }
-        else
-        {
-            NSLog(@"unable to open %@", profile_path);
-            perror("storeProfileIni");
-        }
-    }
-}
-struct ini * getProfileIni(void)
-{
-    loadProfileIniIfNotLoaded();
-    if(profiles == NULL)
-    {
-        perror("getProfileIni");
-        NSLog(@"unable to open user profiles, aborting.");
-        abort();
-    }
-        
+    if([str isEqualToString:@"none"])
+        return SEX_NONE;
+    else if([str isEqualToString:@"male"])
+        return SEX_MALE;
+    else if([str isEqualToString:@"female"])
+        return SEX_FEMALE;
+    else if([str isEqualToString:@"other"])
+        return SEX_OTHER;
     else
-        return profiles;
+        return SEX_LAST;
 }
-
+BOOL string2bool(NSString * str)
+{
+    return [str isEqual:@"true"];
+}
 enum signup_status{
     SU_NONE,
     SU_SUCCESS,
@@ -133,12 +69,11 @@ enum login_status{
         _age = 0;
         _sex = SEX_NONE;
         signup_status = SU_NONE;
-        login_status = LI_FAIL;
+        login_status = LI_NONE;
     }
     return self;
 }
--(void) signUp{
-    struct ini * profiles = getProfileIni();
+-(void) signup:(struct ini*) profiles{
     char const * username = [_username UTF8String];
     if(ini_get(profiles, username, "password") != NULL)
     {
@@ -152,23 +87,24 @@ enum login_status{
         ini_set(profiles, username, "continent", [_continent UTF8String]);
         assert(ini_get(profiles, username, "continent"));
         
-        char age[5];
-        snprintf(age, sizeof age, "%d", _age);
-        ini_set(profiles, username, "age", age);
+        NSString * ageString = [NSString stringWithFormat:@"%d", _age];
+        ini_set(profiles, username, "age", [ageString UTF8String]);
         assert(ini_get(profiles, username, "age"));
         
         ini_set(profiles, username, "sex", [sexNames[_sex] UTF8String]);
         assert(ini_get(profiles, username, "sex"));
         
-        storeProfileIni();
+        ini_set(profiles, username, "upload", "false");
+        assert(ini_get(profiles, username, "upload"));
+        
         signup_status = SU_SUCCESS;
     }
 }
--(BOOL) signUpWasSuccessful{
+-(BOOL) signupWasSuccessful{
     return signup_status == SU_SUCCESS;
 }
 
--(NSString *) signUpStatusString{
+-(NSString *) signupStatusString{
     switch(signup_status){
         case SU_NONE:
             return @"no sign up performed";
@@ -180,8 +116,7 @@ enum login_status{
             return @"something very wrong happened";
     }
 }
--(void) login{
-    struct ini * profiles = getProfileIni();
+-(void) login:(struct ini*)profiles{
     char const * username = [_username UTF8String];
     char const * password = ini_get(profiles, username, "password");
     if(password == NULL)
@@ -194,6 +129,13 @@ enum login_status{
     }
     else
     {
+        NSLog(@"%p %p %p %p", ini_get(profiles, username, "continent"), ini_get(profiles, username, "age"), ini_get(profiles, username, "sex"), ini_get(profiles, username, "upload"));
+
+        _continent = [NSString stringWithUTF8String:ini_get(profiles, username, "continent")];
+        _age = [[NSString stringWithUTF8String:ini_get(profiles, username, "age")] intValue];
+        _sex = string2sex([NSString stringWithUTF8String:ini_get(profiles, username, "sex")]);
+        _allowUploadUsageData = string2bool([NSString stringWithUTF8String:ini_get(profiles, username, "upload")]);
+
         login_status = LI_SUCCESS;
     }
 }

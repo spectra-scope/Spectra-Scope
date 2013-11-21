@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "iniparser.h"
+#import "UserProfile.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-
+@property (readonly) struct ini * profiles;
+@property (strong, nonatomic) UserProfile * currentProfile;
 @end

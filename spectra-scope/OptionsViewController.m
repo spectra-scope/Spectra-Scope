@@ -7,7 +7,7 @@
 //
 
 #import "OptionsViewController.h"
-
+#import "AppDelegate.h"
 @interface OptionsViewController ()
 
 @end
@@ -28,7 +28,11 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

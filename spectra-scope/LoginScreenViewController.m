@@ -20,6 +20,7 @@ revisions:
 #import "LoginScreenViewController.h"
 #import "MainScreenViewController.h"
 #import "UserProfile.h"
+#import "AppDelegate.h"
 @interface LoginScreenViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameInput;
 @property (weak, nonatomic) IBOutlet UITextField *passwordInput;
@@ -56,10 +57,14 @@ revisions:
     UserProfile * profile = [[UserProfile alloc] init];
     profile.username = _usernameInput.text;
     profile.password = _passwordInput.text;
-    [profile login];
+    
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    struct ini * profiles = appDelegate.profiles;
+    [profile login:profiles];
 
     if([profile loginWasSuccessful])
     {
+        appDelegate.currentProfile = profile;
         [self.navigationController pushViewController:self.mainScreenVC animated:YES];
     }
     else

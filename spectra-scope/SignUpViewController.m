@@ -25,6 +25,7 @@
  */
 #import "SignUpViewController.h"
 #import "UserProfile.h"
+#import "AppDelegate.h"
 BOOL isProperName(NSString * str)
 {
     unichar c;
@@ -131,6 +132,8 @@ BOOL isInt(NSString * str)
 
 -(IBAction)signupButtonPress:(id)sender{
     UIColor * red = [[UIColor alloc] initWithRed:255 green: 0 blue:0 alpha:255];
+    
+    // first to input sanitization
     unsigned age = [_ageInput.text intValue];
     if([_usernameInput.text length] == 0 ||
        [_passwordInput.text length] == 0 ||
@@ -174,20 +177,26 @@ BOOL isInt(NSString * str)
         _messageLabel.text = @"invalid continent of orign";
         _messageLabel.textColor = red;
     }
+    
+    // finally try signing up
     else
     {
-        UserProfile * profile = [[UserProfile alloc] init];
-        profile.username = _usernameInput.text;
-        profile.password = _passwordInput.text;
-        profile.continent = _ethnicityInput.text;
-        profile.age = age;
-        profile.sex = sex;
-        [profile signUp];
-        if([profile signUpWasSuccessful])
+        UserProfile * newProfile = [[UserProfile alloc] init];
+        newProfile.username = _usernameInput.text;
+        newProfile.password = _passwordInput.text;
+        newProfile.continent = _ethnicityInput.text;
+        newProfile.age = age;
+        newProfile.sex = sex;
+        
+        AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+        struct ini * profiles = appDelegate.profiles;
+        [newProfile signup:profiles];
+        
+        if([newProfile signupWasSuccessful])
             [self.navigationController popViewControllerAnimated: YES];
         else
         {
-            _messageLabel.text = [profile signUpStatusString];
+            _messageLabel.text = [newProfile signupStatusString];
             _messageLabel.textColor = red;
         }
     }

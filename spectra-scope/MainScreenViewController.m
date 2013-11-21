@@ -59,6 +59,7 @@
 }
 #pragma mark - flow control
 -(IBAction)gotoNextScreen:(id)sender{
+    // decide which screen to go to next, based on the sender button
     UIViewController * next = nil;
     if(sender == _realTimeButton)
         next = self.realTimeModeVC;
@@ -69,8 +70,10 @@
     else
         return;
     
+    // hide the navigation controller bar if not going to options screen
     [self.navigationController setNavigationBarHidden:(sender != _optionsButton) animated:YES];
     
+    // pushit
     [self.navigationController pushViewController:next animated:YES];
 }
 

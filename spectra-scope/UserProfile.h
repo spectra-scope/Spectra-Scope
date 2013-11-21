@@ -15,7 +15,7 @@
  - added log in function declarations
  */
 #import <Foundation/Foundation.h>
-
+#import "iniparser.h"
 
 /* a list of all available sexes*/
 enum sex{
@@ -25,22 +25,31 @@ enum sex{
     SEX_OTHER,
     SEX_LAST
 };
+
+// maps enum sex to NSString*
 extern NSString const * const sexNames[];
+
 @interface UserProfile : NSObject
-
-
-
 @property(strong, nonatomic) NSString * username;
 @property(strong, nonatomic) NSString * password;
-@property(strong, nonatomic) NSString * continent;
-@property enum sex sex;
-@property unsigned age;
--(id) init;
--(void) signUp;
--(BOOL) signUpWasSuccessful;
--(NSString*) signUpStatusString;
 
--(void) login;
+// this is the name of the user's continent of origin
+@property(strong, nonatomic) NSString * continent;
+
+// this is the user's biological sex
+@property enum sex sex;
+
+@property unsigned age;
+
+@property BOOL allowUploadUsageData;
+
+
+-(id) init;
+-(void) signup:(struct ini*) profiles;
+-(BOOL) signupWasSuccessful;
+-(NSString*) signupStatusString;
+
+-(void) login:(struct ini*)profiles;
 -(BOOL) loginWasSuccessful;
 -(NSString*) loginStatusString;
 @end
