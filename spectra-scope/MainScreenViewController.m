@@ -22,8 +22,10 @@
 @interface MainScreenViewController ()
 @property (weak, nonatomic) IBOutlet UIButton *realTimeButton;
 @property (weak, nonatomic) IBOutlet UIButton *stillImageButton;
+@property (weak, nonatomic) IBOutlet UIButton *optionsButton;
 @property (strong, nonatomic, getter = realTimeModeVC) UIViewController * realTimeModeVC;
 @property (strong, nonatomic, getter = stillImageModeVC) UIViewController * stillImageModeVC;
+@property (strong, nonatomic, getter = optionsVC) UIViewController * optionsVC;
 @end
 
 @implementation MainScreenViewController
@@ -47,6 +49,7 @@
 - (void)viewDidUnload {
     [self setRealTimeButton:nil];
     [self setStillImageButton:nil];
+    [self setOptionsButton:nil];
     [super viewDidUnload];
 }
 - (void)didReceiveMemoryWarning
@@ -61,11 +64,17 @@
         next = self.realTimeModeVC;
     else if(sender == _stillImageButton)
         next = self.stillImageModeVC;
+    else if(sender == _optionsButton)
+        next = self.optionsVC;
     else
         return;
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    
+    [self.navigationController setNavigationBarHidden:(sender != _optionsButton) animated:YES];
+    
     [self.navigationController pushViewController:next animated:YES];
 }
+
+#pragma mark - view controller lazy getters
 -(UIViewController*) realTimeModeVC{
     if(_realTimeModeVC == nil)
     {
@@ -81,6 +90,14 @@
         _stillImageModeVC = [storyboard instantiateViewControllerWithIdentifier:@"StillImageModeViewController"];
     }
     return _stillImageModeVC;
+}
+-(UIViewController*) optionsVC{
+    if(_optionsVC == nil)
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        _optionsVC = [storyboard instantiateViewControllerWithIdentifier:@"OptionsViewController"];
+    }
+    return _optionsVC;
 }
 
 @end
