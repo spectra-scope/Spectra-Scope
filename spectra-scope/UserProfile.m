@@ -153,4 +153,8 @@ enum login_status{
     }
 }
 
+-(void) update:(struct ini *)profiles{
+    ini_set(profiles, [_username UTF8String], "upload", (_allowUploadUsageData ? "true" : "false"));
+    assert(ini_get(profiles, [_username UTF8String], "upload"));
+}
 @end

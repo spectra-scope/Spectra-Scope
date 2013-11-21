@@ -52,4 +52,6 @@ extern NSString const * const sexNames[];
 -(void) login:(struct ini*)profiles;
 -(BOOL) loginWasSuccessful;
 -(NSString*) loginStatusString;
+
+-(void) update:(struct ini *)profiles;
 @end

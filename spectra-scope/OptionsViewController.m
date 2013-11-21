@@ -33,21 +33,35 @@
 -(void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
+    [self updateView];
     
 }
-- (void)didReceiveMemoryWarning
+-(void)viewDidDisappear:(BOOL)animated
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    [appDelegate.currentProfile update:appDelegate.profiles];
+    [super viewDidDisappear:animated];
 }
+
+- (void)viewDidUnload {
+    [self setUploadButton:nil];
+    [super viewDidUnload];
+}
+
 -(UserProfile *)getProfile
 {
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     return appDelegate.currentProfile;
 }
-- (void)viewDidUnload {
-    [self setUploadButton:nil];
-    [super viewDidUnload];
+-(IBAction)uploadButtonPress:(id)sender
+{
+    assert(sender == _uploadButton);
+    self.profile.allowUploadUsageData = !self.profile.allowUploadUsageData;
+    [self updateView];
+}
+-(void) updateView
+{
+    NSString * uploadText = (self.profile.allowUploadUsageData ? @"YES" : @"NO");
+    [_uploadButton setTitle:uploadText forState:UIControlStateNormal];
 }
 @end
