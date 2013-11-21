@@ -349,10 +349,10 @@
             </objects>
             <point key="canvasLocation" x="1301" y="-839"/>
         </scene>
-        <!--View Controller-->
+        <!--Options View Controller-->
         <scene sceneID="oNc-v8-HyX">
             <objects>
-                <viewController storyboardIdentifier="optionsVC" id="zqd-0h-Xag" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="OptionsViewController" id="zqd-0h-Xag" customClass="OptionsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="NgJ-8k-YVl">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -663,6 +663,9 @@
                 <relationship kind="outlet" name="stillImageButton" candidateClass="UIButton"/>
             </relationships>
         </class>
+        <class className="OptionsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/OptionsViewController.h"/>
+        </class>
         <class className="RealTimeModeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTimeModeViewController.h"/>
             <relationships>
@@ -697,6 +700,11 @@
         <class className="StillImageModeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StillImageModeViewController.h"/>
             <relationships>
+                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="queryColour:"/>
+                <relationship kind="action" name="sayColourName:"/>
+                <relationship kind="action" name="showHideUIGroup:"/>
+                <relationship kind="action" name="touchedBackButton:"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>

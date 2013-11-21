@@ -49,6 +49,7 @@
 		F7263A2A181CF8A00076A04E /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7263A29181CF8A00076A04E /* CoreMedia.framework */; };
 		F729D45E1822006A0016CEC6 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F729D45D1822006A0016CEC6 /* OpenGLES.framework */; };
 		F729D47C182217480016CEC6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F729D47B182217480016CEC6 /* CoreImage.framework */; };
+		F732245F183D82E700ACBDB5 /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F732245E183D82E700ACBDB5 /* OptionsViewController.m */; };
 		F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
 		F7C4AE6A182EF97800D81490 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C4AE66182EF97800D81490 /* AcousticModelEnglish.bundle */; };
 		F7C4AE6B182EF97800D81490 /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C4AE67182EF97800D81490 /* AcousticModelSpanish.bundle */; };
@@ -144,6 +145,8 @@
 		F7263A29181CF8A00076A04E /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		F729D45D1822006A0016CEC6 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		F729D47B182217480016CEC6 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		F732245D183D82E700ACBDB5 /* OptionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OptionsViewController.h; sourceTree = "<group>"; };
+		F732245E183D82E700ACBDB5 /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
 		F79AF6C11818DB4800AB781F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		F79AF6C21818DB4800AB781F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		F7C4AE66182EF97800D81490 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
@@ -240,31 +243,10 @@
 				EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */,
 				EF37F6BA1811E73600C5ACC8 /* AppDelegate.h */,
 				EF37F6BB1811E73600C5ACC8 /* AppDelegate.m */,
-				EF37F6C91811E73600C5ACC8 /* LoginScreenViewController.h */,
-				EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */,
-				F79AF6C11818DB4800AB781F /* SignUpViewController.h */,
-				F79AF6C21818DB4800AB781F /* SignUpViewController.m */,
-				8BF7985E1819C68000844EBC /* MainScreenViewController.h */,
-				8BF7985F1819C68000844EBC /* MainScreenViewController.m */,
-				EF277C61181CA7F6004BAFB3 /* RealTimeModeViewController.h */,
-				EF277C62181CA7F6004BAFB3 /* RealTimeModeViewController.m */,
-				8BC8F4F218249C48002DF36B /* StillImageModeViewController.h */,
-				8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */,
-				F7C4AE6E182F48BD00D81490 /* SpeechSynthesis.h */,
-				F7C4AE6F182F48BD00D81490 /* SpeechSynthesis.m */,
-				F7C4AE71182F763400D81490 /* ringbuffer.h */,
-				EFCC78B2182C635800331135 /* Queue.h */,
-				EFCC78B3182C635800331135 /* Queue.m */,
-				F71C68E6182B6409005DEC98 /* ArcBuffer.h */,
-				F71C68E7182B6409005DEC98 /* ArcBuffer.m */,
-				F71C68E1182B2329005DEC98 /* Filters.h */,
-				F71C68E2182B2329005DEC98 /* Filters.m */,
-				F7DB6CEC181BA2AA00931929 /* UserProfile.h */,
-				F7DB6CED181BA2AA00931929 /* UserProfile.m */,
-				F7FBDFA31828B359008E323D /* matrix.h */,
-				F7FBDFA61828B36E008E323D /* matrix.c */,
-				F70B830C181DEDA800E12A33 /* colour_name.h */,
-				F70B8309181DED9700E12A33 /* colour_name.c */,
+				F7322462183D839700ACBDB5 /* view controllers */,
+				F7322464183D842E00ACBDB5 /* functionality */,
+				F7322463183D840800ACBDB5 /* data structures */,
+				F7322465183D844800ACBDB5 /* data types */,
 				EF37F6B21811E73600C5ACC8 /* Supporting Files */,
 			);
 			path = "spectra-scope";
@@ -333,6 +315,61 @@
 				F719033218232C4500881437 /* GPUImageTests.octest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F7322462183D839700ACBDB5 /* view controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EF37F6C91811E73600C5ACC8 /* LoginScreenViewController.h */,
+				EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */,
+				F79AF6C11818DB4800AB781F /* SignUpViewController.h */,
+				F79AF6C21818DB4800AB781F /* SignUpViewController.m */,
+				8BF7985E1819C68000844EBC /* MainScreenViewController.h */,
+				8BF7985F1819C68000844EBC /* MainScreenViewController.m */,
+				EF277C61181CA7F6004BAFB3 /* RealTimeModeViewController.h */,
+				EF277C62181CA7F6004BAFB3 /* RealTimeModeViewController.m */,
+				8BC8F4F218249C48002DF36B /* StillImageModeViewController.h */,
+				8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */,
+				F732245D183D82E700ACBDB5 /* OptionsViewController.h */,
+				F732245E183D82E700ACBDB5 /* OptionsViewController.m */,
+			);
+			name = "view controllers";
+			sourceTree = "<group>";
+		};
+		F7322463183D840800ACBDB5 /* data structures */ = {
+			isa = PBXGroup;
+			children = (
+				F7C4AE71182F763400D81490 /* ringbuffer.h */,
+				EFCC78B2182C635800331135 /* Queue.h */,
+				EFCC78B3182C635800331135 /* Queue.m */,
+				F71C68E6182B6409005DEC98 /* ArcBuffer.h */,
+				F71C68E7182B6409005DEC98 /* ArcBuffer.m */,
+			);
+			name = "data structures";
+			sourceTree = "<group>";
+		};
+		F7322464183D842E00ACBDB5 /* functionality */ = {
+			isa = PBXGroup;
+			children = (
+				F7C4AE6E182F48BD00D81490 /* SpeechSynthesis.h */,
+				F7C4AE6F182F48BD00D81490 /* SpeechSynthesis.m */,
+				F7DB6CEC181BA2AA00931929 /* UserProfile.h */,
+				F7DB6CED181BA2AA00931929 /* UserProfile.m */,
+				F70B830C181DEDA800E12A33 /* colour_name.h */,
+				F70B8309181DED9700E12A33 /* colour_name.c */,
+			);
+			name = functionality;
+			sourceTree = "<group>";
+		};
+		F7322465183D844800ACBDB5 /* data types */ = {
+			isa = PBXGroup;
+			children = (
+				F71C68E1182B2329005DEC98 /* Filters.h */,
+				F71C68E2182B2329005DEC98 /* Filters.m */,
+				F7FBDFA31828B359008E323D /* matrix.h */,
+				F7FBDFA61828B36E008E323D /* matrix.c */,
+			);
+			name = "data types";
 			sourceTree = "<group>";
 		};
 		F7C4AE65182EF97800D81490 /* OpenEars Framework */ = {
@@ -503,6 +540,7 @@
 				F71C68E8182B6409005DEC98 /* ArcBuffer.m in Sources */,
 				EFCC78B4182C635800331135 /* Queue.m in Sources */,
 				F7C4AE70182F48BD00D81490 /* SpeechSynthesis.m in Sources */,
+				F732245F183D82E700ACBDB5 /* OptionsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
