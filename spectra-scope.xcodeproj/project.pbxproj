@@ -51,6 +51,7 @@
 		F729D47C182217480016CEC6 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F729D47B182217480016CEC6 /* CoreImage.framework */; };
 		F732245F183D82E700ACBDB5 /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F732245E183D82E700ACBDB5 /* OptionsViewController.m */; };
 		F7322468183DE0A900ACBDB5 /* tokenizer.c in Sources */ = {isa = PBXBuildFile; fileRef = F7322466183DE0A900ACBDB5 /* tokenizer.c */; };
+		F778EC0D183F3B390049203E /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F778EC0C183F3B390049203E /* CreditsViewController.m */; };
 		F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
 		F7C4AE6A182EF97800D81490 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C4AE66182EF97800D81490 /* AcousticModelEnglish.bundle */; };
 		F7C4AE6B182EF97800D81490 /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C4AE67182EF97800D81490 /* AcousticModelSpanish.bundle */; };
@@ -150,6 +151,8 @@
 		F732245E183D82E700ACBDB5 /* OptionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OptionsViewController.m; sourceTree = "<group>"; };
 		F7322466183DE0A900ACBDB5 /* tokenizer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tokenizer.c; sourceTree = "<group>"; };
 		F7322467183DE0A900ACBDB5 /* tokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tokenizer.h; sourceTree = "<group>"; };
+		F778EC0B183F3B390049203E /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
+		F778EC0C183F3B390049203E /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		F79AF6C11818DB4800AB781F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		F79AF6C21818DB4800AB781F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		F7C4AE66182EF97800D81490 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
@@ -337,6 +340,8 @@
 				8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */,
 				F732245D183D82E700ACBDB5 /* OptionsViewController.h */,
 				F732245E183D82E700ACBDB5 /* OptionsViewController.m */,
+				F778EC0B183F3B390049203E /* CreditsViewController.h */,
+				F778EC0C183F3B390049203E /* CreditsViewController.m */,
 			);
 			name = "view controllers";
 			sourceTree = "<group>";
@@ -547,6 +552,7 @@
 				F7C4AE70182F48BD00D81490 /* SpeechSynthesis.m in Sources */,
 				F732245F183D82E700ACBDB5 /* OptionsViewController.m in Sources */,
 				F7322468183DE0A900ACBDB5 /* tokenizer.c in Sources */,
+				F778EC0D183F3B390049203E /* CreditsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

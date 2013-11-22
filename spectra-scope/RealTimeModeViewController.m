@@ -226,22 +226,22 @@
         filterMat = &brightenRedMatrix;
     else
         return;
-    [gpuCamera stopCameraCapture];
+    //[gpuCamera stopCameraCapture];
     {
         struct mat4x4 dst;
         mat_mul(dst.entries, filterMat->entries, colorMatrix.entries, 4);
         colorMatrix = dst;
         [gpuFilter setColorMatrix:GPUMatrix4x4FromArray(dst.entries)];
     }
-    [gpuCamera startCameraCapture];
+    //[gpuCamera startCameraCapture];
 }
 -(IBAction)clearFilters:(id)sender{
-    [gpuCamera stopCameraCapture];
+    //[gpuCamera stopCameraCapture];
     {
         colorMatrix = identityMatrix4;
         [gpuFilter setColorMatrix:GPUMatrix4x4FromArray(colorMatrix.entries)];
     }
-    [gpuCamera startCameraCapture];
+    //[gpuCamera startCameraCapture];
 }
 
 #pragma mark - sound
