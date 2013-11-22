@@ -179,7 +179,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view hidden="YES" alpha="0.70000000000000007" contentMode="scaleToFill" id="7xY-GO-fex" userLabel="filter list view" customClass="UIControl">
-                                <rect key="frame" x="20" y="28" width="280" height="341"/>
+                                <rect key="frame" x="20" y="28" width="280" height="379"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="aQs-Xj-Ts8">
@@ -274,6 +274,9 @@
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="hideFilterList:" destination="wnn-ah-IDg" eventType="touchUpInside" id="RbT-yx-u2N"/>
+                                </connections>
                             </view>
                             <view alpha="0.50000000000000011" contentMode="scaleToFill" id="4Qx-uU-oGF" userLabel="button group">
                                 <rect key="frame" x="0.0" y="415" width="320" height="40"/>
@@ -321,7 +324,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="touchedFilterButton:" destination="wnn-ah-IDg" eventType="touchUpInside" id="RPZ-LL-LBp"/>
+                                            <action selector="toggleFilterList:" destination="wnn-ah-IDg" eventType="touchUpInside" id="kfP-WP-Oco"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -703,11 +706,6 @@
         <class className="RealTimeModeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTimeModeViewController.h"/>
             <relationships>
-                <relationship kind="action" name="clearFilters:"/>
-                <relationship kind="action" name="pushFilter:"/>
-                <relationship kind="action" name="sayColourName:"/>
-                <relationship kind="action" name="touchedBackButton:"/>
-                <relationship kind="action" name="touchedFilterButton:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bgrLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="brightenGreenButton" candidateClass="UIButton"/>

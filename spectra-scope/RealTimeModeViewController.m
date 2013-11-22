@@ -196,8 +196,8 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark - filter button actions
--(IBAction)touchedFilterButton:(id)sender{
+
+-(IBAction)toggleFilterList:(id)sender{
     BOOL hiding = _filterListView.isHidden;
     if(hiding)
         NSLog(@"show filter list");
@@ -206,7 +206,12 @@
     [_filterListView setHidden:!hiding];
 
 }
-
+-(IBAction)hideFilterList:(id)sender{
+    NSLog(@"hide filter list");
+    [_filterListView setHidden:YES];
+    
+}
+#pragma mark - filter button actions
 -(IBAction)pushFilter:(id)sender{
     struct mat4x4 const * filterMat;
     if(sender == _rgdFilterButton)
