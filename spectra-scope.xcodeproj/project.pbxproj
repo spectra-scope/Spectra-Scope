@@ -25,6 +25,7 @@
 		EF37F6C81811E73600C5ACC8 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */; };
 		EF37F6CB1811E73600C5ACC8 /* LoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */; };
 		EF6210991847EC470024B654 /* speaker_frog2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6210981847EC470024B654 /* speaker_frog2.png */; };
+		EF62109E1848000C0024B654 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF62109D1848000C0024B654 /* HelpViewController.m */; };
 		EFCC78B4182C635800331135 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B3182C635800331135 /* Queue.m */; };
 		EFCC78B5182C635800331135 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B3182C635800331135 /* Queue.m */; };
 		EFCC78B9182C706C00331135 /* QueueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B7182C69C800331135 /* QueueTest.m */; };
@@ -115,6 +116,8 @@
 		EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginScreenViewController.m; sourceTree = "<group>"; };
 		EF37F6D21811E73600C5ACC8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		EF6210981847EC470024B654 /* speaker_frog2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker_frog2.png; sourceTree = "<group>"; };
+		EF62109C1848000C0024B654 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
+		EF62109D1848000C0024B654 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
 		EFCC78B2182C635800331135 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		EFCC78B3182C635800331135 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 		EFCC78B6182C69C800331135 /* QueueTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueTest.h; sourceTree = "<group>"; };
@@ -331,6 +334,8 @@
 		F7322462183D839700ACBDB5 /* view controllers */ = {
 			isa = PBXGroup;
 			children = (
+				EF62109C1848000C0024B654 /* HelpViewController.h */,
+				EF62109D1848000C0024B654 /* HelpViewController.m */,
 				EF37F6C91811E73600C5ACC8 /* LoginScreenViewController.h */,
 				EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */,
 				F79AF6C11818DB4800AB781F /* SignUpViewController.h */,
@@ -557,6 +562,7 @@
 				F732245F183D82E700ACBDB5 /* OptionsViewController.m in Sources */,
 				F7322468183DE0A900ACBDB5 /* tokenizer.c in Sources */,
 				F778EC0D183F3B390049203E /* CreditsViewController.m in Sources */,
+				EF62109E1848000C0024B654 /* HelpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
