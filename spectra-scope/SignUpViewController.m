@@ -101,6 +101,8 @@ BOOL isInt(NSString * str)
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - text field and keyboard
 -(IBAction)backgroundTouched:(id)sender{
     [_usernameInput resignFirstResponder];
     [_passwordInput resignFirstResponder];
@@ -117,8 +119,22 @@ BOOL isInt(NSString * str)
         [textField resignFirstResponder];
     return YES;
 }
-
-/* toggles sex using modulo*/
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = CGRectOffset(self.view.frame, 0, -50);
+    [UIView commitAnimations];
+    
+}
+-(void) textFieldDidEndEditing:(UITextField *)textField
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = CGRectOffset(self.view.frame, 0, 50);
+    [UIView commitAnimations];
+}
+#pragma mark buttons
 -(IBAction)sexButtonPress:(id)sender{
     
     sex = (sex + 1) % SEX_LAST;
