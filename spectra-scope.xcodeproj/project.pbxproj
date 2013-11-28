@@ -24,6 +24,7 @@
 		EF37F6C51811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF37F6C31811E73600C5ACC8 /* MainStoryboard_iPhone.storyboard */; };
 		EF37F6C81811E73600C5ACC8 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EF37F6C61811E73600C5ACC8 /* MainStoryboard_iPad.storyboard */; };
 		EF37F6CB1811E73600C5ACC8 /* LoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */; };
+		EF6210991847EC470024B654 /* speaker_frog2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6210981847EC470024B654 /* speaker_frog2.png */; };
 		EFCC78B4182C635800331135 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B3182C635800331135 /* Queue.m */; };
 		EFCC78B5182C635800331135 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B3182C635800331135 /* Queue.m */; };
 		EFCC78B9182C706C00331135 /* QueueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B7182C69C800331135 /* QueueTest.m */; };
@@ -113,6 +114,7 @@
 		EF37F6C91811E73600C5ACC8 /* LoginScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LoginScreenViewController.h; sourceTree = "<group>"; };
 		EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginScreenViewController.m; sourceTree = "<group>"; };
 		EF37F6D21811E73600C5ACC8 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		EF6210981847EC470024B654 /* speaker_frog2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker_frog2.png; sourceTree = "<group>"; };
 		EFCC78B2182C635800331135 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
 		EFCC78B3182C635800331135 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 		EFCC78B6182C69C800331135 /* QueueTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueTest.h; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 		EF37F6B21811E73600C5ACC8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EF6210981847EC470024B654 /* speaker_frog2.png */,
 				F71B3AA218246F7E005C5506 /* reticule.png */,
 				F71B3AA318246F7E005C5506 /* reticule.xcf */,
 				EF37F6B31811E73600C5ACC8 /* spectra-scope-Info.plist */,
@@ -498,6 +501,7 @@
 				F71B3AA518246F7E005C5506 /* reticule.xcf in Resources */,
 				F7C4AE6A182EF97800D81490 /* AcousticModelEnglish.bundle in Resources */,
 				F7C4AE6B182EF97800D81490 /* AcousticModelSpanish.bundle in Resources */,
+				EF6210991847EC470024B654 /* speaker_frog2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -49,7 +49,7 @@
 #import "Filters.h"
 #import "matrix.h"
 #import "SpeechSynthesis.h"
-
+#import "AppDelegate.h"
 
 
 @interface RealTimeModeViewController ()
@@ -336,10 +336,7 @@
         else
         {
             counter = 10;
-            NSString * name = [NSString stringWithFormat:@"%03d %03d %03d %s %s",
-                               rAvg, gAvg, bAvg,
-                               brightness_string(brightness_id(rAvg, gAvg, bAvg)),
-                               colour_string(colour_id(rAvg, gAvg, bAvg))];
+            NSString * name = [self makeLabelText];
             dispatch_sync(dispatch_get_main_queue(), ^{
                 _bgrLabel.text = name;
             });
@@ -348,6 +345,27 @@
         
     CVPixelBufferUnlockBaseAddress(pixelBuf,kCVPixelBufferLock_ReadOnly);
 }
-
+-(NSString *) makeLabelText
+{
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    UserProfile * profile = appDelegate.currentProfile;
+    char const * brightness_str = brightness_string(brightness_id(rAvg, gAvg, bAvg));
+    char const * colour_str = colour_string(colour_id(rAvg, gAvg, bAvg));
+    NSString * name;
+    if(profile.showRGB)
+    {
+        name = [NSString stringWithFormat:@"%03d %03d %03d %s %s",
+                rAvg, gAvg, bAvg,
+                brightness_str,
+                colour_str];
+    }
+    else
+    {
+        name = [NSString stringWithFormat:@"%s %s",
+                brightness_str,
+                colour_str];
+    }
+    return name;
+}
 
 @end

@@ -97,6 +97,9 @@ enum login_status{
         ini_set(profiles, username, "upload", "false");
         assert(ini_get(profiles, username, "upload"));
         
+        ini_set(profiles, username, "rgb", "false");
+        assert(ini_get(profiles, username, "rgb"));
+        
         signup_status = SU_SUCCESS;
     }
 }
@@ -135,6 +138,7 @@ enum login_status{
         _age = [[NSString stringWithUTF8String:ini_get(profiles, username, "age")] intValue];
         _sex = string2sex([NSString stringWithUTF8String:ini_get(profiles, username, "sex")]);
         _allowUploadUsageData = string2bool([NSString stringWithUTF8String:ini_get(profiles, username, "upload")]);
+        _showRGB = string2bool([NSString stringWithUTF8String:ini_get(profiles, username, "rgb")]);
 
         login_status = LI_SUCCESS;
     }

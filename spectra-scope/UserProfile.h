@@ -43,6 +43,8 @@ extern NSString const * const sexNames[];
 
 @property BOOL allowUploadUsageData;
 
+@property BOOL showRGB;
+
 
 -(id) init;
 -(void) signup:(struct ini*) profiles;

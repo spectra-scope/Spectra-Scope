@@ -12,6 +12,7 @@
 @interface OptionsViewController ()
 @property (nonatomic, getter = getProfile) UserProfile * profile;
 @property (weak, nonatomic) IBOutlet UIButton *uploadButton;
+@property (weak, nonatomic) IBOutlet UIButton *rgbButton;
 @end
 
 @implementation OptionsViewController
@@ -45,6 +46,7 @@
 
 - (void)viewDidUnload {
     [self setUploadButton:nil];
+    [self setRgbButton:nil];
     [super viewDidUnload];
 }
 
@@ -63,5 +65,8 @@
 {
     NSString * uploadText = (self.profile.allowUploadUsageData ? @"YES" : @"NO");
     [_uploadButton setTitle:uploadText forState:UIControlStateNormal];
+    
+    NSString * rgbText = self.profile.showRGB ? @"YES" : @"NO";
+    [_rgbButton setTitle:rgbText forState: UIControlStateNormal];
 }
 @end
