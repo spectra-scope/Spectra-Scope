@@ -89,11 +89,27 @@ revisions:
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
     NSLog(@"return touched, dismissing keyboard");
     if(textField == _usernameInput || textField == _passwordInput)
+    {
         [textField resignFirstResponder];
+        
+    }
     return YES;
 }
-
-
+- (void)textFieldDidBeginEditing:(UITextField *)textField
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = CGRectOffset(self.view.frame, 0, -60);
+    [UIView commitAnimations];
+    
+}
+-(void) textFieldDidEndEditing:(UITextField *)textField
+{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.25];
+    self.view.frame = CGRectOffset(self.view.frame, 0, 60);
+    [UIView commitAnimations];
+}
 
 - (void)viewDidUnload {
     [self setMessageLabel:nil];
