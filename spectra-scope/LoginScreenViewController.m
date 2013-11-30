@@ -98,16 +98,16 @@ revisions:
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.25];
-    self.view.frame = CGRectOffset(self.view.frame, 0, -60);
+    [UIView setAnimationDuration:0.2];
+    self.view.frame = CGRectOffset(self.view.frame, 0, -textField.frame.origin.y);
     [UIView commitAnimations];
     
 }
 -(void) textFieldDidEndEditing:(UITextField *)textField
 {
     [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.25];
-    self.view.frame = CGRectOffset(self.view.frame, 0, 60);
+    [UIView setAnimationDuration:0.2];
+    self.view.frame = CGRectOffset(self.view.frame, 0, textField.frame.origin.y);
     [UIView commitAnimations];
 }
 #pragma mark - lazy getter

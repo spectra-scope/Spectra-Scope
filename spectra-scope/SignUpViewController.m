@@ -123,7 +123,7 @@ BOOL isInt(NSString * str)
 {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25];
-    self.view.frame = CGRectOffset(self.view.frame, 0, -50);
+    self.view.frame = CGRectOffset(self.view.frame, 0, -textField.frame.origin.y);
     [UIView commitAnimations];
     
 }
@@ -131,10 +131,10 @@ BOOL isInt(NSString * str)
 {
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.25];
-    self.view.frame = CGRectOffset(self.view.frame, 0, 50);
+    self.view.frame = CGRectOffset(self.view.frame, 0, textField.frame.origin.y);
     [UIView commitAnimations];
 }
-#pragma mark buttons
+#pragma mark - buttons
 -(IBAction)sexButtonPress:(id)sender{
     
     sex = (sex + 1) % SEX_LAST;

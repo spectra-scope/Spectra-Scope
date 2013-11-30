@@ -55,10 +55,16 @@
     AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
     return appDelegate.currentProfile;
 }
--(IBAction)uploadButtonPress:(id)sender
+-(IBAction)toggleUploadData:(id)sender
 {
     assert(sender == _uploadButton);
     self.profile.allowUploadUsageData = !self.profile.allowUploadUsageData;
+    [self updateView];
+}
+-(IBAction)toggleShowRGB:(id)sender
+{
+    assert(sender == _rgbButton);
+    self.profile.showRGB = !self.profile.showRGB;
     [self updateView];
 }
 -(void) updateView
