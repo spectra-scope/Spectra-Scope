@@ -47,11 +47,16 @@ revisions:
     [super viewDidDisappear:animated];
     NSLog(@"login view did disappear");
 }
+- (void)viewDidUnload {
+    [self setMessageLabel:nil];
+    [super viewDidUnload];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+#pragma mark - button presses
 - (IBAction)logInPress:(id)sender {
     NSLog(@"login pressed");
     UserProfile * profile = [[UserProfile alloc] init];
@@ -73,15 +78,9 @@ revisions:
         _messageLabel.textColor = [[UIColor alloc] initWithRed:255 green:0 blue:0 alpha:255];
     }
 }
--(UIViewController*) mainScreenVC{
-    if(_mainScreenVC == nil)
-    {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-        _mainScreenVC = [storyboard instantiateViewControllerWithIdentifier:@"MainScreenViewController"];
-    }
-    return _mainScreenVC;
-}
--(IBAction)backgroundTouched:(id)sender{
+
+#pragma mark - hiding keyboards
+-(IBAction)hideKeyboards:(id)sender{
     NSLog(@"background touched, dismissing keyboard");
     [_usernameInput resignFirstResponder];
     [_passwordInput resignFirstResponder];
@@ -95,6 +94,7 @@ revisions:
     }
     return YES;
 }
+#pragma mark - keyboard animations
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     [UIView beginAnimations:nil context:NULL];
@@ -110,9 +110,14 @@ revisions:
     self.view.frame = CGRectOffset(self.view.frame, 0, 60);
     [UIView commitAnimations];
 }
-
-- (void)viewDidUnload {
-    [self setMessageLabel:nil];
-    [super viewDidUnload];
+#pragma mark - lazy getter
+-(UIViewController*) mainScreenVC{
+    if(_mainScreenVC == nil)
+    {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        _mainScreenVC = [storyboard instantiateViewControllerWithIdentifier:@"MainScreenViewController"];
+    }
+    return _mainScreenVC;
 }
+
 @end

@@ -55,6 +55,10 @@
 		F7322468183DE0A900ACBDB5 /* tokenizer.c in Sources */ = {isa = PBXBuildFile; fileRef = F7322466183DE0A900ACBDB5 /* tokenizer.c */; };
 		F778EC0D183F3B390049203E /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F778EC0C183F3B390049203E /* CreditsViewController.m */; };
 		F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
+		F7A3C148184A88D900F195F4 /* bg_mainmenu_signin.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A3C145184A88D900F195F4 /* bg_mainmenu_signin.png */; };
+		F7A3C149184A88D900F195F4 /* bg_options.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A3C146184A88D900F195F4 /* bg_options.png */; };
+		F7A3C14A184A88D900F195F4 /* bg_signup.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A3C147184A88D900F195F4 /* bg_signup.png */; };
+		F7A3C152184A9A1B00F195F4 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A3C151184A9A1B00F195F4 /* app_icon.png */; };
 		F7C4AE6A182EF97800D81490 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C4AE66182EF97800D81490 /* AcousticModelEnglish.bundle */; };
 		F7C4AE6B182EF97800D81490 /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C4AE67182EF97800D81490 /* AcousticModelSpanish.bundle */; };
 		F7C4AE6C182EF97800D81490 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C4AE68182EF97800D81490 /* OpenEars.framework */; };
@@ -160,6 +164,10 @@
 		F778EC0C183F3B390049203E /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		F79AF6C11818DB4800AB781F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		F79AF6C21818DB4800AB781F /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		F7A3C145184A88D900F195F4 /* bg_mainmenu_signin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_mainmenu_signin.png; sourceTree = "<group>"; };
+		F7A3C146184A88D900F195F4 /* bg_options.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_options.png; sourceTree = "<group>"; };
+		F7A3C147184A88D900F195F4 /* bg_signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_signup.png; sourceTree = "<group>"; };
+		F7A3C151184A9A1B00F195F4 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon.png; path = ../app_icon.png; sourceTree = "<group>"; };
 		F7C4AE66182EF97800D81490 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		F7C4AE67182EF97800D81490 /* AcousticModelSpanish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelSpanish.bundle; sourceTree = "<group>"; };
 		F7C4AE68182EF97800D81490 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
@@ -266,6 +274,10 @@
 		EF37F6B21811E73600C5ACC8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				F7A3C151184A9A1B00F195F4 /* app_icon.png */,
+				F7A3C145184A88D900F195F4 /* bg_mainmenu_signin.png */,
+				F7A3C146184A88D900F195F4 /* bg_options.png */,
+				F7A3C147184A88D900F195F4 /* bg_signup.png */,
 				EF6210981847EC470024B654 /* speaker_frog2.png */,
 				F71B3AA218246F7E005C5506 /* reticule.png */,
 				F71B3AA318246F7E005C5506 /* reticule.xcf */,
@@ -507,6 +519,10 @@
 				F7C4AE6A182EF97800D81490 /* AcousticModelEnglish.bundle in Resources */,
 				F7C4AE6B182EF97800D81490 /* AcousticModelSpanish.bundle in Resources */,
 				EF6210991847EC470024B654 /* speaker_frog2.png in Resources */,
+				F7A3C148184A88D900F195F4 /* bg_mainmenu_signin.png in Resources */,
+				F7A3C149184A88D900F195F4 /* bg_options.png in Resources */,
+				F7A3C14A184A88D900F195F4 /* bg_signup.png in Resources */,
+				F7A3C152184A9A1B00F195F4 /* app_icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -700,6 +716,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
@@ -719,6 +736,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
 			};
