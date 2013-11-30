@@ -13,7 +13,6 @@
 #import <UIKit/UIKit.h>
 
 @interface SignUpViewController : UIViewController <UITextFieldDelegate>
--(IBAction)backgroundTouched:(id)sender;
 @property (weak, nonatomic) IBOutlet UITextField *usernameInput;
 @property (weak, nonatomic) IBOutlet UITextField *passwordInput;
 @property (weak, nonatomic) IBOutlet UITextField *passwordInputAgain;

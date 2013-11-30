@@ -103,7 +103,7 @@ BOOL isInt(NSString * str)
 }
 
 #pragma mark - text field and keyboard
--(IBAction)backgroundTouched:(id)sender{
+-(IBAction)hideKeyboard:(id)sender{
     [_usernameInput resignFirstResponder];
     [_passwordInput resignFirstResponder];
     [_passwordInputAgain resignFirstResponder];
@@ -111,11 +111,11 @@ BOOL isInt(NSString * str)
     [_ethnicityInput resignFirstResponder];
 }
 -(BOOL)textFieldShouldReturn:(UITextField *)textField{
-    if(textField == _usernameInput ||
-       textField == _passwordInput ||
-       textField == _passwordInputAgain ||
-       textField == _ageInput ||
-       textField == _ethnicityInput)
+    assert(textField == _usernameInput ||
+           textField == _passwordInput ||
+           textField == _passwordInputAgain ||
+           textField == _ageInput ||
+           textField == _ethnicityInput);
         [textField resignFirstResponder];
     return YES;
 }
@@ -135,7 +135,7 @@ BOOL isInt(NSString * str)
     [UIView commitAnimations];
 }
 #pragma mark - buttons
--(IBAction)sexButtonPress:(id)sender{
+-(IBAction)toggleSex:(id)sender{
     
     sex = (sex + 1) % SEX_LAST;
     [_sexButton setTitle:[sexNames[sex] copy] forState:UIControlStateNormal];
@@ -146,7 +146,7 @@ BOOL isInt(NSString * str)
  input is valid.
  */
 
--(IBAction)signupButtonPress:(id)sender{
+-(IBAction)trySignup:(id)sender{
     UIColor * red = [[UIColor alloc] initWithRed:255 green: 0 blue:0 alpha:255];
     
     // first to input sanitization
