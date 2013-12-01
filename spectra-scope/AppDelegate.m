@@ -10,7 +10,13 @@
 #import "UserProfile.h"
 #import "iniparser.h"
 
-
+NSString const * const scopeImgPath[] = {
+    [SCOPE_NONE] = nil,
+    [SCOPE1] = @"reticule1.png",
+    [SCOPE2] = @"reticule2.png",
+    [SCOPE1BG] = @"reticule1bg.png",
+    [SCOPE2BG] = @"reticule2bg.png"
+};
 @implementation AppDelegate
 @synthesize profiles;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions

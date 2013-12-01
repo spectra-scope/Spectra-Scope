@@ -26,9 +26,17 @@ enum sex{
     SEX_LAST
 };
 
+enum scope{
+    SCOPE_NONE,
+    SCOPE1,
+    SCOPE2,
+    SCOPE1BG,
+    SCOPE2BG,
+    SCOPE_LAST
+};
 // maps enum sex to NSString*
 extern NSString const * const sexNames[];
-
+extern NSString const * const scopeNames[];
 @interface UserProfile : NSObject
 @property(strong, nonatomic) NSString * username;
 @property(strong, nonatomic) NSString * password;
@@ -44,6 +52,8 @@ extern NSString const * const sexNames[];
 @property BOOL allowUploadUsageData;
 
 @property BOOL showRGB;
+
+@property enum scope scopeStyle;
 
 
 -(id) init;

@@ -88,6 +88,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *filterButton;
 @property (weak, nonatomic) IBOutlet UIButton *backButton;
 
+//lazy
+@property (nonatomic, getter = getProfile) UserProfile * profile;
+@property (nonatomic, getter = getAppDelegate) AppDelegate * appDelegate;
 @end
 @implementation RealTimeModeViewController
 #pragma mark - view controller
@@ -119,8 +122,9 @@
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
     gpuView = [[GPUImageView alloc] initWithFrame:CGRectOffset(mainScreenFrame, 0, -20)];
     [self.view addSubview:gpuView];
-    [self.view addSubview:_bgrLabel];
+    
     [self.view addSubview:_reticuleImage];
+    [self.view addSubview:_bgrLabel];
     [self.view addSubview:_filterListView];
     [self.view addSubview:_buttonGroup];
     _reticuleImage.center = gpuView.center;
@@ -146,6 +150,8 @@
     gesture.delegate = self;
     [gpuView addGestureRecognizer:gesture];
     
+    
+    
     NSLog(@"GPUImage setup complete");
 }
 -(void)viewDidAppear:(BOOL)animated{
@@ -154,6 +160,10 @@
     
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     colorMatrix = identityMatrix4;
+    
+    NSString * scopeName = [scopeImgPath[self.profile.scopeStyle] copy];
+    NSLog(@"%@",scopeName);
+    _reticuleImage.image = [UIImage imageNamed:scopeName];
     
     [self initSound];
     
@@ -379,8 +389,7 @@
 }
 -(NSString *) makeLabelText
 {
-    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    UserProfile * profile = appDelegate.currentProfile;
+    UserProfile * profile = self.profile;
     char const * brightness_str = brightness_string(brightness_id(rAvg, gAvg, bAvg));
     char const * colour_str = colour_string(colour_id(rAvg, gAvg, bAvg));
     NSString * name;
@@ -406,5 +415,12 @@
     
     recognizer.view.transform = CGAffineTransformMakeScale(viewScale, viewScale);
     recognizer.scale = 1;
+}
+#pragma mark - lazy getters
+-(UserProfile*)getProfile{
+    return self.appDelegate.currentProfile;
+}
+-(AppDelegate *)getAppDelegate{
+    return [[UIApplication sharedApplication] delegate];
 }
 @end

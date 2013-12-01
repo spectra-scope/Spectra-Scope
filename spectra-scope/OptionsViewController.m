@@ -13,6 +13,7 @@
 @property (nonatomic, getter = getProfile) UserProfile * profile;
 @property (weak, nonatomic) IBOutlet UIButton *uploadButton;
 @property (weak, nonatomic) IBOutlet UIButton *rgbButton;
+@property (weak, nonatomic) IBOutlet UIButton *scopeButton;
 @end
 
 @implementation OptionsViewController
@@ -47,6 +48,7 @@
 - (void)viewDidUnload {
     [self setUploadButton:nil];
     [self setRgbButton:nil];
+    [self setScopeButton:nil];
     [super viewDidUnload];
 }
 
@@ -67,6 +69,12 @@
     self.profile.showRGB = !self.profile.showRGB;
     [self updateView];
 }
+-(IBAction)toggleScopeStyle:(id)sender
+{
+    assert(sender == _scopeButton);
+    self.profile.scopeStyle = (self.profile.scopeStyle + 1) % SCOPE_LAST;
+    [self updateView];
+}
 -(void) updateView
 {
     NSString * uploadText = (self.profile.allowUploadUsageData ? @"YES" : @"NO");
@@ -74,5 +82,8 @@
     
     NSString * rgbText = self.profile.showRGB ? @"YES" : @"NO";
     [_rgbButton setTitle:rgbText forState: UIControlStateNormal];
+    
+    NSString * scopeText = [scopeNames[self.profile.scopeStyle] copy];
+    [_scopeButton setTitle:scopeText forState:UIControlStateNormal];
 }
 @end

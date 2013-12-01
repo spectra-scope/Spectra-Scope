@@ -35,6 +35,13 @@ enum sex string2sex(NSString * str)
     else
         return SEX_LAST;
 }
+NSString const * const scopeNames[] = {
+    [SCOPE_NONE] = @"none",
+    [SCOPE1] = @"scope1",
+    [SCOPE2] = @"scope2",
+    [SCOPE1BG] = @"scope1bg",
+    [SCOPE2BG] = @"scope2bg"
+};
 BOOL string2bool(NSString * str)
 {
     return [str isEqual:@"true"];
@@ -100,6 +107,8 @@ enum login_status{
         ini_set(profiles, username, "rgb", "false");
         assert(ini_get(profiles, username, "rgb"));
         
+        ini_set(profiles, username, "scope", "0");
+        assert(ini_get(profiles, username, "scope"));
         signup_status = SU_SUCCESS;
     }
 }
@@ -139,6 +148,7 @@ enum login_status{
         _sex = string2sex([NSString stringWithUTF8String:ini_get(profiles, username, "sex")]);
         _allowUploadUsageData = string2bool([NSString stringWithUTF8String:ini_get(profiles, username, "upload")]);
         _showRGB = string2bool([NSString stringWithUTF8String:ini_get(profiles, username, "rgb")]);
+        _scopeStyle = [[NSString stringWithUTF8String:ini_get(profiles, username, "scope")] intValue];
 
         login_status = LI_SUCCESS;
     }
@@ -163,5 +173,8 @@ enum login_status{
     
     ini_set(profiles, [_username UTF8String], "rgb", (_showRGB ? "true" : "false"));
     assert(ini_get(profiles, [_username UTF8String], "rgb"));
+    
+    ini_set(profiles, [_username UTF8String], "scope", [[NSString stringWithFormat:@"%d", _scopeStyle] UTF8String]);
+    assert(ini_get(profiles, [_username UTF8String], "scope"));
 }
 @end
