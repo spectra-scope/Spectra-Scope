@@ -33,6 +33,9 @@
  - added more detailed colour information
  - fixed colour information to moving average
  - displays warning message if run on simulator
+ 1.10: by Tian Lin Tan
+ - pixel average is now an average of center and its neighbors.
+ - updating label is now done asynchronously
  
  bugs (iteration 1):
  - (not a bug) viewDidunload is not called when user goes back one screen
@@ -296,22 +299,23 @@
                 {centerx - 1, centery + 1}, {centerx , centery + 1},    {centerx + 1, centery + 1},
             };
             unsigned weights[] = {
-                6, 7, 6,
-                7, 12, 7,
-                6, 7, 6
+                5, 8, 5,
+                8, 12, 8,
+                5, 8, 5
             };
             for(int i = 0; i < 9; i++)
             {
                 unsigned weight = weights[i];
                 pixel_t pix = pixels[points[i].y * width + points[i].x];
-                b += weight * pix.r;
-                g += weight * pix.g;
-                r += weight * pix.b;
+                b += weight * (unsigned)(pix.r);
+                g += weight * (unsigned)(pix.g);
+                r += weight * (unsigned)(pix.b);
             }
             b /= 64;
             g /= 64;
             r /= 64;
         }
+        //just in case format is YUpcbcr planar
         else if(format == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)
         {
             /* for reference:
@@ -365,7 +369,7 @@
         {
             counter = 10;
             NSString * name = [self makeLabelText];
-            dispatch_sync(dispatch_get_main_queue(), ^{
+            dispatch_async(dispatch_get_main_queue(), ^{
                 _bgrLabel.text = name;
             });
         }

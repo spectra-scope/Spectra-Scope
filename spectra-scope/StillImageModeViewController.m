@@ -17,6 +17,15 @@ revisions:
  - added function to query colour info at reticule
  1.2: by Tian Lin Tan
  - changed to use flood fill algorithm with tolerance and moving average to find colour
+ 1.3: by Tian Lin Tan
+ - changed terminlogy:
+    tolerance -> local tolerance
+    deviation -> global tolerance
+ 1.4: by Tian Lin Tan
+ - changed operation:
+    instead of draggin reticule, reticule is now fixed. the image is dragged around instead.
+ - changed orientation:
+    images are now displayed in the same orientation as its pixels are stored
  
 bugs:
  - index out of bounds when querying the corner pixels (fixed with cliping of index first)
@@ -227,21 +236,11 @@ bugs:
     assert(sizeof(pixel_t) == 4);
     pixel_t * pixels = pixelBuf.head;
     
-    /*  all pictures are viewed in landscape, so the y is actually the inverted x position of the reticule
-        , and x is actually the y position of the reticule
-     */
-#if 0
-    NSUInteger yy = ((self.view.bounds.size.width - _reticule.center.x) * height) / self.view.bounds.size.width;
-    yy = clip(yy, 0, height - 1);
-    NSUInteger xx = (_reticule.center.y * width) / self.view.bounds.size.height;
-    xx = clip(xx, 0, width - 1);
-#else
+
     NSInteger x = _reticule.center.x - _imageView.frame.origin.x;
     x = clip(x, 0, width - 1);
     NSInteger y = _reticule.center.y - _imageView.frame.origin.y;
     y = clip(y, 0, height - 1);
-    NSLog(@"%d, %d:", x, y);
-#endif
 
     pixel_t result = colour_average(pixels, width, height, x, y, LOCAL_TOLERANCE, GLOBAL_TOLERANCE, QUEUE_SIZE);
     rAvg = result.r;

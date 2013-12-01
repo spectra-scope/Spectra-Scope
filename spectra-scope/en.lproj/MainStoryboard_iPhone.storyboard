@@ -232,8 +232,8 @@
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </label>
-                            <imageView userInteractionEnabled="NO" alpha="0.50000000000000011" contentMode="scaleToFill" image="reticule.png" id="tHF-Rj-E7I">
-                                <rect key="frame" x="144" y="236" width="32" height="32"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleToFill" image="ret1.png" id="tHF-Rj-E7I">
+                                <rect key="frame" x="0.0" y="92" width="320" height="320"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <view hidden="YES" alpha="0.70000000000000007" contentMode="scaleToFill" id="7xY-GO-fex" userLabel="filter list view" customClass="UIControl">
@@ -808,6 +808,7 @@
     <resources>
         <image name="bg_mainmenu_signin.png" width="320" height="460"/>
         <image name="bg_signup.png" width="320" height="460"/>
+        <image name="ret1.png" width="320" height="320"/>
         <image name="reticule.png" width="32" height="32"/>
     </resources>
     <classes>
@@ -826,8 +827,6 @@
         <class className="LoginScreenViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LoginScreenViewController.h"/>
             <relationships>
-                <relationship kind="action" name="hideKeyboards:"/>
-                <relationship kind="action" name="logInPress:"/>
                 <relationship kind="outlet" name="messageLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="passwordInput" candidateClass="UITextField"/>
                 <relationship kind="outlet" name="usernameInput" candidateClass="UITextField"/>
@@ -851,13 +850,6 @@
         <class className="RealTimeModeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTimeModeViewController.h"/>
             <relationships>
-                <relationship kind="action" name="clearFilters:"/>
-                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
-                <relationship kind="action" name="hideFilterList:"/>
-                <relationship kind="action" name="pushFilter:"/>
-                <relationship kind="action" name="sayColourName:"/>
-                <relationship kind="action" name="toggleFilterList:"/>
-                <relationship kind="action" name="touchedBackButton:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bgrLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="brightenGreenButton" candidateClass="UIButton"/>
