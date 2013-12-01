@@ -849,6 +849,13 @@
         <class className="RealTimeModeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTimeModeViewController.h"/>
             <relationships>
+                <relationship kind="action" name="clearFilters:"/>
+                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
+                <relationship kind="action" name="hideFilterList:"/>
+                <relationship kind="action" name="pushFilter:"/>
+                <relationship kind="action" name="sayColourName:"/>
+                <relationship kind="action" name="toggleFilterList:"/>
+                <relationship kind="action" name="touchedBackButton:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bgrLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="brightenGreenButton" candidateClass="UIButton"/>

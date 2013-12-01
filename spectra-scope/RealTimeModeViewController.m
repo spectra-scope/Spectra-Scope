@@ -136,6 +136,11 @@
     [gpuFilter addTarget:gpuView];
     
     gpuCamera.delegate = self;
+    
+    UIPinchGestureRecognizer * gesture = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:@selector(handlePinch:)];
+    gesture.delegate = self;
+    [gpuView addGestureRecognizer:gesture];
+    
     NSLog(@"GPUImage setup complete");
 }
 -(void)viewDidAppear:(BOOL)animated{
@@ -367,5 +372,8 @@
     }
     return name;
 }
-
+- (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
+    recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
+    recognizer.scale = 1;
+}
 @end

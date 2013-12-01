@@ -14,6 +14,6 @@
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "GPUImage.h"
-@interface RealTimeModeViewController : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate, GPUImageVideoCameraDelegate>
+@interface RealTimeModeViewController : UIViewController<AVCaptureVideoDataOutputSampleBufferDelegate, GPUImageVideoCameraDelegate, UIGestureRecognizerDelegate>
 
 @end
