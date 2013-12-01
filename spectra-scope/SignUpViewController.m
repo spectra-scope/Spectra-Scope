@@ -95,7 +95,10 @@ BOOL isInt(NSString * str)
     sex = SEX_NONE;
 	// Do any additional setup after loading the view.
 }
-
+-(void)viewDidDisappear:(BOOL)animated{
+    [self hideKeyboard:nil];
+    [super viewDidDisappear:animated];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -147,6 +150,7 @@ BOOL isInt(NSString * str)
  */
 
 -(IBAction)trySignup:(id)sender{
+    [self hideKeyboard:nil];
     UIColor * red = [[UIColor alloc] initWithRed:255 green: 0 blue:0 alpha:255];
     
     // first to input sanitization
@@ -214,6 +218,7 @@ BOOL isInt(NSString * str)
         {
             _messageLabel.text = [newProfile signupStatusString];
             _messageLabel.textColor = red;
+            
         }
     }
 }

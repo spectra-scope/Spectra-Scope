@@ -77,6 +77,7 @@ revisions:
     {
         _messageLabel.text = [profile loginStatusString];
         _messageLabel.textColor = [[UIColor alloc] initWithRed:255 green:0 blue:0 alpha:255];
+        [self hideKeyboards:nil];
     }
 }
 
