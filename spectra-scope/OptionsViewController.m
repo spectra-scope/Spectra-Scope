@@ -51,12 +51,12 @@
     [self setScopeButton:nil];
     [super viewDidUnload];
 }
-
--(UserProfile *)getProfile
-{
-    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
-    return appDelegate.currentProfile;
+#pragma mark - control flow
+-(IBAction)goBack:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
 }
+
+#pragma mark - option control
 -(IBAction)toggleUploadData:(id)sender
 {
     assert(sender == _uploadButton);
@@ -75,6 +75,7 @@
     self.profile.scopeStyle = (self.profile.scopeStyle + 1) % SCOPE_LAST;
     [self updateView];
 }
+
 -(void) updateView
 {
     NSString * uploadText = (self.profile.allowUploadUsageData ? @"YES" : @"NO");
@@ -85,5 +86,11 @@
     
     NSString * scopeText = [scopeNames[self.profile.scopeStyle] copy];
     [_scopeButton setTitle:scopeText forState:UIControlStateNormal];
+}
+#pragma mark - lazy getter
+-(UserProfile *)getProfile
+{
+    AppDelegate * appDelegate = [[UIApplication sharedApplication] delegate];
+    return appDelegate.currentProfile;
 }
 @end

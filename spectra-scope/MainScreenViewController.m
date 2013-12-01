@@ -71,36 +71,38 @@
         return;
     
     // hide the navigation controller bar if not going to options screen
-    [self.navigationController setNavigationBarHidden:(sender != _optionsButton) animated:YES];
+    //[self.navigationController setNavigationBarHidden:(sender != _optionsButton) animated:YES];
     
     // pushit
     [self.navigationController pushViewController:next animated:YES];
 }
-
-#pragma mark - view controller lazy getters
+-(IBAction)logout:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+#pragma mark - lazy getters
 -(UIViewController*) realTimeModeVC{
     if(_realTimeModeVC == nil)
     {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-        _realTimeModeVC = [storyboard instantiateViewControllerWithIdentifier:@"RealTimeModeViewController"];
+        _realTimeModeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"RealTimeModeViewController"];
     }
     return _realTimeModeVC;
 }
 -(UIViewController*) stillImageModeVC{
     if(_stillImageModeVC == nil)
     {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-        _stillImageModeVC = [storyboard instantiateViewControllerWithIdentifier:@"StillImageModeViewController"];
+        _stillImageModeVC = [self.storyboard instantiateViewControllerWithIdentifier:@"StillImageModeViewController"];
     }
     return _stillImageModeVC;
 }
 -(UIViewController*) optionsVC{
     if(_optionsVC == nil)
     {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-        _optionsVC = [storyboard instantiateViewControllerWithIdentifier:@"OptionsViewController"];
+        _optionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"OptionsViewController"];
     }
     return _optionsVC;
+}
+-(UIStoryboard*)getStoryboard{
+    return [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
 }
 
 @end

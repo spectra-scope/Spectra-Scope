@@ -143,7 +143,9 @@ BOOL isInt(NSString * str)
     sex = (sex + 1) % SEX_LAST;
     [_sexButton setTitle:[sexNames[sex] copy] forState:UIControlStateNormal];
 }
-
+-(IBAction)cancelSignup:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 /* the sign up process in action.
  a sequence of error checking will be done to make sure
  input is valid.

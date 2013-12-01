@@ -63,7 +63,6 @@
 		F7A3C148184A88D900F195F4 /* bg_mainmenu_signin.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A3C145184A88D900F195F4 /* bg_mainmenu_signin.png */; };
 		F7A3C149184A88D900F195F4 /* bg_options.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A3C146184A88D900F195F4 /* bg_options.png */; };
 		F7A3C14A184A88D900F195F4 /* bg_signup.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A3C147184A88D900F195F4 /* bg_signup.png */; };
-		F7A3C152184A9A1B00F195F4 /* app_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A3C151184A9A1B00F195F4 /* app_icon.png */; };
 		F7C4AE6A182EF97800D81490 /* AcousticModelEnglish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C4AE66182EF97800D81490 /* AcousticModelEnglish.bundle */; };
 		F7C4AE6B182EF97800D81490 /* AcousticModelSpanish.bundle in Resources */ = {isa = PBXBuildFile; fileRef = F7C4AE67182EF97800D81490 /* AcousticModelSpanish.bundle */; };
 		F7C4AE6C182EF97800D81490 /* OpenEars.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7C4AE68182EF97800D81490 /* OpenEars.framework */; };
@@ -177,7 +176,6 @@
 		F7A3C145184A88D900F195F4 /* bg_mainmenu_signin.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_mainmenu_signin.png; sourceTree = "<group>"; };
 		F7A3C146184A88D900F195F4 /* bg_options.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_options.png; sourceTree = "<group>"; };
 		F7A3C147184A88D900F195F4 /* bg_signup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_signup.png; sourceTree = "<group>"; };
-		F7A3C151184A9A1B00F195F4 /* app_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = app_icon.png; path = ../app_icon.png; sourceTree = "<group>"; };
 		F7C4AE66182EF97800D81490 /* AcousticModelEnglish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelEnglish.bundle; sourceTree = "<group>"; };
 		F7C4AE67182EF97800D81490 /* AcousticModelSpanish.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AcousticModelSpanish.bundle; sourceTree = "<group>"; };
 		F7C4AE68182EF97800D81490 /* OpenEars.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = OpenEars.framework; sourceTree = "<group>"; };
@@ -291,7 +289,6 @@
 				F7665388184B253E00889D90 /* reticule2.png */,
 				F7665389184B253E00889D90 /* reticule1bg.png */,
 				F766538A184B253E00889D90 /* reticule2bg.png */,
-				F7A3C151184A9A1B00F195F4 /* app_icon.png */,
 				F7A3C145184A88D900F195F4 /* bg_mainmenu_signin.png */,
 				F7A3C146184A88D900F195F4 /* bg_options.png */,
 				F7A3C147184A88D900F195F4 /* bg_signup.png */,
@@ -537,7 +534,6 @@
 				F7A3C148184A88D900F195F4 /* bg_mainmenu_signin.png in Resources */,
 				F7A3C149184A88D900F195F4 /* bg_options.png in Resources */,
 				F7A3C14A184A88D900F195F4 /* bg_signup.png in Resources */,
-				F7A3C152184A9A1B00F195F4 /* app_icon.png in Resources */,
 				F7665385184B220C00889D90 /* reticule1.png in Resources */,
 				F766538B184B253E00889D90 /* reticule2.png in Resources */,
 				F766538C184B253E00889D90 /* reticule1bg.png in Resources */,

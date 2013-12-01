@@ -158,7 +158,7 @@
      NSLog(@"real time view did appear");
     [super viewDidAppear:animated];
     
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    //[self.navigationController setNavigationBarHidden:YES animated:YES];
     colorMatrix = identityMatrix4;
     
     NSString * scopeName = [scopeImgPath[self.profile.scopeStyle] copy];
@@ -212,7 +212,7 @@
 
 #pragma mark - ui control
 -(IBAction)touchedBackButton:(id)sender{
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    //[self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 

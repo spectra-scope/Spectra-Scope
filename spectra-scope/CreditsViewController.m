@@ -88,4 +88,8 @@
     [self setTextView:nil];
     [super viewDidUnload];
 }
+#pragma mark - flow control
+-(IBAction)goBack:(id)sender{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 @end

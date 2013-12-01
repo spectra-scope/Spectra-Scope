@@ -88,7 +88,7 @@ bugs:
 -(void)viewDidAppear:(BOOL)animated{
     NSLog(@"still image view did appear");
     [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES animated:YES];
+    //[self.navigationController setNavigationBarHidden:YES animated:YES];
     
     [self initSound];
 }
@@ -199,7 +199,7 @@ bugs:
     
 }
 -(IBAction)touchedBackButton:(id)sender{
-    [self.navigationController setNavigationBarHidden:NO animated:YES];
+    //[self.navigationController setNavigationBarHidden:NO animated:YES];
     [self.navigationController popViewControllerAnimated:YES];
 }
 
