@@ -59,6 +59,7 @@
     GPUImageVideoCamera * gpuCamera;
     GPUImageView * gpuView;
     GPUImageColorMatrixFilter * gpuFilter;
+    CGFloat viewScale;
     struct mat4x4 colorMatrix;
     dispatch_queue_t soundQueue;
 }
@@ -103,6 +104,7 @@
         rAvg = 0;
         gAvg = 0;
         bAvg = 0;
+        viewScale = 1.0;
     }
     return self;
 }
@@ -113,11 +115,11 @@
     
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
     gpuView = [[GPUImageView alloc] initWithFrame:CGRectOffset(mainScreenFrame, 0, -20)];
-    self.view = gpuView;
-    [gpuView addSubview:_bgrLabel];
-    [gpuView addSubview:_reticuleImage];
-    [gpuView addSubview:_filterListView];
-    [gpuView addSubview:_buttonGroup];
+    [self.view addSubview:gpuView];
+    [self.view addSubview:_bgrLabel];
+    [self.view addSubview:_reticuleImage];
+    [self.view addSubview:_filterListView];
+    [self.view addSubview:_buttonGroup];
     _reticuleImage.center = gpuView.center;
     NSLog(@"GPUImage view setup complete");
     
@@ -269,7 +271,7 @@
     dispatch_release(soundQueue);
 }
 
-#pragma mark - capture functions
+#pragma mark - frame processing functions
 /* samples rgb value of center pixel*/
 - (void)willOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer{
     CVImageBufferRef pixelBuf = CMSampleBufferGetImageBuffer(sampleBuffer);
@@ -277,17 +279,37 @@
     OSType format = CVPixelBufferGetPixelFormatType(pixelBuf);
     CVPixelBufferLockBaseAddress(pixelBuf, kCVPixelBufferLock_ReadOnly);
     {
-        unsigned b, g, r;        
+        unsigned b = 0, g = 0, r = 0;
         if(format == kCVPixelFormatType_32BGRA)
         {
-            uint8_t *baseAddress = (uint8_t *)CVPixelBufferGetBaseAddress(pixelBuf);
-            unsigned bpr = CVPixelBufferGetBytesPerRow(pixelBuf);
+            pixel_t *pixels = CVPixelBufferGetBaseAddress(pixelBuf);
+            //unsigned bpr = CVPixelBufferGetBytesPerRow(pixelBuf);
             unsigned height = CVPixelBufferGetHeight(pixelBuf);
-            unsigned center = height / 2 * bpr + bpr / 2;
+            unsigned width = CVPixelBufferGetWidth(pixelBuf);
+            unsigned centerx = width / 2;
+            unsigned centery = height / 2;
             
-            b = baseAddress[center];
-            g = baseAddress[center + 1];
-            r = baseAddress[center + 2];
+            struct{unsigned x, y;} points[] = {
+                {centerx - 1, centery - 1}, {centerx , centery - 1},    {centerx + 1, centery - 1},
+                {centerx - 1, centery},     {centerx , centery},        {centerx + 1, centery},
+                {centerx - 1, centery + 1}, {centerx , centery + 1},    {centerx + 1, centery + 1},
+            };
+            unsigned weights[] = {
+                6, 7, 6,
+                7, 12, 7,
+                6, 7, 6
+            };
+            for(int i = 0; i < 9; i++)
+            {
+                unsigned weight = weights[i];
+                pixel_t pix = pixels[points[i].y * width + points[i].x];
+                b += weight * pix.r;
+                g += weight * pix.g;
+                r += weight * pix.b;
+            }
+            b /= 64;
+            g /= 64;
+            r /= 64;
         }
         else if(format == kCVPixelFormatType_420YpCbCr8BiPlanarFullRange)
         {
@@ -373,7 +395,11 @@
     return name;
 }
 - (IBAction)handlePinch:(UIPinchGestureRecognizer *)recognizer {
-    recognizer.view.transform = CGAffineTransformScale(recognizer.view.transform, recognizer.scale, recognizer.scale);
+    viewScale *= recognizer.scale;
+    if(viewScale < 1.0)
+        viewScale = 1.0;
+    
+    recognizer.view.transform = CGAffineTransformMakeScale(viewScale, viewScale);
     recognizer.scale = 1;
 }
 @end
