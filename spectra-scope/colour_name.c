@@ -156,7 +156,7 @@ unsigned pixel_dif(pixel_t a, pixel_t b)
     return abs(ar - br) + abs(ag - bg) + abs(ab - bb);
 }
 
-pixel_t colour_average(pixel_t * pixels, unsigned width, unsigned height, unsigned x, unsigned y, unsigned tolerance, unsigned deviation, unsigned queue_size)
+pixel_t colour_average(pixel_t * pixels, unsigned width, unsigned height, unsigned x, unsigned y, unsigned local_tolerance, unsigned global_tolerance, unsigned queue_size)
 {
     pixel_t startPixel = pixels[width * y + x];
     unsigned rAvg = startPixel.r;
@@ -183,9 +183,9 @@ pixel_t colour_average(pixel_t * pixels, unsigned width, unsigned height, unsign
                 visited[neighbors[i].y * width + neighbors[i].x] = 1;
                 pixel_t current = pixels[p.y * width + p.x];
                 pixel_t neighbor = pixels[neighbors[i].y * width + neighbors[i].x];
-                unsigned sdif = pixel_dif(startPixel, neighbor);
-                unsigned ndif = pixel_dif(current, neighbor);
-                if(sdif < deviation && ndif < tolerance && queue.len < queue.size)
+                unsigned global_dif = pixel_dif(startPixel, neighbor);
+                unsigned local_dif = pixel_dif(current, neighbor);
+                if(global_dif < global_tolerance && local_dif < local_tolerance && queue.len < queue.size)
                     ringbuffer_enq(&queue, neighbors + i);
             }
         }

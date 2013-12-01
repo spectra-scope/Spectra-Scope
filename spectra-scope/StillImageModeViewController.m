@@ -38,10 +38,10 @@ bugs:
 #define QUEUE_SIZE 1024
 
 // allowable difference between neighbor pixels
-#define NEIGHBOR_TOLERANCE 20
+#define LOCAL_TOLERANCE 20
 
 //allowable difference between pixel and starting pixel
-#define DEVIATION 100
+#define GLOBAL_TOLERANCE 100
 
 @interface StillImageModeViewController (){
     UIImagePickerController *picker;
@@ -231,7 +231,7 @@ bugs:
     xx = clip(xx, 0, width - 1);
     
 
-    pixel_t result = colour_average(pixels, width, height, xx, yy, NEIGHBOR_TOLERANCE, DEVIATION, QUEUE_SIZE);
+    pixel_t result = colour_average(pixels, width, height, xx, yy, LOCAL_TOLERANCE, GLOBAL_TOLERANCE, QUEUE_SIZE);
     rAvg = result.r;
     gAvg = result.g;
     bAvg = result.b;

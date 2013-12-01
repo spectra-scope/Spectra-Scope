@@ -289,6 +289,7 @@
             unsigned centerx = width / 2;
             unsigned centery = height / 2;
             
+            // weighted average of center and its 8 neighbors
             struct{unsigned x, y;} points[] = {
                 {centerx - 1, centery - 1}, {centerx , centery - 1},    {centerx + 1, centery - 1},
                 {centerx - 1, centery},     {centerx , centery},        {centerx + 1, centery},
