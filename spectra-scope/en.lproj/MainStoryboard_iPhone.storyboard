@@ -336,15 +336,15 @@
                                     <action selector="hideFilterList:" destination="wnn-ah-IDg" eventType="touchUpInside" id="RbT-yx-u2N"/>
                                 </connections>
                             </view>
-                            <view alpha="0.50000000000000011" contentMode="scaleToFill" id="4Qx-uU-oGF" userLabel="button group">
-                                <rect key="frame" x="0.0" y="415" width="320" height="40"/>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" id="4Qx-uU-oGF" userLabel="button group">
+                                <rect key="frame" x="0.0" y="405" width="320" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="WC1-Ij-lGs">
-                                        <rect key="frame" x="20" y="0.0" width="60" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="WC1-Ij-lGs">
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="back">
+                                        <state key="normal" title="back" image="back.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -355,11 +355,11 @@
                                             <action selector="touchedBackButton:" destination="wnn-ah-IDg" eventType="touchUpInside" id="CLW-F6-AkE"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="qIQ-98-t0i">
-                                        <rect key="frame" x="130" y="0.0" width="60" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="qIQ-98-t0i">
+                                        <rect key="frame" x="110" y="0.0" width="100" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="say">
+                                        <state key="normal" title="say" image="speaker_frog2.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -370,11 +370,11 @@
                                             <action selector="sayColourName:" destination="wnn-ah-IDg" eventType="touchUpInside" id="ndA-jN-Iyy"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="EhC-tu-Hak">
-                                        <rect key="frame" x="240" y="0.0" width="60" height="40"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="EhC-tu-Hak">
+                                        <rect key="frame" x="210" y="0.0" width="110" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" title="filter">
+                                        <state key="normal" title="filter" image="filter.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
@@ -829,9 +829,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back.png" width="120" height="60"/>
         <image name="bg_mainmenu_signin.png" width="320" height="460"/>
         <image name="bg_signup.png" width="320" height="460"/>
+        <image name="filter.png" width="120" height="60"/>
         <image name="reticule.png" width="32" height="32"/>
+        <image name="speaker_frog2.png" width="120" height="60"/>
     </resources>
     <classes>
         <class className="CreditsViewController" superclassName="UIViewController">
@@ -865,9 +868,6 @@
         <class className="OptionsViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/OptionsViewController.h"/>
             <relationships>
-                <relationship kind="action" name="toggleScopeStyle:"/>
-                <relationship kind="action" name="toggleShowRGB:"/>
-                <relationship kind="action" name="toggleUploadData:"/>
                 <relationship kind="outlet" name="rgbButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="scopeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="uploadButton" candidateClass="UIButton"/>
@@ -876,6 +876,13 @@
         <class className="RealTimeModeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/RealTimeModeViewController.h"/>
             <relationships>
+                <relationship kind="action" name="clearFilters:"/>
+                <relationship kind="action" name="handlePinch:" candidateClass="UIPinchGestureRecognizer"/>
+                <relationship kind="action" name="hideFilterList:"/>
+                <relationship kind="action" name="pushFilter:"/>
+                <relationship kind="action" name="sayColourName:"/>
+                <relationship kind="action" name="toggleFilterList:"/>
+                <relationship kind="action" name="touchedBackButton:"/>
                 <relationship kind="outlet" name="backButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="bgrLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="brightenGreenButton" candidateClass="UIButton"/>
