@@ -52,6 +52,9 @@
 		F732245F183D82E700ACBDB5 /* OptionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F732245E183D82E700ACBDB5 /* OptionsViewController.m */; };
 		F7322468183DE0A900ACBDB5 /* tokenizer.c in Sources */ = {isa = PBXBuildFile; fileRef = F7322466183DE0A900ACBDB5 /* tokenizer.c */; };
 		F7665385184B220C00889D90 /* ret1.png in Resources */ = {isa = PBXBuildFile; fileRef = F7665384184B220C00889D90 /* ret1.png */; };
+		F766538B184B253E00889D90 /* ret4.png in Resources */ = {isa = PBXBuildFile; fileRef = F7665388184B253E00889D90 /* ret4.png */; };
+		F766538C184B253E00889D90 /* ret5.png in Resources */ = {isa = PBXBuildFile; fileRef = F7665389184B253E00889D90 /* ret5.png */; };
+		F766538D184B253E00889D90 /* ret6.png in Resources */ = {isa = PBXBuildFile; fileRef = F766538A184B253E00889D90 /* ret6.png */; };
 		F778EC0D183F3B390049203E /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F778EC0C183F3B390049203E /* CreditsViewController.m */; };
 		F79AF6C31818DB4800AB781F /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F79AF6C21818DB4800AB781F /* SignUpViewController.m */; };
 		F7A3C148184A88D900F195F4 /* bg_mainmenu_signin.png in Resources */ = {isa = PBXBuildFile; fileRef = F7A3C145184A88D900F195F4 /* bg_mainmenu_signin.png */; };
@@ -158,6 +161,9 @@
 		F7322466183DE0A900ACBDB5 /* tokenizer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = tokenizer.c; sourceTree = "<group>"; };
 		F7322467183DE0A900ACBDB5 /* tokenizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tokenizer.h; sourceTree = "<group>"; };
 		F7665384184B220C00889D90 /* ret1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret1.png; sourceTree = "<group>"; };
+		F7665388184B253E00889D90 /* ret4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret4.png; sourceTree = "<group>"; };
+		F7665389184B253E00889D90 /* ret5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret5.png; sourceTree = "<group>"; };
+		F766538A184B253E00889D90 /* ret6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ret6.png; sourceTree = "<group>"; };
 		F778EC0B183F3B390049203E /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
 		F778EC0C183F3B390049203E /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		F79AF6C11818DB4800AB781F /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
@@ -273,6 +279,9 @@
 			isa = PBXGroup;
 			children = (
 				F7665384184B220C00889D90 /* ret1.png */,
+				F7665388184B253E00889D90 /* ret4.png */,
+				F7665389184B253E00889D90 /* ret5.png */,
+				F766538A184B253E00889D90 /* ret6.png */,
 				F7A3C151184A9A1B00F195F4 /* app_icon.png */,
 				F7A3C145184A88D900F195F4 /* bg_mainmenu_signin.png */,
 				F7A3C146184A88D900F195F4 /* bg_options.png */,
@@ -521,6 +530,9 @@
 				F7A3C14A184A88D900F195F4 /* bg_signup.png in Resources */,
 				F7A3C152184A9A1B00F195F4 /* app_icon.png in Resources */,
 				F7665385184B220C00889D90 /* ret1.png in Resources */,
+				F766538B184B253E00889D90 /* ret4.png in Resources */,
+				F766538C184B253E00889D90 /* ret5.png in Resources */,
+				F766538D184B253E00889D90 /* ret6.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
