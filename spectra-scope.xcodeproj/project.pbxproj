@@ -10,6 +10,8 @@
 		8B400C9F182DBD2B000D1C61 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8B400C9E182DBD2B000D1C61 /* AudioToolbox.framework */; };
 		8BC8F4F418249C48002DF36B /* StillImageModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */; };
 		8BF798601819C68000844EBC /* MainScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7985F1819C68000844EBC /* MainScreenViewController.m */; };
+		EF05EE54184BEEF2003DC7FB /* folder.png in Resources */ = {isa = PBXBuildFile; fileRef = EF05EE52184BEEF2003DC7FB /* folder.png */; };
+		EF05EE55184BEEF2003DC7FB /* question_mark.png in Resources */ = {isa = PBXBuildFile; fileRef = EF05EE53184BEEF2003DC7FB /* question_mark.png */; };
 		EF277C60181CA21D004BAFB3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */; };
 		EF277C63181CA7F6004BAFB3 /* RealTimeModeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF277C62181CA7F6004BAFB3 /* RealTimeModeViewController.m */; };
 		EF37F6AC1811E73600C5ACC8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6AB1811E73600C5ACC8 /* UIKit.framework */; };
@@ -102,6 +104,8 @@
 		8BC8F4F318249C48002DF36B /* StillImageModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StillImageModeViewController.m; sourceTree = "<group>"; };
 		8BF7985E1819C68000844EBC /* MainScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainScreenViewController.h; sourceTree = "<group>"; };
 		8BF7985F1819C68000844EBC /* MainScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainScreenViewController.m; sourceTree = "<group>"; };
+		EF05EE52184BEEF2003DC7FB /* folder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = folder.png; sourceTree = "<group>"; };
+		EF05EE53184BEEF2003DC7FB /* question_mark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_mark.png; sourceTree = "<group>"; };
 		EF277C5F181CA21D004BAFB3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		EF277C61181CA7F6004BAFB3 /* RealTimeModeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RealTimeModeViewController.h; sourceTree = "<group>"; };
 		EF277C62181CA7F6004BAFB3 /* RealTimeModeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RealTimeModeViewController.m; sourceTree = "<group>"; };
@@ -282,6 +286,8 @@
 		EF37F6B21811E73600C5ACC8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				EF05EE52184BEEF2003DC7FB /* folder.png */,
+				EF05EE53184BEEF2003DC7FB /* question_mark.png */,
 				F766538E184B36A000889D90 /* app_icon.png */,
 				F766538F184B36A000889D90 /* back.png */,
 				F7665390184B36A000889D90 /* filter.png */,
@@ -541,6 +547,8 @@
 				F7665391184B36A000889D90 /* app_icon.png in Resources */,
 				F7665392184B36A000889D90 /* back.png in Resources */,
 				F7665393184B36A000889D90 /* filter.png in Resources */,
+				EF05EE54184BEEF2003DC7FB /* folder.png in Resources */,
+				EF05EE55184BEEF2003DC7FB /* question_mark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
