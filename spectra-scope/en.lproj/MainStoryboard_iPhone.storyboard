@@ -792,6 +792,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="cUa-ir-kji">
+                        <rect key="frame" x="0.0" y="416" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="2" kind="relationship" relationship="rootViewController" id="czX-xG-nHL"/>
                     </connections>
@@ -875,6 +879,11 @@
         <class className="StillImageModeViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/StillImageModeViewController.h"/>
             <relationships>
+                <relationship kind="action" name="handlePan:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="queryColour:"/>
+                <relationship kind="action" name="sayColourName:"/>
+                <relationship kind="action" name="showHideUIGroup:"/>
+                <relationship kind="action" name="touchedBackButton:"/>
                 <relationship kind="outlet" name="imageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="infoLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="playButton" candidateClass="UIButton"/>

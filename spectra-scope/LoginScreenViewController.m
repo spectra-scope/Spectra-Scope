@@ -44,6 +44,7 @@ revisions:
 -(void)viewDidDisappear:(BOOL)animated{
     _usernameInput.text = @"";
     _passwordInput.text = @"";
+    [self hideKeyboards:nil];
     [super viewDidDisappear:animated];
     NSLog(@"login view did disappear");
 }

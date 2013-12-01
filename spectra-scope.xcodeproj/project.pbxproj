@@ -26,8 +26,6 @@
 		EF37F6CB1811E73600C5ACC8 /* LoginScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF37F6CA1811E73600C5ACC8 /* LoginScreenViewController.m */; };
 		EF6210991847EC470024B654 /* speaker_frog2.png in Resources */ = {isa = PBXBuildFile; fileRef = EF6210981847EC470024B654 /* speaker_frog2.png */; };
 		EF62109E1848000C0024B654 /* HelpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EF62109D1848000C0024B654 /* HelpViewController.m */; };
-		EFCC78B4182C635800331135 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B3182C635800331135 /* Queue.m */; };
-		EFCC78B5182C635800331135 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B3182C635800331135 /* Queue.m */; };
 		EFCC78B9182C706C00331135 /* QueueTest.m in Sources */ = {isa = PBXBuildFile; fileRef = EFCC78B7182C69C800331135 /* QueueTest.m */; };
 		F70B830A181DED9700E12A33 /* colour_name.c in Sources */ = {isa = PBXBuildFile; fileRef = F70B8309181DED9700E12A33 /* colour_name.c */; };
 		F70B8313181E2B8A00E12A33 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EF37F6D21811E73600C5ACC8 /* SenTestingKit.framework */; };
@@ -122,8 +120,6 @@
 		EF6210981847EC470024B654 /* speaker_frog2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = speaker_frog2.png; sourceTree = "<group>"; };
 		EF62109C1848000C0024B654 /* HelpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpViewController.h; sourceTree = "<group>"; };
 		EF62109D1848000C0024B654 /* HelpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpViewController.m; sourceTree = "<group>"; };
-		EFCC78B2182C635800331135 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
-		EFCC78B3182C635800331135 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 		EFCC78B6182C69C800331135 /* QueueTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueTest.h; sourceTree = "<group>"; };
 		EFCC78B7182C69C800331135 /* QueueTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueTest.m; sourceTree = "<group>"; };
 		F70B8309181DED9700E12A33 /* colour_name.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = colour_name.c; sourceTree = "<group>"; };
@@ -370,8 +366,6 @@
 			isa = PBXGroup;
 			children = (
 				F7C4AE71182F763400D81490 /* ringbuffer.h */,
-				EFCC78B2182C635800331135 /* Queue.h */,
-				EFCC78B3182C635800331135 /* Queue.m */,
 				F71C68E6182B6409005DEC98 /* ArcBuffer.h */,
 				F71C68E7182B6409005DEC98 /* ArcBuffer.m */,
 			);
@@ -573,7 +567,6 @@
 				F7FBDFA71828B36E008E323D /* matrix.c in Sources */,
 				F71C68E3182B2329005DEC98 /* Filters.m in Sources */,
 				F71C68E8182B6409005DEC98 /* ArcBuffer.m in Sources */,
-				EFCC78B4182C635800331135 /* Queue.m in Sources */,
 				F7C4AE70182F48BD00D81490 /* SpeechSynthesis.m in Sources */,
 				F732245F183D82E700ACBDB5 /* OptionsViewController.m in Sources */,
 				F7322468183DE0A900ACBDB5 /* tokenizer.c in Sources */,
@@ -589,7 +582,6 @@
 				F70B8325181E329800E12A33 /* UserProfileTest.m in Sources */,
 				F7186FD5181EB51200DDD126 /* ColourAlgorithmTest.m in Sources */,
 				F71C68E9182B6409005DEC98 /* ArcBuffer.m in Sources */,
-				EFCC78B5182C635800331135 /* Queue.m in Sources */,
 				EFCC78B9182C706C00331135 /* QueueTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
