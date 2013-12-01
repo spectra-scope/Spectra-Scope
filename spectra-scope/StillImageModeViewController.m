@@ -53,8 +53,8 @@ bugs:
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UIView *uiGroup;
 @property (weak, nonatomic) IBOutlet UILabel *infoLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *reticule;
 @property (weak, nonatomic) IBOutlet UIButton *playButton;
+@property (weak, nonatomic) IBOutlet UIImageView *reticule;
 @end
 
 @implementation StillImageModeViewController
@@ -75,7 +75,6 @@ bugs:
     [super viewDidLoad];
     CGRect mainScreenFrame = [[UIScreen mainScreen] applicationFrame];
     _imageView.frame = CGRectOffset(mainScreenFrame, 0, -20);
-    [_imageView addSubview:_infoLabel];
 }
 -(void)viewDidAppear:(BOOL)animated{
     NSLog(@"still image view did appear");
@@ -97,8 +96,8 @@ bugs:
     [self setUiGroup:nil];
     [self setImageView:nil];
     [self setInfoLabel:nil];
-    [self setReticule:nil];
     [self setPlayButton:nil];
+    [self setReticule:nil];
     [super viewDidUnload];
     NSLog(@"still image view did unload");
 }
@@ -124,8 +123,9 @@ bugs:
     UIImage * pickerImageResult = [info objectForKey:UIImagePickerControllerOriginalImage];
     UIImage * fixedImage = [UIImage imageWithCGImage:[pickerImageResult CGImage]
                                                scale:1.0
-                                         orientation:UIImageOrientationRight];
+                                         orientation:UIImageOrientationUp];
     [self setupImageForProcessing:fixedImage];
+    _imageView.bounds = CGRectMake(0, 0, fixedImage.size.width, fixedImage.size.height);
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -159,19 +159,24 @@ bugs:
     CGContextRelease(context);
     
     pixelBuf = bufObj;
+    NSLog(@"%d, %d", width, height);
 }
 #pragma mark - ui control
 - (IBAction)handlePan:(UIPanGestureRecognizer *)recognizer {
     
     CGPoint translation = [recognizer translationInView:self.view];
     
-    CGFloat newx = _reticule.center.x + translation.x;
-    newx = clip(newx, 0, self.view.bounds.size.width);
-    
-    CGFloat newy = _reticule.center.y + translation.y;
-    newy = clip(newy, 0, self.view.bounds.size.height);
-    
-    _reticule.center = CGPointMake(newx, newy);
+    CGFloat newx = _imageView.frame.origin.x + translation.x;
+    CGFloat newy = _imageView.frame.origin.y + translation.y;
+    if(newx > _reticule.center.x)
+        newx = _reticule.center.x;
+    if(newy > _reticule.center.y)
+        newy = _reticule.center.y;
+    if(newx + _imageView.frame.size.width < _reticule.center.x)
+        newx = _reticule.center.x - _imageView.frame.size.width;
+    if(newy + _imageView.frame.size.height < _reticule.center.y)
+        newy = _reticule.center.y - _imageView.frame.size.height;
+    _imageView.frame = CGRectMake(newx, newy, _imageView.frame.size.width, _imageView.frame.size.height);
     [recognizer setTranslation:CGPointMake(0, 0) inView:self.view];
     
 }
@@ -225,13 +230,20 @@ bugs:
     /*  all pictures are viewed in landscape, so the y is actually the inverted x position of the reticule
         , and x is actually the y position of the reticule
      */
+#if 0
     NSUInteger yy = ((self.view.bounds.size.width - _reticule.center.x) * height) / self.view.bounds.size.width;
     yy = clip(yy, 0, height - 1);
     NSUInteger xx = (_reticule.center.y * width) / self.view.bounds.size.height;
     xx = clip(xx, 0, width - 1);
-    
+#else
+    NSInteger x = _reticule.center.x - _imageView.frame.origin.x;
+    x = clip(x, 0, width - 1);
+    NSInteger y = _reticule.center.y - _imageView.frame.origin.y;
+    y = clip(y, 0, height - 1);
+    NSLog(@"%d, %d:", x, y);
+#endif
 
-    pixel_t result = colour_average(pixels, width, height, xx, yy, LOCAL_TOLERANCE, GLOBAL_TOLERANCE, QUEUE_SIZE);
+    pixel_t result = colour_average(pixels, width, height, x, y, LOCAL_TOLERANCE, GLOBAL_TOLERANCE, QUEUE_SIZE);
     rAvg = result.r;
     gAvg = result.g;
     bAvg = result.b;
