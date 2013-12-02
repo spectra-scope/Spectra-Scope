@@ -13,6 +13,10 @@ revisions:
     - added testFieldShouldReturn for dismissing keyboards
  1.1: by Tian Lin Tan
     - added logInPress for checking login input
+ 2.0: by Tian Lin Tan
+    - new buttons: contact and help
+    - different layout
+    - background image
  
  bugs:
  - view is not reset every time the screen this screen switches to other screens

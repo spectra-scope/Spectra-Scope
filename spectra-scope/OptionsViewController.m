@@ -5,7 +5,20 @@
 //  Created by Tian Lin Tan on 13-11-20.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
-
+/*
+ revisions:
+ 1.0: by Tian Lin Tan
+ - created
+ 1.1 by Tian Lin Tan
+ - added option for upload data
+ 1.2 by Tian Lin Tan
+ - added option for show rgb
+ 1.3 by Tian Lin Tan
+ - added option for scope
+ 1.4 by Tian Lin Tan
+ - hidden option for upload data
+ - added background
+ */
 #import "OptionsViewController.h"
 #import "AppDelegate.h"
 

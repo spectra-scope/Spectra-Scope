@@ -2,7 +2,7 @@
 //  SpeechSynthesis.m
 //  spectra-scope
 //
-//  Created by tt on 13-11-09.
+//  Created by Tian Lin Tan on 13-11-09.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
 

@@ -36,6 +36,11 @@
  1.10: by Tian Lin Tan
  - pixel average is now an average of center and its neighbors.
  - updating label is now done asynchronously
+ 2.0 by Tian Lin Tan
+ - added scope image
+ - added button icons
+ - added zoom in
+ - bigger label
  
  bugs (iteration 1):
  - (not a bug) viewDidunload is not called when user goes back one screen

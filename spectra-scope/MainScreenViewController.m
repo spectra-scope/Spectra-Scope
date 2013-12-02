@@ -16,6 +16,9 @@
  1.3 by Tian Lin Tan
  - transition to real time or still image mode is no longer done in story board
  - instead, instances of next view controllers are kept
+ 2.0 by Tian Lin Tan
+ - added background
+ - added logout button
  */
 #import "MainScreenViewController.h"
 #import "RealTimeModeViewController.h"

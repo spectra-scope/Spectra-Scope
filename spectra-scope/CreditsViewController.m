@@ -5,7 +5,13 @@
 //  Created by Tian Lin Tan on 13-11-21.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
-
+/*
+ revisions:
+ 1.0: by Tian Lin Tan
+ - created
+ 2.0 by Tian Lin Tan
+ - added background
+ */
 #import "CreditsViewController.h"
 
 @interface CreditsViewController ()
@@ -32,7 +38,11 @@
     "Archit Sood\n"
     "\n"
     
-    "Graphics design\n"
+    "Website\n"
+    "Archit Sood\n"
+    "\n"
+    
+    "Icons\n"
     "Daniel Soheili\n"
     "Nikita Chichikov\n"
     "\n"

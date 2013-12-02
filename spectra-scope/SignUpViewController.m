@@ -22,6 +22,10 @@
  - added sex button toggle function for toggling sex every time the sex button is pressed
  1.6: by Tian Lin Tan
  - added code for sign up
+ 2.0: by Tian Lin Tan
+ - added update function
+ - move shared data to appdelegate
+ - added new options
  */
 #import "SignUpViewController.h"
 #import "UserProfile.h"

@@ -5,7 +5,13 @@
 //  Created by Tian Lin Tan on 11/28/13.
 //  Copyright (c) 2013 spectra. All rights reserved.
 //
-
+/*
+ revisions:
+ 1.0: by Tian Lin Tan
+ - created
+ 1.1: by Tian Lin Tan
+ - changed to open web page by parameter
+ */
 #import "HelpViewController.h"
 
 @interface HelpViewController ()
