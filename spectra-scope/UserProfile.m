@@ -107,7 +107,7 @@ enum login_status{
         ini_set(profiles, username, "rgb", "false");
         assert(ini_get(profiles, username, "rgb"));
         
-        ini_set(profiles, username, "scope", "0");
+        ini_set(profiles, username, "scope", "3");
         assert(ini_get(profiles, username, "scope"));
         signup_status = SU_SUCCESS;
     }
