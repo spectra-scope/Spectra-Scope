@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HelpViewController : UIViewController<UIWebViewDelegate>
-
+-(void)openPage:(NSString*)urlString;
 @end

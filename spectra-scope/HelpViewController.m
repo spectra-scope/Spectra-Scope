@@ -10,7 +10,7 @@
 
 @interface HelpViewController ()
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
-
+@property (strong, nonatomic) NSURLRequest * requestObj;
 @end
 
 @implementation HelpViewController
@@ -27,12 +27,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	NSURL *URL = [NSURL URLWithString:@"http://cmpt275-group3.businesscatalyst.com/help.html"];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:URL];
-    _webView.delegate = self ;
-    [_webView loadRequest:requestObj];
+	
 }
-
+-(void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    _webView.delegate = self ;
+    [_webView loadRequest:_requestObj];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -42,6 +44,12 @@
 - (void)viewDidUnload {
     [self setWebView:nil];
     [super viewDidUnload];
+}
+#pragma mark - 
+-(void)openPage:(NSString*)urlString{
+    NSURL *URL = [NSURL URLWithString:urlString];
+    _requestObj = [NSURLRequest requestWithURL:URL];
+    
 }
 #pragma mark - flow control
 -(IBAction)goBack:(id)sender{

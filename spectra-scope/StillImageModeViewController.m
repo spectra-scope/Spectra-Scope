@@ -250,7 +250,7 @@ bugs:
 
     char const * colour_str = colour_string(colour_id(rAvg, gAvg, bAvg));
     char const * brightness_str = brightness_string(brightness_id(rAvg, gAvg, bAvg));
-    _infoLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d %s %s", rAvg, gAvg, bAvg, brightness_str, colour_str];
+    _infoLabel.text = [NSString stringWithFormat:@"rgb:%03d %03d %03d\n%s %s", rAvg, gAvg, bAvg, brightness_str, colour_str];
 
 }
 @end

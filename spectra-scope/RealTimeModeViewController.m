@@ -395,7 +395,7 @@
     NSString * name;
     if(profile.showRGB)
     {
-        name = [NSString stringWithFormat:@"%03d %03d %03d %s %s",
+        name = [NSString stringWithFormat:@"%03d %03d %03d\n%s %s",
                 rAvg, gAvg, bAvg,
                 brightness_str,
                 colour_str];

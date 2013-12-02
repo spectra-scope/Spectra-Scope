@@ -19,13 +19,15 @@ revisions:
  */
 #import "LoginScreenViewController.h"
 #import "MainScreenViewController.h"
+#import "HelpViewController.h"
 #import "UserProfile.h"
 #import "AppDelegate.h"
 @interface LoginScreenViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameInput;
 @property (weak, nonatomic) IBOutlet UITextField *passwordInput;
 @property (weak, nonatomic) IBOutlet UILabel *messageLabel;
-@property (strong, nonatomic, getter = mainScreenVC) UIViewController * mainScreenVC;
+@property (strong, nonatomic, getter = getMainScreenVC) UIViewController * mainScreenVC;
+@property (strong, nonatomic, getter = getWebScreenVC) HelpViewController * webScreenVC;
 @end
 
 @implementation LoginScreenViewController
@@ -80,7 +82,14 @@ revisions:
         [self hideKeyboards:nil];
     }
 }
-
+-(IBAction)helpPage:(id)sender{
+    [self.webScreenVC openPage:helpURL];
+    [self.navigationController pushViewController:self.webScreenVC animated:YES];
+}
+-(IBAction)contactPage:(id)sender{
+    [self.webScreenVC openPage:contactURL];
+    [self.navigationController pushViewController:self.webScreenVC animated:YES];
+}
 #pragma mark - hiding keyboards
 -(IBAction)hideKeyboards:(id)sender{
     NSLog(@"background touched, dismissing keyboard");
@@ -113,13 +122,20 @@ revisions:
     [UIView commitAnimations];
 }
 #pragma mark - lazy getter
--(UIViewController*) mainScreenVC{
+-(UIStoryboard*)storyboard{
+    return [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+}
+-(UIViewController*) getMainScreenVC{
     if(_mainScreenVC == nil)
     {
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-        _mainScreenVC = [storyboard instantiateViewControllerWithIdentifier:@"MainScreenViewController"];
+        _mainScreenVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MainScreenViewController"];
     }
     return _mainScreenVC;
 }
-
-@end
+-(UIViewController*) getWebScreenVC{
+    if(_webScreenVC == nil)
+    {
+        _webScreenVC = [self.storyboard instantiateViewControllerWithIdentifier:@"HelpViewController"];
+    }
+    return _webScreenVC;
+}@end

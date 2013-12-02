@@ -10,6 +10,8 @@
 #import "iniparser.h"
 #import "UserProfile.h"
 extern NSString const * const scopeImgPath[];
+extern NSString * helpURL;
+extern NSString * contactURL;
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;

@@ -17,6 +17,8 @@ NSString const * const scopeImgPath[] = {
     [SCOPE1BG] = @"reticule1bg.png",
     [SCOPE2BG] = @"reticule2bg.png"
 };
+NSString * helpURL = @"http://cmpt275-group3.businesscatalyst.com/help.html";
+NSString * contactURL = @"http://cmpt275-group3.businesscatalyst.com/contact-us.html";
 @implementation AppDelegate
 @synthesize profiles;
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
